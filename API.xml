@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Surveillance</name>
+    </assembly>
+    <members>
+        <member name="T:Surveillance.Controllers.UserController">
+            <summary>
+            使用者
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.#ctor(Surveillance.Interfaces.IUserRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_UserRepository"></param>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.GetList">
+            <summary>
+            取得使用者清單
+            </summary>
+        </member>
+        <member name="T:Surveillance.Interfaces.IUserRepository">
+            <summary>
+            使用者
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.UserModel">
+            <summary>
+            使用者
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserModel.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserModel.Account">
+            <summary>
+            帳號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserModel.Password">
+            <summary>
+            密碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserModel.IsAdmin">
+            <summary>
+            管理員旗標
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserModel.IsWork">
+            <summary>
+            啟用旗標
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserModel.ActionTime">
+            <summary>
+            最後動作時間
+            </summary>
+        </member>
+        <member name="T:Surveillance.Program">
+            <summary>
+            主程式
+            </summary>
+        </member>
+        <member name="M:Surveillance.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="_Args">參數</param>
+        </member>
+        <member name="M:Surveillance.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            CreateHostBuilder
+            </summary>
+            <param name="_Args">參數</param>
+            <returns>IWebHostBuilder</returns>
+        </member>
+        <member name="T:Surveillance.Repositories.UserRepository">
+            <summary>
+            使用者
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.#ctor(Surveillance.Schafold.MySQLContext)">
+            <summary>
+            建構
+            </summary>
+            <param name="_MySQLContext"></param>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.GetList">
+            <summary>
+            取得使用者清單
+            </summary>
+            <returns>List</returns>
+        </member>
+        <member name="T:Surveillance.Schafold.MySQLContext">
+            <summary>
+            MySQL上下文
+            </summary>
+        </member>
+        <member name="M:Surveillance.Schafold.MySQLContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Surveillance.Schafold.MySQLContext})">
+            <summary>
+            建構
+            </summary>
+            <param name="_Option">選項</param>
+        </member>
+        <member name="M:Surveillance.Schafold.MySQLContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            模型建立
+            </summary>
+            <param name="_MB">建立器</param>
+        </member>
+        <member name="T:Surveillance.Startup">
+            <summary>
+            啟動
+            </summary>
+        </member>
+        <member name="M:Surveillance.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            建構
+            </summary>
+            <param name="_Configuration"></param>
+        </member>
+        <member name="M:Surveillance.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注入服務
+            </summary>
+            <param name="_Services">服務</param>
+        </member>
+        <member name="M:Surveillance.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            設定
+            </summary>
+            <remarks>
+            Middleware
+            </remarks>
+            <param name="_App">應用程式</param>
+            <param name="_Env">環境</param>
+        </member>
+    </members>
+</doc>
