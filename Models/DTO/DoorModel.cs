@@ -4,9 +4,9 @@ using System;
 namespace Surveillance.Models {
 
     /// <summary>
-    /// 使用者
+    /// 門鎖
     /// </summary>
-    public class UserModel {
+    public class DoorModel {
 
         /// <summary>
         /// 流水編號
@@ -14,29 +14,39 @@ namespace Surveillance.Models {
         public int Seq { get; set; } = 0;
 
         /// <summary>
-        /// 姓名
+        /// 門鎖編號
+        /// </summary>
+        public string ID { get; set; } = "";
+
+        /// <summary>
+        /// 門鎖名稱
         /// </summary>
         public string Name { get; set; } = "";
 
         /// <summary>
-        /// 帳號
+        /// 樓層
         /// </summary>
-        public string Account { get; set; } = "";
+        public int Floor { get; set; } = 0;
 
         /// <summary>
-        /// 密碼
+        /// 備註
         /// </summary>
-        public string Password { get; set; } = "";
+        public string Note { get; set; } = "";
 
         /// <summary>
-        /// 管理員旗標
+        /// 狀態
         /// </summary>
-        public int IsAdmin { get; set; } = 0;
+        public int Status { get; set; } = 0;
 
         /// <summary>
-        /// 啟用旗標
+        /// 電池電量
         /// </summary>
-        public int IsWork { get; set; } = 0;
+        public int Battery { get; set; } = 0;
+
+        /// <summary>
+        /// 遠端開鎖旗標
+        /// </summary>
+        public int IsRemote { get; set; } = 0;
 
         /// <summary>
         /// 最後動作時間

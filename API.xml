@@ -13,16 +13,348 @@
             <summary>
             建構
             </summary>
-            <param name="_UserRepository"></param>
+            <param name="_UserRepository">倉儲</param>
         </member>
-        <member name="M:Surveillance.Controllers.UserController.GetList">
+        <member name="M:Surveillance.Controllers.UserController.Get(System.String)">
+            <summary>
+            取得使用者
+            </summary>
+            <param name="_Account" example="fish">帳號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.GetList(Surveillance.Models.UserEntry)">
             <summary>
             取得使用者清單
             </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="T:Surveillance.Enums.API_RESULT_CODE">
+            <summary>
+            API回應代碼
+            </summary>
+        </member>
+        <member name="T:Surveillance.Enums.USER_LOG_STATUS">
+            <summary>
+            使用者紀錄狀態
+            </summary>
+        </member>
+        <member name="T:Surveillance.Examples.UserExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.UserExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>UserEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.Example">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.Example.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>Entry</returns>
         </member>
         <member name="T:Surveillance.Interfaces.IUserRepository">
             <summary>
             使用者
+            </summary>
+        </member>
+        <member name="T:Surveillance.Library.AES">
+            <summary>
+            AES
+            </summary>
+        </member>
+        <member name="M:Surveillance.Library.AES.#ctor(System.String,System.String)">
+            <summary>
+            建構
+            </summary>
+            <param name="_IV">特徵值</param>
+            <param name="_Key">金鑰</param>
+        </member>
+        <member name="M:Surveillance.Library.AES.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="_PlainText">明文字串</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Library.AES.Decrypt(System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="_CipherText">密文字串</param>
+            <returns>string</returns>
+        </member>
+        <member name="T:Surveillance.Library.Tool">
+            <summary>
+            工具類別
+            </summary>
+        </member>
+        <member name="M:Surveillance.Library.Tool.GetJsonOption">
+            <summary>
+            取得JSON設定
+            </summary>
+            <returns>JsonSerializerOptions</returns>
+        </member>
+        <member name="M:Surveillance.Library.Tool.ConvertToJson``1(``0,Surveillance.Models.APIModel)">
+            <summary>
+            物件轉JSON
+            </summary>
+            <param name="_Object">物件</param>
+            <param name="_APIModel">API模型</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Library.Tool.GenerateUniqueid">
+            <summary>
+            產生系統編號
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Library.Tool.ToEnumDescription(System.Enum)">
+            <summary>
+            列舉描述
+            </summary>
+            <param name="_Enum">列舉</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Library.Tool.FilterParameter(System.String)">
+            <summary>
+            過濾參數
+            </summary>
+            <param name="_Parameter">參數</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Library.Tool.SubstringMax(System.String,System.Int32)">
+            <summary>
+            截斷文字
+            </summary>
+            <param name="_Text">文字</param>
+            <param name="_MaxLength">最大長度</param>
+            <returns>string</returns>
+        </member>
+        <member name="T:Surveillance.Models.APIModel">
+            <summary>
+            API
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.APIModel.Result">
+            <summary>
+            內容
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.APIModel.ResultCount">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.APIModel.ResultCode">
+            <summary>
+            回應代碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.APIModel.ResultMessage">
+            <summary>
+            回應訊息
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.CardAuthorityModel">
+            <summary>
+            門卡權限
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardAuthorityModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardAuthorityModel.DoorID">
+            <summary>
+            門鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardAuthorityModel.CardID">
+            <summary>
+            門卡編號
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.CardBatchModel">
+            <summary>
+            門卡批次
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchModel.CardID">
+            <summary>
+            門卡編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchModel.Name">
+            <summary>
+            持有者名稱
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchModel.StartTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchModel.EndTime">
+            <summary>
+            時間時間
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.CardModel">
+            <summary>
+            門卡
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardModel.ID">
+            <summary>
+            門卡編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardModel.Note">
+            <summary>
+            備註
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardModel.IsWork">
+            <summary>
+            啟用旗標
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardModel.ActionTime">
+            <summary>
+            最後動作時間
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.DoorModel">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.ID">
+            <summary>
+            門鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.Name">
+            <summary>
+            門鎖名稱
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.Floor">
+            <summary>
+            樓層
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.Note">
+            <summary>
+            備註
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.Status">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.Battery">
+            <summary>
+            電池電量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.IsRemote">
+            <summary>
+            遠端開鎖旗標
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.ActionTime">
+            <summary>
+            最後動作時間
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.EventLogModel">
+            <summary>
+            事件紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogModel.Time">
+            <summary>
+            時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogModel.DoorID">
+            <summary>
+            門鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogModel.CardID">
+            <summary>
+            門卡編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogModel.Status">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogModel.UserSeq">
+            <summary>
+            使用者流水編號
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.UserLogModel">
+            <summary>
+            使用者紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogModel.Time">
+            <summary>
+            時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogModel.UserSeq">
+            <summary>
+            使用者流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogModel.Status">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogModel.Note">
+            <summary>
+            備註
             </summary>
         </member>
         <member name="T:Surveillance.Models.UserModel">
@@ -65,6 +397,31 @@
             最後動作時間
             </summary>
         </member>
+        <member name="T:Surveillance.Models.UserEntry">
+            <summary>
+            使用者
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.Entry">
+            <summary>
+            基底
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.Entry.PageNow">
+            <summary>
+            目前頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.Entry.PageShow">
+            <summary>
+            每頁筆數
+            </summary>
+        </member>
         <member name="T:Surveillance.Program">
             <summary>
             主程式
@@ -88,30 +445,59 @@
             使用者
             </summary>
         </member>
-        <member name="M:Surveillance.Repositories.UserRepository.#ctor(Surveillance.Schafold.MySQLContext)">
+        <member name="M:Surveillance.Repositories.UserRepository.#ctor(Surveillance.Schafold.DatabaseContext)">
             <summary>
             建構
             </summary>
-            <param name="_MySQLContext"></param>
+            <param name="_DatabaseContext">資料庫上下文</param>
         </member>
-        <member name="M:Surveillance.Repositories.UserRepository.GetList">
+        <member name="M:Surveillance.Repositories.UserRepository.Get(System.String)">
+            <summary>
+            取得使用者
+            </summary>
+            <param name="_Account">帳號</param>
+            <returns>UserModel</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.GetList(Surveillance.Models.UserEntry)">
             <summary>
             取得使用者清單
             </summary>
-            <returns>List</returns>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
         </member>
-        <member name="T:Surveillance.Schafold.MySQLContext">
+        <member name="M:Surveillance.Repositories.UserRepository.Set(Surveillance.Models.UserModel)">
             <summary>
-            MySQL上下文
+            新增使用者
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.Update(Surveillance.Models.UserModel)">
+            <summary>
+            修改使用者
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.Delete(System.String)">
+            <summary>
+            刪除使用者
+            </summary>
+            <param name="_Account">帳號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="T:Surveillance.Schafold.DatabaseContext">
+            <summary>
+            資料庫上下文
             </summary>
         </member>
-        <member name="M:Surveillance.Schafold.MySQLContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Surveillance.Schafold.MySQLContext})">
+        <member name="M:Surveillance.Schafold.DatabaseContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Surveillance.Schafold.DatabaseContext})">
             <summary>
             建構
             </summary>
             <param name="_Option">選項</param>
         </member>
-        <member name="M:Surveillance.Schafold.MySQLContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Surveillance.Schafold.DatabaseContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             模型建立
             </summary>
@@ -126,7 +512,7 @@
             <summary>
             建構
             </summary>
-            <param name="_Configuration"></param>
+            <param name="_Configuration">設定</param>
         </member>
         <member name="M:Surveillance.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>

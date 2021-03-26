@@ -12,7 +12,35 @@ namespace Surveillance.Interfaces {
 
         #region "讀取"
 
-        Task<List<UserModel>> GetList();
+        Task<UserModel> Get(string _Account);
+        Task<(List<UserModel> List, int Count)> GetList(UserEntry _Entry);
+
+        #endregion
+
+
+
+
+        #region "新增"
+
+        Task Set(UserModel _Model);
+
+        #endregion
+
+
+
+
+        #region "修改"
+
+        Task Update(UserModel _Model);
+
+        #endregion
+
+
+
+
+        #region "刪除"
+
+        Task Delete(string _Account);
 
         #endregion
     }

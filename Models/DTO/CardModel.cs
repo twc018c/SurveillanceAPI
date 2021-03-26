@@ -4,9 +4,9 @@ using System;
 namespace Surveillance.Models {
 
     /// <summary>
-    /// 使用者
+    /// 門卡
     /// </summary>
-    public class UserModel {
+    public class CardModel {
 
         /// <summary>
         /// 流水編號
@@ -14,24 +14,14 @@ namespace Surveillance.Models {
         public int Seq { get; set; } = 0;
 
         /// <summary>
-        /// 姓名
+        /// 門卡編號
         /// </summary>
-        public string Name { get; set; } = "";
+        public string ID { get; set; } = "";
 
         /// <summary>
-        /// 帳號
+        /// 備註
         /// </summary>
-        public string Account { get; set; } = "";
-
-        /// <summary>
-        /// 密碼
-        /// </summary>
-        public string Password { get; set; } = "";
-
-        /// <summary>
-        /// 管理員旗標
-        /// </summary>
-        public int IsAdmin { get; set; } = 0;
+        public string Note { get; set; } = "";
 
         /// <summary>
         /// 啟用旗標
