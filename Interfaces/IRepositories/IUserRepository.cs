@@ -43,5 +43,14 @@ namespace Surveillance.Interfaces {
         Task Delete(string _Account);
 
         #endregion
+
+
+
+
+        #region "其它"
+
+        Task<bool> Login(UserLoginEntry _Entry);
+
+        #endregion
     }
 }

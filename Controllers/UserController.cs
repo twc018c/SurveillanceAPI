@@ -32,14 +32,17 @@ namespace Surveillance.Controllers {
     [Route("[controller]")]
     public class UserController : ControllerBase {
 
+        private readonly IJWTService JWTService;
         private readonly IUserRepository UserRepository;
 
 
         /// <summary>
         /// 建構
         /// </summary>
+        /// <param name="_JWTService">JWT</param>
         /// <param name="_UserRepository">倉儲</param>
-        public UserController(IUserRepository _UserRepository) {
+        public UserController(IJWTService _JWTService, IUserRepository _UserRepository) {
+            JWTService = _JWTService;
             UserRepository = _UserRepository;
         }
 
@@ -106,6 +109,48 @@ namespace Surveillance.Controllers {
 
 
         #region "刪除"
+
+        #endregion
+
+
+
+
+        #region "其它"
+
+        /// <summary>
+        /// 使用者登入
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        [SwaggerRequestExample(typeof(UserLoginEntry), typeof(UserLoginExample))]
+        public async Task<APIModel> Login(UserLoginEntry _Entry) {
+            string Token = string.Empty;
+            int ResultCount = 0;
+            var ResultCode = API_RESULT_CODE.DB_ERROR;
+            var ResultMessage = "使用者登入失敗";
+
+            // 使用者登入
+            bool Flag = await UserRepository.Login(_Entry);
+
+            if (Flag == true) {
+                // 產生權杖
+                Token = this.JWTService.GenerateToken(_Entry.Account);
+
+                ResultCount = 1;
+                ResultCode = API_RESULT_CODE.SUCCESS;
+                ResultMessage = "使用者登入成功";
+            }
+
+            var APIModel = new APIModel() {
+                Result = Token,
+                ResultCount = ResultCount,
+                ResultCode = ResultCode,
+                ResultMessage = ResultMessage,
+            };
+
+            return APIModel;
+        }
 
         #endregion
     }

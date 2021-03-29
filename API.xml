@@ -9,10 +9,11 @@
             使用者
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.UserController.#ctor(Surveillance.Interfaces.IUserRepository)">
+        <member name="M:Surveillance.Controllers.UserController.#ctor(Surveillance.Interfaces.IJWTService,Surveillance.Interfaces.IUserRepository)">
             <summary>
             建構
             </summary>
+            <param name="_JWTService">JWT</param>
             <param name="_UserRepository">倉儲</param>
         </member>
         <member name="M:Surveillance.Controllers.UserController.Get(System.String)">
@@ -24,6 +25,12 @@
         <member name="M:Surveillance.Controllers.UserController.GetList(Surveillance.Models.UserEntry)">
             <summary>
             取得使用者清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.Login(Surveillance.Models.UserLoginEntry)">
+            <summary>
+            使用者登入
             </summary>
             <param name="_Entry">模型</param>
         </member>
@@ -48,6 +55,17 @@
             </summary>
             <returns>UserEntry</returns>
         </member>
+        <member name="T:Surveillance.Examples.UserLoginExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.UserLoginExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>UserLoginEntry</returns>
+        </member>
         <member name="T:Surveillance.Examples.Example">
             <summary>
             模型範例
@@ -62,6 +80,11 @@
         <member name="T:Surveillance.Interfaces.IUserRepository">
             <summary>
             使用者
+            </summary>
+        </member>
+        <member name="T:Surveillance.Interfaces.IJWTService">
+            <summary>
+            JWT
             </summary>
         </member>
         <member name="T:Surveillance.Library.AES">
@@ -407,6 +430,21 @@
             關鍵字
             </summary>
         </member>
+        <member name="T:Surveillance.Models.UserLoginEntry">
+            <summary>
+            使用者登入
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLoginEntry.Account">
+            <summary>
+            帳號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLoginEntry.Password">
+            <summary>
+            密碼
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.Entry">
             <summary>
             基底
@@ -486,6 +524,13 @@
             <param name="_Account">帳號</param>
             <returns>Task</returns>
         </member>
+        <member name="M:Surveillance.Repositories.UserRepository.Login(Surveillance.Models.UserLoginEntry)">
+            <summary>
+            使用者登入
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>bool</returns>
+        </member>
         <member name="T:Surveillance.Schafold.DatabaseContext">
             <summary>
             資料庫上下文
@@ -502,6 +547,38 @@
             模型建立
             </summary>
             <param name="_MB">建立器</param>
+        </member>
+        <member name="T:Surveillance.Schafold.Global">
+            <summary>
+            全域靜態類別
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.ConnectionString">
+            <summary>
+            連線字串
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.Secret">
+            <summary>
+            金鑰
+            </summary>
+        </member>
+        <member name="T:Surveillance.Services.JWTService">
+            <summary>
+            JWT
+            </summary>
+        </member>
+        <member name="M:Surveillance.Services.JWTService.#ctor">
+            <summary>
+            建構
+            </summary>
+        </member>
+        <member name="M:Surveillance.Services.JWTService.GenerateToken(System.String)">
+            <summary>
+            產生權杖
+            </summary>
+            <param name="_Account">帳號</param>
+            <returns>string</returns>
         </member>
         <member name="T:Surveillance.Startup">
             <summary>

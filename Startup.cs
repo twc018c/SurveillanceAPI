@@ -16,11 +16,13 @@ using Microsoft.OpenApi.Models;
 using Surveillance.Interfaces;
 using Surveillance.Repositories;
 using Surveillance.Schafold;
+using Surveillance.Services;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 
 
 namespace Surveillance {
@@ -47,7 +49,16 @@ namespace Surveillance {
         /// </summary>
         /// <param name="_Services">服務</param>
         public void ConfigureServices(IServiceCollection _Services) {
-            string ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            // 設定檔
+            Global.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            Global.Secret = Configuration.GetSection("JWT:Secret").Value;
+
+            // MySQL
+            _Services.AddDbContextPool<DatabaseContext>(Option => {
+                Option.UseMySql(Global.ConnectionString, ServerVersion.AutoDetect(Global.ConnectionString))
+                       .EnableDetailedErrors()
+                       .EnableSensitiveDataLogging();
+            });
 
             // 跨網域存取
             _Services.AddCors(Options => {
@@ -58,11 +69,23 @@ namespace Surveillance {
                     );
             });
 
-            // MySQL
-            _Services.AddDbContextPool<DatabaseContext>(Option => {
-                Option.UseMySql(ConnectionString, ServerVersion.AutoDetect(ConnectionString))
-                       .EnableDetailedErrors()
-                       .EnableSensitiveDataLogging();
+            // JWT
+            _Services.AddAuthentication(Option => {
+                Option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                Option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                Option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(Option => {
+                Option.RequireHttpsMetadata = false;
+                Option.SaveToken = true;
+                Option.TokenValidationParameters = new TokenValidationParameters {
+                    ClockSkew = TimeSpan.Zero,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Global.Secret)),
+                    ValidateIssuer = false,
+                    ValidateIssuerSigningKey = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false
+                };
             });
 
             // Controller
@@ -71,23 +94,34 @@ namespace Surveillance {
             // Repository
             _Services.AddTransient<IUserRepository, UserRepository>();
 
+            // Service
+            _Services.AddSingleton<IJWTService, JWTService>();
+
             // Swagger
             _Services.AddSwaggerGen(Option => {
                 Option.ExampleFilters();
                 Option.SwaggerDoc("v1", new OpenApiInfo { Title = "Surveillance", Version = "v1" });
                 Option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "API.xml"));
 
-                Option.OperationFilter<SecurityRequirementsOperationFilter>();
+                // 排序
+                Option.OrderActionsBy(x => x.RelativePath);
 
-                Option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
+                // 權限鎖
+                Option.OperationFilter<AddResponseHeadersFilter>();
+                Option.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+
+                // Header
+                Option.OperationFilter<SecurityRequirementsOperationFilter>();
+                Option.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme {
                     Name = "Authorization",
                     Description = "Please insert JWT with Bearer into field",
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
+                    //Scheme = "Bearer",
+                    //BearerFormat = "JWT",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 });
 
+                /*
                 Option.AddSecurityRequirement(new OpenApiSecurityRequirement {{
                     new OpenApiSecurityScheme {
                         Reference = new OpenApiReference {
@@ -98,6 +132,7 @@ namespace Surveillance {
                     new string[] { }
                     }
                 });
+                */
             });
 
             _Services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
@@ -123,9 +158,10 @@ namespace Surveillance {
                 Option.DocumentTitle = "Surveillance";
                 Option.SwaggerEndpoint("/swagger/v1/swagger.json", "Surveillance v1");
             });
+
             _App.UseRouting();
             _App.UseAuthorization();
-            _App.UseAuthentication();
+            //_App.UseAuthentication();
             _App.UseEndpoints(Item => {
                 Item.MapControllers();
             });

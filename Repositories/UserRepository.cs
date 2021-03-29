@@ -145,5 +145,32 @@ namespace Surveillance.Repositories {
         }
 
         #endregion
+
+
+
+
+        #region "其它"
+
+        /// <summary>
+        /// 使用者登入
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>bool</returns>
+        public async Task<bool> Login(UserLoginEntry _Entry) {
+            bool Flag = false;
+
+            var Model = await DatabaseContext.User
+                                             .AsQueryable()
+                                             .Where(x => x.Account == _Entry.Account && x.Password == _Entry.Password)
+                                             .FirstOrDefaultAsync();
+
+            if (Model != null) {
+                Flag = true;
+            }
+
+            return Flag;
+        }
+
+        #endregion
     }
 }
