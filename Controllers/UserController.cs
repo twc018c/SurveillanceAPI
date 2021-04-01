@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Surveillance.Enums;
 using Surveillance.Examples;
 using Surveillance.Interfaces;
@@ -27,7 +25,8 @@ namespace Surveillance.Controllers {
     /// 使用者
     /// </summary>
     [ApiController]
-    [Authorize]
+    //[Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("[controller]")]
     public class UserController : ControllerBase {
@@ -58,11 +57,14 @@ namespace Surveillance.Controllers {
             // 取得使用者
             var Temp = await UserRepository.Get(_Account);
 
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+
             var APIModel = new APIModel() {
                 Result = Temp,
                 ResultCount = 1,
                 ResultCode = API_RESULT_CODE.SUCCESS,
-                ResultMessage = "取得使用者成功",
+                //ResultMessage = "取得使用者成功",
+                ResultMessage = accessToken,
             };
 
             return APIModel;

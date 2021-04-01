@@ -38,8 +38,8 @@ namespace Surveillance.Services {
                     new Claim(JwtRegisteredClaimNames.Sub, _Account),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) // JWT ID
                 }),
-                Expires = DateTime.UtcNow.AddHours(12),
-                SigningCredentials = new SigningCredentials(SymmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)
+                Expires = DateTime.Now.AddHours(12),
+                SigningCredentials = new SigningCredentials(SymmetricSecurityKey, SecurityAlgorithms.HmacSha256)
             };
 
             var Token = TokenHandler.CreateToken(TokenDescriptor);
