@@ -49,6 +49,8 @@ namespace Surveillance.Interfaces {
 
         #region "其它"
 
+        Task<bool> CheckAccount(string _Account);
+
         Task<bool> Login(UserLoginEntry _Entry);
 
         #endregion

@@ -1,17 +1,11 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi;
-using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Surveillance.Interfaces;
 using Surveillance.Repositories;
@@ -32,7 +26,7 @@ namespace Surveillance {
     /// </summary>
     public class Startup {
 
-        public IConfiguration Configuration { get; }
+        public readonly IConfiguration Configuration;
 
 
         /// <summary>
@@ -86,16 +80,18 @@ namespace Surveillance {
                 Option.SwaggerDoc("v1", new OpenApiInfo { Title = "Surveillance", Version = "v1" });
                 
                 // 排序
-                Option.OrderActionsBy(x => x.RelativePath);
+                Option.OrderActionsBy(x => x.HttpMethod);
 
                 // 權限鎖
                 Option.OperationFilter<AddResponseHeadersFilter>();
+
+                // 標題備註 (Auth字樣)
                 Option.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
 
-                // Header
+                // 標頭
                 Option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
                     Name = "Authorization",
-                    Description = "Please insert JWT with Bearer into field",
+                    Description = "請輸入權杖，例如 'Bearer {Token}'",
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,

@@ -28,6 +28,24 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="M:Surveillance.Controllers.UserController.Set(Surveillance.Models.UserModel)">
+            <summary>
+            新增使用者
+            </summary>
+            <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.Update(Surveillance.Models.UserModel)">
+            <summary>
+            修改使用者
+            </summary>
+            <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.Delete(System.String)">
+            <summary>
+            刪除使用者
+            </summary>
+            <param name="_Account">帳號</param>
+        </member>
         <member name="M:Surveillance.Controllers.UserController.Login(Surveillance.Models.UserLoginEntry)">
             <summary>
             使用者登入
@@ -124,12 +142,11 @@
             </summary>
             <returns>JsonSerializerOptions</returns>
         </member>
-        <member name="M:Surveillance.Library.Tool.ConvertToJson``1(``0,Surveillance.Models.APIModel)">
+        <member name="M:Surveillance.Library.Tool.ConvertToJson``1(``0)">
             <summary>
             物件轉JSON
             </summary>
             <param name="_Object">物件</param>
-            <param name="_APIModel">API模型</param>
             <returns>string</returns>
         </member>
         <member name="M:Surveillance.Library.Tool.GenerateUniqueid">
@@ -159,31 +176,6 @@
             <param name="_Text">文字</param>
             <param name="_MaxLength">最大長度</param>
             <returns>string</returns>
-        </member>
-        <member name="T:Surveillance.Models.APIModel">
-            <summary>
-            API
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.APIModel.Result">
-            <summary>
-            內容
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.APIModel.ResultCount">
-            <summary>
-            數量
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.APIModel.ResultCode">
-            <summary>
-            回應代碼
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.APIModel.ResultMessage">
-            <summary>
-            回應訊息
-            </summary>
         </member>
         <member name="T:Surveillance.Models.CardAuthorityModel">
             <summary>
@@ -523,6 +515,13 @@
             </summary>
             <param name="_Account">帳號</param>
             <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.CheckAccount(System.String)">
+            <summary>
+            檢查使用者帳號
+            </summary>
+            <param name="_Account">帳號</param>
+            <returns>bool</returns>
         </member>
         <member name="M:Surveillance.Repositories.UserRepository.Login(Surveillance.Models.UserLoginEntry)">
             <summary>

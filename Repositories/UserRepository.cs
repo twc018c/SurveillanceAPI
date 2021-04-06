@@ -95,6 +95,9 @@ namespace Surveillance.Repositories {
         /// <param name="_Model">模型</param>
         /// <returns>Task</returns>
         public async Task Set(UserModel _Model) {
+            // 最後動作時間
+            _Model.ActionTime = DateTime.Now;
+
             DatabaseContext.User.Add(_Model);
 
             await DatabaseContext.SaveChangesAsync();
@@ -116,7 +119,9 @@ namespace Surveillance.Repositories {
             var Temp = await DatabaseContext.User.SingleAsync(x => x.Account == _Model.Account);
 
             if (Temp != null) {
-                DatabaseContext.Entry(Temp).CurrentValues.SetValues(_Model);
+                Temp.Name = _Model.Name;
+                Temp.Password = _Model.Password;
+                Temp.ActionTime = DateTime.Now;
 
                 await DatabaseContext.SaveChangesAsync();
             }
@@ -150,6 +155,27 @@ namespace Surveillance.Repositories {
 
 
         #region "其它"
+
+        /// <summary>
+        /// 檢查使用者帳號
+        /// </summary>
+        /// <param name="_Account">帳號</param>
+        /// <returns>bool</returns>
+        public async Task<bool> CheckAccount(string _Account = "") {
+            bool Flag = false;
+
+            var Model = await DatabaseContext.User
+                                             .AsQueryable()
+                                             .Where(x => x.Account == _Account)
+                                             .FirstOrDefaultAsync();
+
+            if (Model != null) {
+                Flag = true;
+            }
+
+            return Flag;
+        }
+
 
         /// <summary>
         /// 使用者登入

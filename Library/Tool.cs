@@ -1,5 +1,4 @@
-﻿using Surveillance.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
@@ -45,15 +44,12 @@ namespace Surveillance.Library {
         /// 物件轉JSON
         /// </summary>
         /// <param name="_Object">物件</param>
-        /// <param name="_APIModel">API模型</param>
         /// <returns>string</returns>
-        public static string ConvertToJson<TValue>(this TValue _Object, APIModel _APIModel) {
+        public static string ConvertToJson<TValue>(this TValue _Object) {
             // 取得JSON設定
             var Options = GetJsonOption();
 
             var Wrapper = new Dictionary<string, object>();
-            Wrapper.Add("resultCode", _APIModel.ResultCode);
-            Wrapper.Add("resultMessage", _APIModel.ResultMessage);
 
             if (_Object == null) {
                 Wrapper.Add("result", string.Empty);
@@ -120,7 +116,7 @@ namespace Surveillance.Library {
         /// <param name="_Text">文字</param>
         /// <param name="_MaxLength">最大長度</param>
         /// <returns>string</returns>
-        public static string SubstringMax(string _Text = "", int _MaxLength = 0) {
+        public static string SubstringMax(this string _Text, int _MaxLength = 0) {
             if (string.IsNullOrEmpty(_Text)) {
                 return string.Empty;
             }
