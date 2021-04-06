@@ -64,7 +64,7 @@ namespace Surveillance.Repositories {
             var Query = DatabaseContext.User.AsQueryable();
 
             // 關鍵字
-            if (!string.IsNullOrEmpty(_Entry.Keyword)) {
+            if (!string.IsNullOrEmpty(Keyword)) {
                 Query = Query.Where(x => x.Account.Contains(Keyword) || x.Name.Contains(Keyword));
             }
 
@@ -166,6 +166,7 @@ namespace Surveillance.Repositories {
 
             var Model = await DatabaseContext.User
                                              .AsQueryable()
+                                             .AsNoTracking()
                                              .Where(x => x.Account == _Account)
                                              .FirstOrDefaultAsync();
 
@@ -187,6 +188,7 @@ namespace Surveillance.Repositories {
 
             var Model = await DatabaseContext.User
                                              .AsQueryable()
+                                             .AsNoTracking()
                                              .Where(x => x.Account == _Entry.Account && x.Password == _Entry.Password)
                                              .FirstOrDefaultAsync();
 

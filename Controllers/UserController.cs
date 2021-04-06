@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Surveillance.Enums;
@@ -7,12 +6,7 @@ using Surveillance.Examples;
 using Surveillance.Interfaces;
 using Surveillance.Models;
 using Swashbuckle.AspNetCore.Filters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Unicode;
 using System.Threading.Tasks;
 
 
@@ -199,7 +193,7 @@ namespace Surveillance.Controllers {
 
             if (Flag == true) {
                 // 產生權杖
-                Token = this.JWTService.GenerateToken(_Entry.Account);
+                Token = JWTService.GenerateToken(_Entry.Account);
 
                 ResultCode = API_RESULT_CODE.SUCCESS;
                 ResultMessage = "使用者登入成功";

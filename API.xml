@@ -4,6 +4,35 @@
         <name>Surveillance</name>
     </assembly>
     <members>
+        <member name="T:Surveillance.Controllers.DoorController">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.DoorController.#ctor(Surveillance.Interfaces.IDoorRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DoorRepository">倉儲</param>
+        </member>
+        <member name="M:Surveillance.Controllers.DoorController.GetList(Surveillance.Models.DoorEntry)">
+            <summary>
+            取得門鎖清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.DoorController.Set(Surveillance.Models.DoorModel)">
+            <summary>
+            新增門鎖
+            </summary>
+            <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.DoorController.Delete(System.String)">
+            <summary>
+            刪除門鎖
+            </summary>
+            <param name="_ID">門鎖編號</param>
+        </member>
         <member name="T:Surveillance.Controllers.UserController">
             <summary>
             使用者
@@ -52,6 +81,23 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="T:Surveillance.Controllers.UserLogController">
+            <summary>
+            使用者紀錄
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.UserLogController.#ctor(Surveillance.Interfaces.IUserLogRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_UserLogRepository">倉儲</param>
+        </member>
+        <member name="M:Surveillance.Controllers.UserLogController.GetList(Surveillance.Models.UserLogEntry)">
+            <summary>
+            取得使用者紀錄清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
         <member name="T:Surveillance.Enums.API_RESULT_CODE">
             <summary>
             API回應代碼
@@ -61,6 +107,17 @@
             <summary>
             使用者紀錄狀態
             </summary>
+        </member>
+        <member name="T:Surveillance.Examples.DoorExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.DoorExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>DoorEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.UserExample">
             <summary>
@@ -72,6 +129,17 @@
             建構
             </summary>
             <returns>UserEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.UserLogExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.UserLogExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>UserLogEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.UserLoginExample">
             <summary>
@@ -94,6 +162,16 @@
             建構
             </summary>
             <returns>Entry</returns>
+        </member>
+        <member name="T:Surveillance.Interfaces.IDoorRepository">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="T:Surveillance.Interfaces.IUserLogRepository">
+            <summary>
+            使用者紀錄
+            </summary>
         </member>
         <member name="T:Surveillance.Interfaces.IUserRepository">
             <summary>
@@ -412,6 +490,21 @@
             最後動作時間
             </summary>
         </member>
+        <member name="T:Surveillance.Models.DoorEntry">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorEntry.Floor">
+            <summary>
+            樓層
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.UserEntry">
             <summary>
             使用者
@@ -420,6 +513,26 @@
         <member name="P:Surveillance.Models.UserEntry.Keyword">
             <summary>
             關鍵字
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.UserLogEntry">
+            <summary>
+            使用者紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogEntry.StartTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogEntry.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogEntry.UserSeq">
+            <summary>
+            使用者流水編號
             </summary>
         </member>
         <member name="T:Surveillance.Models.UserLoginEntry">
@@ -469,6 +582,78 @@
             </summary>
             <param name="_Args">參數</param>
             <returns>IWebHostBuilder</returns>
+        </member>
+        <member name="T:Surveillance.Repositories.DoorRepository">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.#ctor(Surveillance.Schafold.DatabaseContext,AutoMapper.IMapper)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DatabaseContext">資料庫上下文</param>
+            <param name="_Mapper">模型映射</param>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.GetList(Surveillance.Models.DoorEntry)">
+            <summary>
+            取得門鎖清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Set(Surveillance.Models.DoorModel)">
+            <summary>
+            新增門鎖
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Delete(System.String)">
+            <summary>
+            刪除門鎖
+            </summary>
+            <param name="_ID">門鎖編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.CheckID(System.String)">
+            <summary>
+            檢查門鎖編號
+            </summary>
+            <param name="_ID">門鎖編號</param>
+            <returns>bool</returns>
+        </member>
+        <member name="T:Surveillance.Repositories.UserLogRepository">
+            <summary>
+            使用者紀錄
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.UserLogRepository.#ctor(Surveillance.Schafold.DatabaseContext)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DatabaseContext">資料庫上下文</param>
+        </member>
+        <member name="M:Surveillance.Repositories.UserLogRepository.GetList(Surveillance.Models.UserLogEntry)">
+            <summary>
+            取得使用者紀錄清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserLogRepository.Set(Surveillance.Models.UserLogModel)">
+            <summary>
+            新增使用者紀錄
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserLogRepository.Delete(System.Int32)">
+            <summary>
+            刪除使用者紀錄
+            </summary>
+            <param name="_UserSeq">使用者流水編號</param>
+            <returns>Task</returns>
         </member>
         <member name="T:Surveillance.Repositories.UserRepository">
             <summary>
@@ -529,6 +714,16 @@
             </summary>
             <param name="_Entry">模型</param>
             <returns>bool</returns>
+        </member>
+        <member name="T:Surveillance.Schafold.AutoMapperProfile">
+            <summary>
+            AutoMapper
+            </summary>
+        </member>
+        <member name="M:Surveillance.Schafold.AutoMapperProfile.#ctor">
+            <summary>
+            建構
+            </summary>
         </member>
         <member name="T:Surveillance.Schafold.DatabaseContext">
             <summary>
@@ -605,6 +800,41 @@
             </remarks>
             <param name="_App">應用程式</param>
             <param name="_Env">環境</param>
+        </member>
+        <member name="T:Surveillance.ViewModels.DoorViewModel">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.DoorViewModel.ActionTimeStr">
+            <summary>
+            最後動作時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.DoorViewModel.StatusStr">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="T:Surveillance.ViewModels.UserLogViewModel">
+            <summary>
+            使用者紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.UserLogViewModel.TimeStr">
+            <summary>
+            時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.UserLogViewModel.UserName">
+            <summary>
+            使用者名稱
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.UserLogViewModel.StatusStr">
+            <summary>
+            狀態
+            </summary>
         </member>
     </members>
 </doc>

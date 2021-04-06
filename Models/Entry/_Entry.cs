@@ -13,6 +13,6 @@
         /// <summary>
         /// 每頁筆數
         /// </summary>
-        public int PageShow { get; set; } = 20;
+        public int PageShow { get; set; } = 50;
     }
 }

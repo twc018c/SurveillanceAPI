@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,8 +51,8 @@ namespace Surveillance {
             // MySQL
             _Services.AddDbContextPool<DatabaseContext>(Option => {
                 Option.UseMySql(Global.ConnectionString, ServerVersion.AutoDetect(Global.ConnectionString))
-                       .EnableDetailedErrors()
-                       .EnableSensitiveDataLogging();
+                      .EnableDetailedErrors()
+                      .EnableSensitiveDataLogging();
             });
 
             // ¸óºô°ì¦s¨ú
@@ -63,12 +64,17 @@ namespace Surveillance {
                     );
             });
 
+            // AutoMapper
+            _Services.AddAutoMapper(typeof(Startup));
+
             // Controller
             _Services.AddControllers();
             _Services.AddMvc();
 
             // Repository
+            _Services.AddTransient<IDoorRepository, DoorRepository>();
             _Services.AddTransient<IUserRepository, UserRepository>();
+            _Services.AddTransient<IUserLogRepository, UserLogRepository>();
 
             // Service
             _Services.AddSingleton<IJWTService, JWTService>();
