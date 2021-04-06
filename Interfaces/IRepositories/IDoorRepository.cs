@@ -29,6 +29,15 @@ namespace Surveillance.Interfaces {
 
 
 
+        #region "修改"
+
+        Task Update(DoorModel _Model);
+
+        #endregion
+
+
+
+
         #region "刪除"
 
         Task Delete(string _ID);

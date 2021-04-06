@@ -97,6 +97,31 @@ namespace Surveillance.Repositories {
 
 
 
+        #region "修改"
+
+        /// <summary>
+        /// 修改門鎖
+        /// </summary>
+        /// <param name="_Model">模型</param>
+        /// <returns>Task</returns>
+        public async Task Update(DoorModel _Model) {
+            var Temp = await DatabaseContext.Door.SingleAsync(x => x.ID == _Model.ID);
+
+            if (Temp != null) {
+                Temp.Name = _Model.Name;
+                Temp.Floor = _Model.Floor;
+                Temp.Note = _Model.Note;
+                Temp.IsRemote = _Model.IsRemote;
+
+                await DatabaseContext.SaveChangesAsync();
+            }
+        }
+
+        #endregion
+
+
+
+
         #region "刪除"
 
         /// <summary>

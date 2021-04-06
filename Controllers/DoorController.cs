@@ -96,6 +96,40 @@ namespace Surveillance.Controllers {
 
 
 
+        #region "修改"
+
+        /// <summary>
+        /// 修改門鎖
+        /// </summary>
+        /// <param name="_Model">模型</param>
+        [HttpPatch("Update")]
+        public async Task<Dictionary<string, object>> Update(DoorModel _Model) {
+            var ResultCode = API_RESULT_CODE.PARA_ERROR;
+            var ResultMessage = "修改門鎖失敗";
+
+            // 檢查門鎖編號
+            bool IsExist = await DoorRepository.CheckID(_Model.ID);
+
+            if (IsExist == true) {
+                // 修改門鎖
+                await DoorRepository.Update(_Model);
+
+                ResultCode = API_RESULT_CODE.SUCCESS;
+                ResultMessage = "修改門鎖成功";
+            }
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+        #endregion
+
+
+
+
         #region "刪除"
 
         /// <summary>
