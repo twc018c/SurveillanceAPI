@@ -4,6 +4,41 @@
         <name>Surveillance</name>
     </assembly>
     <members>
+        <member name="T:Surveillance.Controllers.CardController">
+            <summary>
+            門卡
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.CardController.#ctor(Surveillance.Interfaces.ICardRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_CardRepository">倉儲</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardController.GetList(Surveillance.Models.CardEntry)">
+            <summary>
+            取得門卡清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardController.Set(Surveillance.Models.CardModel)">
+            <summary>
+            新增門卡
+            </summary>
+            <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardController.Update(Surveillance.Models.CardModel)">
+            <summary>
+            修改門卡
+            </summary>
+            <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardController.Delete(System.String)">
+            <summary>
+            刪除門卡
+            </summary>
+            <param name="_ID">門卡編號</param>
+        </member>
         <member name="T:Surveillance.Controllers.DoorController">
             <summary>
             門鎖
@@ -27,11 +62,34 @@
             </summary>
             <param name="_Model">模型</param>
         </member>
+        <member name="M:Surveillance.Controllers.DoorController.Update(Surveillance.Models.DoorModel)">
+            <summary>
+            修改門鎖
+            </summary>
+            <param name="_Model">模型</param>
+        </member>
         <member name="M:Surveillance.Controllers.DoorController.Delete(System.String)">
             <summary>
             刪除門鎖
             </summary>
             <param name="_ID">門鎖編號</param>
+        </member>
+        <member name="T:Surveillance.Controllers.EventLogController">
+            <summary>
+            使用者紀錄
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.EventLogController.#ctor(Surveillance.Interfaces.IEventLogRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_EventLogRepository">倉儲</param>
+        </member>
+        <member name="M:Surveillance.Controllers.EventLogController.GetList(Surveillance.Models.EventLogEntry)">
+            <summary>
+            取得事件紀錄清單
+            </summary>
+            <param name="_Entry">模型</param>
         </member>
         <member name="T:Surveillance.Controllers.UserController">
             <summary>
@@ -108,6 +166,17 @@
             使用者紀錄狀態
             </summary>
         </member>
+        <member name="T:Surveillance.Examples.CardExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardEntry</returns>
+        </member>
         <member name="T:Surveillance.Examples.DoorExample">
             <summary>
             模型範例
@@ -118,6 +187,17 @@
             建構
             </summary>
             <returns>DoorEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.EventLogExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.EventLogExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>EventLogEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.UserExample">
             <summary>
@@ -163,9 +243,19 @@
             </summary>
             <returns>Entry</returns>
         </member>
+        <member name="T:Surveillance.Interfaces.ICardRepository">
+            <summary>
+            門卡
+            </summary>
+        </member>
         <member name="T:Surveillance.Interfaces.IDoorRepository">
             <summary>
             門鎖
+            </summary>
+        </member>
+        <member name="T:Surveillance.Interfaces.IEventLogRepository">
+            <summary>
+            事件紀錄
             </summary>
         </member>
         <member name="T:Surveillance.Interfaces.IUserLogRepository">
@@ -490,6 +580,16 @@
             最後動作時間
             </summary>
         </member>
+        <member name="T:Surveillance.Models.CardEntry">
+            <summary>
+            門卡
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.DoorEntry">
             <summary>
             門鎖
@@ -503,6 +603,31 @@
         <member name="P:Surveillance.Models.DoorEntry.Floor">
             <summary>
             樓層
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.EventLogEntry">
+            <summary>
+            事件紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogEntry.StartTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogEntry.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogEntry.UserSeq">
+            <summary>
+            使用者流水編號
             </summary>
         </member>
         <member name="T:Surveillance.Models.UserEntry">
@@ -583,6 +708,53 @@
             <param name="_Args">參數</param>
             <returns>IWebHostBuilder</returns>
         </member>
+        <member name="T:Surveillance.Repositories.CardRepository">
+            <summary>
+            門卡
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.CardRepository.#ctor(Surveillance.Schafold.DatabaseContext,AutoMapper.IMapper)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DatabaseContext">資料庫上下文</param>
+            <param name="_Mapper">模型映射</param>
+        </member>
+        <member name="M:Surveillance.Repositories.CardRepository.GetList(Surveillance.Models.CardEntry)">
+            <summary>
+            取得門卡清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardRepository.Set(Surveillance.Models.CardModel)">
+            <summary>
+            新增門卡
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardRepository.Update(Surveillance.Models.CardModel)">
+            <summary>
+            修改門卡
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardRepository.Delete(System.String)">
+            <summary>
+            刪除門卡
+            </summary>
+            <param name="_ID">門卡編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardRepository.CheckID(System.String)">
+            <summary>
+            檢查門卡編號
+            </summary>
+            <param name="_ID">門卡編號</param>
+            <returns>bool</returns>
+        </member>
         <member name="T:Surveillance.Repositories.DoorRepository">
             <summary>
             門鎖
@@ -609,6 +781,13 @@
             <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Update(Surveillance.Models.DoorModel)">
+            <summary>
+            修改門鎖
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
         <member name="M:Surveillance.Repositories.DoorRepository.Delete(System.String)">
             <summary>
             刪除門鎖
@@ -622,6 +801,52 @@
             </summary>
             <param name="_ID">門鎖編號</param>
             <returns>bool</returns>
+        </member>
+        <member name="T:Surveillance.Repositories.EventLogRepository">
+            <summary>
+            事件紀錄
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.EventLogRepository.#ctor(Surveillance.Schafold.DatabaseContext)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DatabaseContext">資料庫上下文</param>
+        </member>
+        <member name="M:Surveillance.Repositories.EventLogRepository.GetList(Surveillance.Models.EventLogEntry)">
+            <summary>
+            取得事件紀錄清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.EventLogRepository.Set(Surveillance.Models.EventLogModel)">
+            <summary>
+            新增事件紀錄
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByCard(System.String)">
+            <summary>
+            刪除事件紀錄 (依門卡)
+            </summary>
+            <param name="_CardID">門卡編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByDoor(System.String)">
+            <summary>
+            刪除事件紀錄 (依門鎖)
+            </summary>
+            <param name="_DoorID">門鎖編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByUser(System.Int32)">
+            <summary>
+            刪除事件紀錄 (依使用者)
+            </summary>
+            <param name="_UserSeq">使用者流水編號</param>
+            <returns>Task</returns>
         </member>
         <member name="T:Surveillance.Repositories.UserLogRepository">
             <summary>
@@ -801,6 +1026,16 @@
             <param name="_App">應用程式</param>
             <param name="_Env">環境</param>
         </member>
+        <member name="T:Surveillance.ViewModels.CardViewModel">
+            <summary>
+            門卡
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardViewModel.ActionTimeStr">
+            <summary>
+            最後動作時間
+            </summary>
+        </member>
         <member name="T:Surveillance.ViewModels.DoorViewModel">
             <summary>
             門鎖
@@ -812,6 +1047,26 @@
             </summary>
         </member>
         <member name="P:Surveillance.ViewModels.DoorViewModel.StatusStr">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="T:Surveillance.ViewModels.EventLogViewModel">
+            <summary>
+            事件紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.EventLogViewModel.TimeStr">
+            <summary>
+            時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.EventLogViewModel.UserName">
+            <summary>
+            使用者名稱
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.EventLogViewModel.StatusStr">
             <summary>
             狀態
             </summary>

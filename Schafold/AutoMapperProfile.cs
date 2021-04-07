@@ -14,6 +14,9 @@ namespace Surveillance.Schafold {
         /// 建構
         /// </summary>
         public AutoMapperProfile() {
+            // 門卡
+            CreateMap<CardModel, CardViewModel>();
+
             // 門鎖
             CreateMap<DoorModel, DoorViewModel>();
         }

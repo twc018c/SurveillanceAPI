@@ -72,7 +72,9 @@ namespace Surveillance {
             _Services.AddMvc();
 
             // Repository
+            _Services.AddTransient<ICardRepository, CardRepository>();
             _Services.AddTransient<IDoorRepository, DoorRepository>();
+            _Services.AddTransient<IEventLogRepository, EventLogRepository>();
             _Services.AddTransient<IUserRepository, UserRepository>();
             _Services.AddTransient<IUserLogRepository, UserLogRepository>();
 
