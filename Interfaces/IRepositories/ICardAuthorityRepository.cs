@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Surveillance.Interfaces {
 
     /// <summary>
-    /// 門卡
+    /// 門卡權限
     /// </summary>
     public interface ICardAuthorityRepository {
 
@@ -41,7 +41,7 @@ namespace Surveillance.Interfaces {
 
         #region "其它"
 
-        Task<bool> CheckAvailable(string _CardID, string _DoorID);
+        Task<bool> Check(CardAuthorityCheckEntry _Entry);
 
         #endregion
     }

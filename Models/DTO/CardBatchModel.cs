@@ -19,17 +19,24 @@ namespace Surveillance.Models {
         public string CardID { get; set; } = "";
 
         /// <summary>
-        /// 持有者名稱
+        /// 持有者編號
         /// </summary>
-        public string Name { get; set; } = "";
+        /// <remarks>外部系統</remarks>
+        public string HolderID { get; set; } = "";
 
         /// <summary>
-        /// 開始時間
+        /// 持有者姓名
+        /// </summary>
+        /// <remarks>外部系統</remarks>
+        public string HolderName { get; set; } = "";
+
+        /// <summary>
+        /// 允許使用開始時間
         /// </summary>
         public DateTime StartTime { get; set; } = DateTime.MinValue;
 
         /// <summary>
-        /// 時間時間
+        /// 允許使用結束時間
         /// </summary>
         public DateTime EndTime { get; set; } = DateTime.MinValue;
     }

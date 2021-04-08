@@ -4,6 +4,47 @@
         <name>Surveillance</name>
     </assembly>
     <members>
+        <member name="T:Surveillance.Controllers.CardAuthorityController">
+            <summary>
+            門卡權限權限
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.CardAuthorityController.#ctor(Surveillance.Interfaces.ICardAuthorityRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_CardAuthorityRepository">倉儲</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardAuthorityController.GetList(Surveillance.Models.CardAuthorityEntry)">
+            <summary>
+            取得門卡權限清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardAuthorityController.Set(System.Collections.Generic.List{Surveillance.Models.CardAuthorityModel})">
+            <summary>
+            新增門卡權限
+            </summary>
+            <param name="_List">清單</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardAuthorityController.DeleteByCard(System.String)">
+            <summary>
+            刪除門卡權限 (依門卡編號)
+            </summary>
+            <param name="_CardID">門卡編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardAuthorityController.DeleteByDoor(System.String)">
+            <summary>
+            刪除門卡權限 (依門鎖編號)
+            </summary>
+            <param name="_DoorID">門鎖編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardAuthorityController.Check(Surveillance.Models.CardAuthorityCheckEntry)">
+            <summary>
+            檢查門卡權限
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
         <member name="T:Surveillance.Controllers.CardController">
             <summary>
             門卡
@@ -166,6 +207,39 @@
             使用者紀錄狀態
             </summary>
         </member>
+        <member name="T:Surveillance.Examples.CardAuthorityChechExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardAuthorityChechExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardAuthorityCheckEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.CardAuthorityExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardAuthorityExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardAuthorityEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.CardBatchExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardBatchExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardBatchEntry</returns>
+        </member>
         <member name="T:Surveillance.Examples.CardExample">
             <summary>
             模型範例
@@ -242,6 +316,16 @@
             建構
             </summary>
             <returns>Entry</returns>
+        </member>
+        <member name="T:Surveillance.Interfaces.ICardAuthorityRepository">
+            <summary>
+            門卡權限
+            </summary>
+        </member>
+        <member name="T:Surveillance.Interfaces.ICardBatchRepository">
+            <summary>
+            門卡批次
+            </summary>
         </member>
         <member name="T:Surveillance.Interfaces.ICardRepository">
             <summary>
@@ -380,19 +464,26 @@
             門卡編號
             </summary>
         </member>
-        <member name="P:Surveillance.Models.CardBatchModel.Name">
+        <member name="P:Surveillance.Models.CardBatchModel.HolderID">
             <summary>
-            持有者名稱
+            持有者編號
             </summary>
+            <remarks>外部系統</remarks>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchModel.HolderName">
+            <summary>
+            持有者姓名
+            </summary>
+            <remarks>外部系統</remarks>
         </member>
         <member name="P:Surveillance.Models.CardBatchModel.StartTime">
             <summary>
-            開始時間
+            允許使用開始時間
             </summary>
         </member>
         <member name="P:Surveillance.Models.CardBatchModel.EndTime">
             <summary>
-            時間時間
+            允許使用結束時間
             </summary>
         </member>
         <member name="T:Surveillance.Models.CardModel">
@@ -580,6 +671,51 @@
             最後動作時間
             </summary>
         </member>
+        <member name="T:Surveillance.Models.CardAuthorityCheckEntry">
+            <summary>
+            門卡權限檢查
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardAuthorityCheckEntry.DoorID">
+            <summary>
+            門鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardAuthorityCheckEntry.CardID">
+            <summary>
+            門卡編號
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.CardAuthorityEntry">
+            <summary>
+            門卡權限
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardAuthorityEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.CardBatchEntry">
+            <summary>
+            門卡批次
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchEntry.StartTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchEntry.EndTime">
+            <summary>
+            時間時間
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.CardEntry">
             <summary>
             門卡
@@ -707,6 +843,117 @@
             </summary>
             <param name="_Args">參數</param>
             <returns>IWebHostBuilder</returns>
+        </member>
+        <member name="T:Surveillance.Repositories.CardAuthorityRepository">
+            <summary>
+            門卡權限
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.#ctor(Surveillance.Schafold.DatabaseContext,AutoMapper.IMapper)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DatabaseContext">資料庫上下文</param>
+            <param name="_Mapper">模型映射</param>
+        </member>
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.GetList(Surveillance.Models.CardAuthorityEntry)">
+            <summary>
+            取得門卡權限清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.Set(System.Collections.Generic.List{Surveillance.Models.CardAuthorityModel})">
+            <summary>
+            新增門卡權限
+            </summary>
+            <param name="_List">清單</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.DeleteByCard(System.String)">
+            <summary>
+            刪除門卡權限 (依門卡編號)
+            </summary>
+            <param name="_CardID">門卡編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.DeleteByDoor(System.String)">
+            <summary>
+            刪除門卡權限 (依門鎖編號)
+            </summary>
+            <param name="_DoorID">門鎖編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.Check(Surveillance.Models.CardAuthorityCheckEntry)">
+            <summary>
+            檢查門卡權限
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>bool</returns>
+        </member>
+        <member name="T:Surveillance.Repositories.CardBatchRepository">
+            <summary>
+            門卡批次
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.#ctor(Surveillance.Schafold.DatabaseContext,AutoMapper.IMapper)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DatabaseContext">資料庫上下文</param>
+            <param name="_Mapper">模型映射</param>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.GetList(Surveillance.Models.CardBatchEntry)">
+            <summary>
+            取得門卡批次清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.Set(System.Collections.Generic.List{Surveillance.Models.CardBatchModel})">
+            <summary>
+            新增門卡批次
+            </summary>
+            <param name="_List">清單</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.Update(Surveillance.Models.CardBatchModel)">
+            <summary>
+            修改門卡批次
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.DeleteByCard(System.String)">
+            <summary>
+            刪除門卡批次 (依門卡編號)
+            </summary>
+            <param name="_CardID">門卡編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.DeleteByHolder(System.String)">
+            <summary>
+            刪除門卡批次 (依持有者編號)
+            </summary>
+            <param name="_HolderID">持有者編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.DeleteByTime(System.DateTime,System.DateTime)">
+            <summary>
+            刪除門卡批次 (依時間)
+            </summary>
+            <param name="_StartTime">開始時間</param>
+            <param name="_EndTime">結束時間</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.CheckAvailable(System.String,System.String,System.DateTime)">
+            <summary>
+            檢查門卡批次
+            </summary>
+            <param name="_CardID">門卡編號</param>
+            <param name="_HolderID">持有者編號</param>
+            <param name="_Time">時間</param>
+            <returns>bool</returns>
         </member>
         <member name="T:Surveillance.Repositories.CardRepository">
             <summary>
@@ -1025,6 +1272,41 @@
             </remarks>
             <param name="_App">應用程式</param>
             <param name="_Env">環境</param>
+        </member>
+        <member name="T:Surveillance.ViewModels.CardAuthorityViewModel">
+            <summary>
+            門卡權限
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardAuthorityViewModel.CardNote">
+            <summary>
+            門卡備註
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardAuthorityViewModel.DoorName">
+            <summary>
+            門鎖名稱
+            </summary>
+        </member>
+        <member name="T:Surveillance.ViewModels.CardBatchViewModel">
+            <summary>
+            門卡批次
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardBatchViewModel.CardNote">
+            <summary>
+            門卡備註
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardBatchViewModel.StartTimeStr">
+            <summary>
+            允許使用開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardBatchViewModel.EndTimeStr">
+            <summary>
+            允許使用結束時間
+            </summary>
         </member>
         <member name="T:Surveillance.ViewModels.CardViewModel">
             <summary>
