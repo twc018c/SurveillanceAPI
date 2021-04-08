@@ -191,20 +191,18 @@ namespace Surveillance.Repositories {
         /// <summary>
         /// 檢查門卡批次
         /// </summary>
-        /// <param name="_CardID">門卡編號</param>
-        /// <param name="_HolderID">持有者編號</param>
-        /// <param name="_Time">時間</param>
+        /// <param name="_Entry">模型</param>
         /// <returns>bool</returns>
-        public async Task<bool> CheckAvailable(string _CardID, string _HolderID, DateTime _Time) {
+        public async Task<bool> CheckAvailable(CardBatchCheckEntry _Entry) {
             bool Flag = false;
 
             var Model = await DatabaseContext.CardBatch
                                              .AsQueryable()
                                              .AsNoTracking()
-                                             .Where(x => x.CardID == _CardID)
-                                             .Where(x => x.HolderID == _HolderID)
-                                             .Where(x => x.StartTime <= _Time)
-                                             .Where(x => x.EndTime >= _Time)
+                                             .Where(x => x.CardID == _Entry.CardID)
+                                             .Where(x => x.HolderID == _Entry.HolderID)
+                                             .Where(x => x.StartTime <= _Entry.Time)
+                                             .Where(x => x.EndTime >= _Entry.Time)
                                              .FirstOrDefaultAsync();
 
             if (Model != null) {

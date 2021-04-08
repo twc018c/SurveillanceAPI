@@ -52,7 +52,7 @@ namespace Surveillance.Interfaces {
 
         #region "其它"
 
-        Task<bool> CheckAvailable(string _CardID, string _HolderID, DateTime _Time);
+        Task<bool> CheckAvailable(CardBatchCheckEntry _Entry);
 
         #endregion
     }
