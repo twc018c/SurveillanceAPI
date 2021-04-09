@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +35,18 @@ namespace Surveillance {
         /// <param name="_Configuration">設定</param>
         public Startup(IConfiguration _Configuration) {
             Configuration = _Configuration;
+
+            try {
+                // 設定檔
+                Global.ConnectionString = this.Configuration.GetConnectionString("DefaultConnection");
+                Global.JWTSecret = Configuration.GetSection("JWT:Secret").Value;
+                Global.ScienerID = Configuration.GetSection("Sciener:ID").Value;
+                Global.ScienerSecret = Configuration.GetSection("Sciener:Secret").Value;
+                Global.ScienerUsername = Configuration.GetSection("Sciener:Username").Value;
+                Global.ScienerPassword = Configuration.GetSection("Sciener:Password").Value;
+            } catch (Exception Exception) {
+                // NOTHING
+            }
         }
 
 
@@ -44,10 +55,6 @@ namespace Surveillance {
         /// </summary>
         /// <param name="_Services">服務</param>
         public void ConfigureServices(IServiceCollection _Services) {
-            // 設定檔
-            Global.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
-            Global.Secret = Configuration.GetSection("JWT:Secret").Value;
-
             // MySQL
             _Services.AddDbContextPool<DatabaseContext>(Option => {
                 Option.UseMySql(Global.ConnectionString, ServerVersion.AutoDetect(Global.ConnectionString))
@@ -56,8 +63,8 @@ namespace Surveillance {
             });
 
             // 跨網域存取
-            _Services.AddCors(Options => {
-                Options.AddPolicy("CorsPolicy", Policy =>
+            _Services.AddCors(Option => {
+                Option.AddPolicy("CorsPolicy", Policy =>
                     Policy.AllowAnyMethod()
                           .AllowAnyHeader()
                           .AllowAnyOrigin()
@@ -71,6 +78,9 @@ namespace Surveillance {
             _Services.AddControllers();
             _Services.AddMvc();
 
+            // HTTP
+            _Services.AddHttpClient();
+
             // Repository
             _Services.AddTransient<ICardAuthorityRepository, CardAuthorityRepository>();
             _Services.AddTransient<ICardBatchRepository, CardBatchRepository>();
@@ -82,6 +92,7 @@ namespace Surveillance {
 
             // Service
             _Services.AddSingleton<IJWTService, JWTService>();
+            _Services.AddSingleton<IScienerService, ScienerService>();
 
             // Swagger
             _Services.AddSwaggerGen(Option => {
@@ -131,7 +142,7 @@ namespace Surveillance {
                 Option.SaveToken = true;
                 Option.TokenValidationParameters = new TokenValidationParameters {
                     ClockSkew = TimeSpan.Zero,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Global.Secret)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Global.JWTSecret)),
                     ValidateIssuer = false,
                     ValidateIssuerSigningKey = true,
                     ValidateAudience = false,

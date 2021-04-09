@@ -415,6 +415,11 @@
             JWT
             </summary>
         </member>
+        <member name="T:Surveillance.Interfaces.IScienerService">
+            <summary>
+            Sciener
+            </summary>
+        </member>
         <member name="T:Surveillance.Library.AES">
             <summary>
             AES
@@ -1300,9 +1305,29 @@
             連線字串
             </summary>
         </member>
-        <member name="F:Surveillance.Schafold.Global.Secret">
+        <member name="F:Surveillance.Schafold.Global.JWTSecret">
             <summary>
-            金鑰
+            JWT金鑰
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.ScienerID">
+            <summary>
+            Sciener編號
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.ScienerSecret">
+            <summary>
+            Sciener金鑰
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.ScienerUsername">
+            <summary>
+            Sciener帳號
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.ScienerPassword">
+            <summary>
+            Sciener密碼
             </summary>
         </member>
         <member name="T:Surveillance.Services.JWTService">
@@ -1321,6 +1346,26 @@
             </summary>
             <param name="_Account">帳號</param>
             <returns>string</returns>
+        </member>
+        <member name="T:Surveillance.Services.ScienerService">
+            <summary>
+            Sciener
+            </summary>
+            <remarks>
+            Cloud API V3
+            https://open.sciener.com/doc/api
+            </remarks>
+        </member>
+        <member name="M:Surveillance.Services.ScienerService.#ctor(System.Net.Http.IHttpClientFactory)">
+            <summary>
+            建構
+            </summary>
+        </member>
+        <member name="M:Surveillance.Services.ScienerService.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Surveillance.Startup">
             <summary>

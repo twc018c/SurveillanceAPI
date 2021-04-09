@@ -30,7 +30,7 @@ namespace Surveillance.Services {
         public string GenerateToken(string _Account = "") {
             var TokenHandler = new JwtSecurityTokenHandler();
 
-            var Key = Encoding.UTF8.GetBytes(Global.Secret);
+            var Key = Encoding.UTF8.GetBytes(Global.JWTSecret);
             var SymmetricSecurityKey = new SymmetricSecurityKey(Key);
 
             var TokenDescriptor = new SecurityTokenDescriptor {

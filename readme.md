@@ -1,11 +1,20 @@
 ﻿### 部屬設定
 appsettings.json
 ```
+// 資料庫連線字串
 "ConnectionStrings": {
     "DefaultConnection": "server=localhost; port=3306; database=xxx; user=xxx; password=xxx; Persist Security Info=False; Connect Timeout=60"
 },
+// 前端Token
 "JWT": {
     "Secret": "xxxxxxxxxxxxxxxxxxxxxx"
+},
+// 門禁Token
+"Sciener": {
+    "ID": "xxx",
+    "Secret":  "xxx",
+    "Username": "xxx",
+    "Password": "xxx"
 },
 ```
 

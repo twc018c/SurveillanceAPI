@@ -11,8 +11,33 @@
         public static string ConnectionString = "";
 
         /// <summary>
-        /// 金鑰
+        /// JWT金鑰
         /// </summary>
-        public static string Secret = "";
+        public static string JWTSecret = "";
+
+        /// <summary>
+        /// Sciener權杖
+        /// </summary>
+        public static string ScienerToken = "";
+
+        /// <summary>
+        /// Sciener編號
+        /// </summary>
+        public static string ScienerID = "";
+
+        /// <summary>
+        /// Sciener金鑰
+        /// </summary>
+        public static string ScienerSecret = "";
+
+        /// <summary>
+        /// Sciener帳號
+        /// </summary>
+        public static string ScienerUsername = "";
+
+        /// <summary>
+        /// Sciener密碼
+        /// </summary>
+        public static string ScienerPassword = "";
     }
 }
