@@ -45,6 +45,53 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="T:Surveillance.Controllers.CardBatchController">
+            <summary>
+            門卡批次批次
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.#ctor(Surveillance.Interfaces.ICardBatchRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_CardBatchRepository">倉儲</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.GetList(Surveillance.Models.CardBatchEntry)">
+            <summary>
+            取得門卡批次清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.Set(System.Collections.Generic.List{Surveillance.Models.CardBatchModel})">
+            <summary>
+            新增門卡批次
+            </summary>
+            <param name="_List">清單</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.Update(Surveillance.Models.CardBatchModel)">
+            <summary>
+            修改門卡批次
+            </summary>
+            <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.DeleteByCard(System.String)">
+            <summary>
+            刪除門卡批次 (依門卡編號)
+            </summary>
+            <param name="_CardID">門卡編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.DeleteByDoor(System.String)">
+            <summary>
+            刪除門卡批次 (依持有者編號)
+            </summary>
+            <param name="_HolderID">持有者編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.Check(Surveillance.Models.CardBatchCheckEntry)">
+            <summary>
+            檢查門卡批次
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
         <member name="T:Surveillance.Controllers.CardController">
             <summary>
             門卡
@@ -228,6 +275,17 @@
             建構
             </summary>
             <returns>CardAuthorityEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.CardBatchCheckExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardBatchCheckExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardBatchCheckEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.CardBatchExample">
             <summary>
@@ -696,6 +754,26 @@
             關鍵字
             </summary>
         </member>
+        <member name="T:Surveillance.Models.CardBatchCheckEntry">
+            <summary>
+            門卡批次檢查
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchCheckEntry.CardID">
+            <summary>
+            門卡編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchCheckEntry.HolderID">
+            <summary>
+            持有者編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchCheckEntry.Time">
+            <summary>
+            時間
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.CardBatchEntry">
             <summary>
             門卡批次
@@ -946,13 +1024,11 @@
             <param name="_EndTime">結束時間</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.CardBatchRepository.CheckAvailable(System.String,System.String,System.DateTime)">
+        <member name="M:Surveillance.Repositories.CardBatchRepository.CheckAvailable(Surveillance.Models.CardBatchCheckEntry)">
             <summary>
             檢查門卡批次
             </summary>
-            <param name="_CardID">門卡編號</param>
-            <param name="_HolderID">持有者編號</param>
-            <param name="_Time">時間</param>
+            <param name="_Entry">模型</param>
             <returns>bool</returns>
         </member>
         <member name="T:Surveillance.Repositories.CardRepository">

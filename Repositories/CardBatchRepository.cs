@@ -46,7 +46,25 @@ namespace Surveillance.Repositories {
             DateTime StartTime = _Entry.StartTime;
             DateTime EndTime = _Entry.EndTime;
 
-            var Query = DatabaseContext.CardBatch.AsQueryable();
+            var Query = DatabaseContext.CardBatch
+                                       .AsQueryable()
+                                       .GroupJoin(DatabaseContext.Card, cb => cb.CardID, c => c.ID, (cb, c) => new {
+                                           CardBatch = cb,
+                                           Card = c
+                                       })
+                                       .SelectMany(x => x.Card.DefaultIfEmpty(), (cb, c) => new CardBatchViewModel {
+                                           // Model
+                                           Seq = cb.CardBatch.Seq,
+                                           CardID = cb.CardBatch.CardID,
+                                           HolderID = cb.CardBatch.HolderID,
+                                           HolderName = cb.CardBatch.HolderName,
+                                           StartTime = cb.CardBatch.StartTime,
+                                           EndTime = cb.CardBatch.EndTime,
+                                           // ViewModel
+                                           StartTimeStr = cb.CardBatch.StartTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                           EndTimeStr = cb.CardBatch.EndTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                           CardNote = c.Note
+                                       });
 
             // 關鍵字
             if (!string.IsNullOrEmpty(Keyword)) {
@@ -69,16 +87,7 @@ namespace Surveillance.Repositories {
                                   .Take(PageShow)
                                   .ToListAsync();
 
-            // 模型映射
-            var ListVM = Mapper.Map<List<CardBatchModel>, List<CardBatchViewModel>>(List);
-
-            ListVM.ForEach(x => {
-                x.CardNote = ""; // TODO - 門卡批次
-                x.StartTimeStr = x.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
-                x.EndTimeStr = x.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
-            });
-
-            return (ListVM, Count);
+            return (List, Count);
         }
 
         #endregion

@@ -44,7 +44,20 @@ namespace Surveillance.Repositories {
             int PageShow = _Entry.PageShow;
             string Keyword = _Entry.Keyword;
 
-            var Query = DatabaseContext.CardAuthority.AsQueryable();
+            var Query = from CardAuthority in DatabaseContext.CardAuthority
+                        join Card in DatabaseContext.Card on CardAuthority.CardID equals Card.ID into CardDefault
+                        from Card in CardDefault.DefaultIfEmpty()
+                        join Door in DatabaseContext.Door on CardAuthority.DoorID equals Door.ID into DoorDefault
+                        from Door in DoorDefault.DefaultIfEmpty()
+                        select new CardAuthorityViewModel {
+                            // Model
+                            Seq = CardAuthority.Seq,
+                            CardID = CardAuthority.CardID,
+                            DoorID = CardAuthority.DoorID,
+                            // ViewModel
+                            CardNote = Card.Note,
+                            DoorName = Door.Name
+                        };
 
             // 關鍵字
             if (!string.IsNullOrEmpty(Keyword)) {
@@ -57,15 +70,7 @@ namespace Surveillance.Repositories {
                                   .Take(PageShow)
                                   .ToListAsync();
 
-            // 模型映射
-            var ListVM = Mapper.Map<List<CardAuthorityModel>, List<CardAuthorityViewModel>>(List);
-
-            ListVM.ForEach(x => {
-                x.CardNote = ""; // TODO - 門卡權限
-                x.DoorName = ""; // TODO - 門卡權限
-            });
-
-            return (ListVM, Count);
+            return (List, Count);
         }
 
         #endregion

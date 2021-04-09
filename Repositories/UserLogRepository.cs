@@ -49,14 +49,16 @@ namespace Surveillance.Repositories {
                                            User = u
                                        })
                                        .SelectMany(x => x.User.DefaultIfEmpty(), (ul, u) => new UserLogViewModel {
+                                           // Model
                                            Seq = ul.UserLog.Seq,
                                            Time = ul.UserLog.Time,
-                                           TimeStr = ul.UserLog.Time.ToString("yyyy-MM-dd HH:mm:ss"),
                                            UserSeq = u.Seq,
-                                           UserName = u.Name,
                                            Status = ul.UserLog.Status,
-                                           StatusStr = "",  // TODO - 使用者紀錄清單，狀態
-                                           Note = ul.UserLog.Note
+                                           Note = ul.UserLog.Note,
+                                           // ViewModel
+                                           TimeStr = ul.UserLog.Time.ToString("yyyy-MM-dd HH:mm:ss"),
+                                           UserName = u.Name,
+                                           StatusStr = ""  // TODO - 使用者紀錄清單，狀態
                                        });
 
             // 開始時間
