@@ -1,4 +1,8 @@
-﻿namespace Surveillance.Interfaces {
+﻿using Surveillance.Models;
+using System.Threading.Tasks;
+
+
+namespace Surveillance.Interfaces {
 
     /// <summary>
     /// Sciener
@@ -6,6 +10,8 @@
     public interface IScienerService {
 
         #region "令牌"
+
+        Task<ScienerTokenModel> GetToken();
 
         #endregion
 

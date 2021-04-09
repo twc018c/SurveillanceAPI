@@ -1,4 +1,7 @@
 ﻿using Surveillance.Interfaces;
+using Surveillance.Models;
+using Surveillance.Schafold;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -30,17 +33,30 @@ namespace Surveillance.Services {
         #region "令牌"
 
         /// <summary>
-        /// 
+        /// 取得令牌
         /// </summary>
-        /// <returns></returns>
-        public async Task Get() {
-            var Request = new HttpRequestMessage(HttpMethod.Post, "https://api.sciener.com/oauth2/token");
-            Request.Headers.Add("ContentType", "application/x-www-form-urlencoded");
-            Request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+        /// <returns>ScienerTokenModel</returns>
+        public async Task<ScienerTokenModel> GetToken() {
+            var Model = new ScienerTokenModel();
 
-            var client = HttpClientFactory.CreateClient();
+            var Client = HttpClientFactory.CreateClient();
+            Client.Timeout = TimeSpan.FromSeconds(10);
+            Client.DefaultRequestHeaders.Add("ContentType", "application/x-www-form-urlencoded");
+            Client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
 
-            var response = await client.SendAsync(Request);
+            var MFDC = new MultipartFormDataContent();
+            MFDC.Add(new StringContent("client_id"), Global.ScienerID);
+            MFDC.Add(new StringContent("client_secret"), Global.ScienerSecret);
+            MFDC.Add(new StringContent("username"), Global.ScienerUsername);
+            MFDC.Add(new StringContent("password"), Global.ScienerPassword);
+
+            var Response = await Client.PostAsync("https://api.sciener.com/oauth2/token", MFDC);
+
+            if (Response.IsSuccessStatusCode) {
+                string JSON = await Response.Content.ReadAsStringAsync();
+            }
+
+            return Model;
         }
 
         #endregion

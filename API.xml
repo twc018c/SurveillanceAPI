@@ -249,6 +249,16 @@
             API回應代碼
             </summary>
         </member>
+        <member name="T:Surveillance.Enums.SCIENER_KEY">
+            <summary>
+            Sciener鑰匙
+            </summary>
+        </member>
+        <member name="T:Surveillance.Enums.SCIENER_CODE">
+            <summary>
+            Sciener代碼
+            </summary>
+        </member>
         <member name="T:Surveillance.Enums.USER_LOG_STATUS">
             <summary>
             使用者紀錄狀態
@@ -909,6 +919,36 @@
             每頁筆數
             </summary>
         </member>
+        <member name="T:Surveillance.Models.ScienerTokenModel">
+            <summary>
+            Sciener Token
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerTokenModel.access_token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerTokenModel.uid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerTokenModel.expires_in">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerTokenModel.scope">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerTokenModel.refresh_token">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Surveillance.Program">
             <summary>
             主程式
@@ -1310,6 +1350,11 @@
             JWT金鑰
             </summary>
         </member>
+        <member name="F:Surveillance.Schafold.Global.ScienerToken">
+            <summary>
+            Sciener權杖
+            </summary>
+        </member>
         <member name="F:Surveillance.Schafold.Global.ScienerID">
             <summary>
             Sciener編號
@@ -1361,11 +1406,11 @@
             建構
             </summary>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.Get">
+        <member name="M:Surveillance.Services.ScienerService.GetToken">
             <summary>
-            
+            取得令牌
             </summary>
-            <returns></returns>
+            <returns>ScienerTokenModel</returns>
         </member>
         <member name="T:Surveillance.Startup">
             <summary>
