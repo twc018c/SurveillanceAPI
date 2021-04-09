@@ -11,7 +11,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 門卡編號
         /// </summary>
-        public string CardID { get; set; } = "";
+        public int CardID { get; set; } = 0;
 
         /// <summary>
         /// 持有者編號

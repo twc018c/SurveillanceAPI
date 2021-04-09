@@ -120,7 +120,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_CardID">門卡編號</param>
         [HttpDelete("{_CardID}")]
-        public async Task<Dictionary<string, object>> DeleteByCard(string _CardID = "") {
+        public async Task<Dictionary<string, object>> DeleteByCard(int _CardID = 0) {
             // 刪除門卡批次 (依門卡編號)
             await CardBatchRepository.DeleteByCard(_CardID);
 

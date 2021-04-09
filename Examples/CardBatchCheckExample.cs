@@ -15,7 +15,7 @@ namespace Surveillance.Examples {
         /// <returns>CardBatchCheckEntry</returns>
         public CardBatchCheckEntry GetExamples() {
             return new CardBatchCheckEntry() {
-                CardID = "",
+                CardID = 0,
                 HolderID = "",
                 Time = new DateTime(2021, 04, 01)
             };

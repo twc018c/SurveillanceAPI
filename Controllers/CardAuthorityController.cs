@@ -94,7 +94,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_CardID">門卡編號</param>
         [HttpDelete("{_CardID}")]
-        public async Task<Dictionary<string, object>> DeleteByCard(string _CardID = "") {
+        public async Task<Dictionary<string, object>> DeleteByCard(int _CardID = 0) {
             // 刪除門卡權限 (依門卡編號)
             await CardAuthorityRepository.DeleteByCard(_CardID);
 
@@ -111,7 +111,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_DoorID">門鎖編號</param>
         [HttpDelete("{_DoorID}")]
-        public async Task<Dictionary<string, object>> DeleteByDoor(string _DoorID = "") {
+        public async Task<Dictionary<string, object>> DeleteByDoor(int _DoorID = 0) {
             // 刪除門卡權限 (依門鎖編號)
             await CardAuthorityRepository.DeleteByDoor(_DoorID);
 

@@ -16,7 +16,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 門鎖編號
         /// </summary>
-        public string ID { get; set; } = "";
+        public int ID { get; set; } = 0;
 
         /// <summary>
         /// 門鎖名稱

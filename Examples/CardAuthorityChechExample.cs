@@ -15,8 +15,8 @@ namespace Surveillance.Examples {
         /// <returns>CardAuthorityCheckEntry</returns>
         public CardAuthorityCheckEntry GetExamples() {
             return new CardAuthorityCheckEntry() {
-                DoorID = "",
-                CardID = ""
+                DoorID = 0,
+                CardID = 0
             };
         }
     }

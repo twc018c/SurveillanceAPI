@@ -68,7 +68,7 @@ namespace Surveillance.Repositories {
 
             // 關鍵字
             if (!string.IsNullOrEmpty(Keyword)) {
-                Query = Query.Where(x => x.CardID.Contains(Keyword) || x.HolderID.Contains(Keyword) || x.HolderName.Contains(Keyword));
+                Query = Query.Where(x => x.HolderID.Contains(Keyword) || x.HolderName.Contains(Keyword));
             }
 
             // 開始時間
@@ -146,7 +146,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_CardID">門卡編號</param>
         /// <returns>Task</returns>
-        public async Task DeleteByCard(string _CardID = "") {
+        public async Task DeleteByCard(int _CardID = 0) {
             var Query = DatabaseContext.CardBatch
                                        .AsQueryable()
                                        .Where(x => x.CardID == _CardID);

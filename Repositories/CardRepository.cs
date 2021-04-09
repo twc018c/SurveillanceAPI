@@ -48,7 +48,7 @@ namespace Surveillance.Repositories {
 
             // 關鍵字
             if (!string.IsNullOrEmpty(Keyword)) {
-                Query = Query.Where(x => x.ID.Contains(Keyword) || x.Note.Contains(Keyword));
+                Query = Query.Where(x => x.Note.Contains(Keyword));
             }
 
             int Count = await Query.CountAsync();
@@ -120,7 +120,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_ID">門卡編號</param>
         /// <returns>Task</returns>
-        public async Task Delete(string _ID = "") {
+        public async Task Delete(int _ID = 0) {
             var Query = DatabaseContext.Card
                                        .AsQueryable()
                                        .Where(x => x.ID == _ID);
@@ -142,7 +142,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_ID">門卡編號</param>
         /// <returns>bool</returns>
-        public async Task<bool> CheckID(string _ID = "") {
+        public async Task<bool> CheckID(int _ID = 0) {
             bool Flag = false;
 
             var Model = await DatabaseContext.Card

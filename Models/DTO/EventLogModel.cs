@@ -21,12 +21,12 @@ namespace Surveillance.Models {
         /// <summary>
         /// 門鎖編號
         /// </summary>
-        public string DoorID { get; set; } = "";
+        public int DoorID { get; set; } = 0;
 
         /// <summary>
         /// 門卡編號
         /// </summary>
-        public string CardID { get; set; } = "";
+        public int CardID { get; set; } = 0;
 
         /// <summary>
         /// 狀態

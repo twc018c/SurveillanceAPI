@@ -41,7 +41,7 @@ namespace Surveillance.Interfaces {
 
         #region "刪除"
 
-        Task DeleteByCard(string _CardID);
+        Task DeleteByCard(int _CardID);
         Task DeleteByHolder(string _HolderID);
         Task DeleteByTime(DateTime _StartTime, DateTime _EndTime);
 

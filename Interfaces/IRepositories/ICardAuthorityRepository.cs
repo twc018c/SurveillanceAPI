@@ -31,8 +31,8 @@ namespace Surveillance.Interfaces {
 
         #region "刪除"
 
-        Task DeleteByCard(string _CardID);
-        Task DeleteByDoor(string _DoorID);
+        Task DeleteByCard(int _CardID);
+        Task DeleteByDoor(int _DoorID);
 
         #endregion
 

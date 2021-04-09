@@ -71,7 +71,7 @@ namespace Surveillance.Repositories {
 
             // 關鍵字
             if (!string.IsNullOrEmpty(Keyword)) {
-                Query = Query.Where(x => x.DoorID.Contains(Keyword) || x.CardID.Contains(Keyword));
+                Query = Query.Where(x => x.UserName.Contains(Keyword));
             }
 
             // 使用者流水編號
@@ -119,7 +119,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_CardID">門卡編號</param>
         /// <returns>Task</returns>
-        public async Task DeleteByCard(string _CardID = "") {
+        public async Task DeleteByCard(int _CardID = 0) {
             var Query = DatabaseContext.EventLog
                                        .AsQueryable()
                                        .Where(x => x.CardID == _CardID);
@@ -135,7 +135,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_DoorID">門鎖編號</param>
         /// <returns>Task</returns>
-        public async Task DeleteByDoor(string _DoorID = "") {
+        public async Task DeleteByDoor(int _DoorID = 0) {
             var Query = DatabaseContext.EventLog
                                        .AsQueryable()
                                        .Where(x => x.DoorID == _DoorID);

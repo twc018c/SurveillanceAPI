@@ -137,7 +137,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_ID">門鎖編號</param>
         [HttpDelete("{_ID}")]
-        public async Task<Dictionary<string, object>> Delete(string _ID = "") {
+        public async Task<Dictionary<string, object>> Delete(int _ID = 0) {
             // 刪除門鎖
             await DoorRepository.Delete(_ID);
 

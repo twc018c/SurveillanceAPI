@@ -40,7 +40,7 @@ namespace Surveillance.Interfaces {
 
         #region "刪除"
 
-        Task Delete(string _ID);
+        Task Delete(int _ID);
 
         #endregion
 
@@ -49,7 +49,7 @@ namespace Surveillance.Interfaces {
 
         #region "其它"
 
-        Task<bool> CheckID(string _ID);
+        Task<bool> CheckID(int _ID);
 
         #endregion
     }

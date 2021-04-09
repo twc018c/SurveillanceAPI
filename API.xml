@@ -27,13 +27,13 @@
             </summary>
             <param name="_List">清單</param>
         </member>
-        <member name="M:Surveillance.Controllers.CardAuthorityController.DeleteByCard(System.String)">
+        <member name="M:Surveillance.Controllers.CardAuthorityController.DeleteByCard(System.Int32)">
             <summary>
             刪除門卡權限 (依門卡編號)
             </summary>
             <param name="_CardID">門卡編號</param>
         </member>
-        <member name="M:Surveillance.Controllers.CardAuthorityController.DeleteByDoor(System.String)">
+        <member name="M:Surveillance.Controllers.CardAuthorityController.DeleteByDoor(System.Int32)">
             <summary>
             刪除門卡權限 (依門鎖編號)
             </summary>
@@ -74,7 +74,7 @@
             </summary>
             <param name="_Model">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.CardBatchController.DeleteByCard(System.String)">
+        <member name="M:Surveillance.Controllers.CardBatchController.DeleteByCard(System.Int32)">
             <summary>
             刪除門卡批次 (依門卡編號)
             </summary>
@@ -121,7 +121,7 @@
             </summary>
             <param name="_Model">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.CardController.Delete(System.String)">
+        <member name="M:Surveillance.Controllers.CardController.Delete(System.Int32)">
             <summary>
             刪除門卡
             </summary>
@@ -156,7 +156,7 @@
             </summary>
             <param name="_Model">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.DoorController.Delete(System.String)">
+        <member name="M:Surveillance.Controllers.DoorController.Delete(System.Int32)">
             <summary>
             刪除門鎖
             </summary>
@@ -993,14 +993,14 @@
             <param name="_List">清單</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.CardAuthorityRepository.DeleteByCard(System.String)">
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.DeleteByCard(System.Int32)">
             <summary>
             刪除門卡權限 (依門卡編號)
             </summary>
             <param name="_CardID">門卡編號</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.CardAuthorityRepository.DeleteByDoor(System.String)">
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.DeleteByDoor(System.Int32)">
             <summary>
             刪除門卡權限 (依門鎖編號)
             </summary>
@@ -1047,7 +1047,7 @@
             <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.CardBatchRepository.DeleteByCard(System.String)">
+        <member name="M:Surveillance.Repositories.CardBatchRepository.DeleteByCard(System.Int32)">
             <summary>
             刪除門卡批次 (依門卡編號)
             </summary>
@@ -1109,14 +1109,14 @@
             <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.CardRepository.Delete(System.String)">
+        <member name="M:Surveillance.Repositories.CardRepository.Delete(System.Int32)">
             <summary>
             刪除門卡
             </summary>
             <param name="_ID">門卡編號</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.CardRepository.CheckID(System.String)">
+        <member name="M:Surveillance.Repositories.CardRepository.CheckID(System.Int32)">
             <summary>
             檢查門卡編號
             </summary>
@@ -1156,14 +1156,14 @@
             <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.DoorRepository.Delete(System.String)">
+        <member name="M:Surveillance.Repositories.DoorRepository.Delete(System.Int32)">
             <summary>
             刪除門鎖
             </summary>
             <param name="_ID">門鎖編號</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.DoorRepository.CheckID(System.String)">
+        <member name="M:Surveillance.Repositories.DoorRepository.CheckID(System.Int32)">
             <summary>
             檢查門鎖編號
             </summary>
@@ -1195,14 +1195,14 @@
             <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByCard(System.String)">
+        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByCard(System.Int32)">
             <summary>
             刪除事件紀錄 (依門卡)
             </summary>
             <param name="_CardID">門卡編號</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByDoor(System.String)">
+        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByDoor(System.Int32)">
             <summary>
             刪除事件紀錄 (依門鎖)
             </summary>
