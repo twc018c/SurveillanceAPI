@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Surveillance</name>
+        <name>Surveillance-API</name>
     </assembly>
     <members>
         <member name="T:Surveillance.Controllers.CardAuthorityController">
@@ -251,12 +251,17 @@
         </member>
         <member name="T:Surveillance.Enums.SCIENER_KEY">
             <summary>
-            Sciener鑰匙
+            Sciener 鑰匙
             </summary>
         </member>
         <member name="T:Surveillance.Enums.SCIENER_CODE">
             <summary>
-            Sciener代碼
+            Sciener 代碼
+            </summary>
+        </member>
+        <member name="T:Surveillance.Enums.SCIENER_IC_STATUS">
+            <summary>
+            Sciener IC卡狀態
             </summary>
         </member>
         <member name="T:Surveillance.Enums.USER_LOG_STATUS">

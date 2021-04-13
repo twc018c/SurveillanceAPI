@@ -24,7 +24,7 @@ appsettings.json
 
 ### 資料庫
 MariaDB 10.4.18 (相容MySQL 5.7+)
-
+結構說明及測試資料於TestData目錄
 
 -----
 

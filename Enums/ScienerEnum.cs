@@ -4,7 +4,7 @@
 namespace Surveillance.Enums {
 
     /// <summary>
-    /// Sciener鑰匙
+    /// Sciener 鑰匙
     /// </summary>
     public enum SCIENER_KEY : int {
         [Description("正常使用")]
@@ -21,7 +21,7 @@ namespace Surveillance.Enums {
 
 
     /// <summary>
-    /// Sciener代碼
+    /// Sciener 代碼
     /// </summary>
     public enum SCIENER_CODE : int {
         [Description("成功或是")]
@@ -94,5 +94,30 @@ namespace Surveillance.Enums {
         AH = -2012,
         [Description("沒有權限")]
         AI = -2018
+    }
+
+
+    /// <summary>
+    /// Sciener IC卡狀態
+    /// </summary>
+    public enum SCIENER_IC_STATUS : int {
+        [Description("正常")]
+        NORMAL = 1,
+        [Description("已失效")]
+        INVALID = 2,
+        [Description("待生效")]
+        PENDDING = 3,
+        [Description("添加中")]
+        ADDING = 4,
+        [Description("添加失敗")]
+        ADD_FAIL = 5,
+        [Description("修改中")]
+        EDITING = 6,
+        [Description("修改失敗")]
+        EDIT_FAIL = 7,
+        [Description("刪除中")]
+        DELETING = 8,
+        [Description("刪除失敗")]
+        DELETE_FAIL = 9
     }
 }
