@@ -179,6 +179,22 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="T:Surveillance.Controllers.ScienerController">
+            <summary>
+            Sciener
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.ScienerController.#ctor(Surveillance.Interfaces.IScienerService)">
+            <summary>
+            建構
+            </summary>
+            <param name="_ScienerService">服務</param>
+        </member>
+        <member name="M:Surveillance.Controllers.ScienerController.GetToken">
+            <summary>
+            取得令牌
+            </summary>
+        </member>
         <member name="T:Surveillance.Controllers.UserController">
             <summary>
             使用者
@@ -929,27 +945,27 @@
             Sciener Token
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerTokenModel.access_token">
+        <member name="P:Surveillance.Models.ScienerTokenModel.AccessToken">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerTokenModel.uid">
+        <member name="P:Surveillance.Models.ScienerTokenModel.UID">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerTokenModel.expires_in">
+        <member name="P:Surveillance.Models.ScienerTokenModel.ExpiresIn">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerTokenModel.scope">
+        <member name="P:Surveillance.Models.ScienerTokenModel.Scope">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerTokenModel.refresh_token">
+        <member name="P:Surveillance.Models.ScienerTokenModel.RefreshToken">
             <summary>
             
             </summary>

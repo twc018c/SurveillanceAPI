@@ -2,7 +2,13 @@
 using Surveillance.Models;
 using Surveillance.Schafold;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 
@@ -39,23 +45,29 @@ namespace Surveillance.Services {
         public async Task<ScienerTokenModel> GetToken() {
             var Model = new ScienerTokenModel();
 
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("client_id", Global.ScienerID);
+            Dictionary.Add("client_secret", Global.ScienerSecret);
+            Dictionary.Add("username", Global.ScienerUsername);
+            Dictionary.Add("password", Global.ScienerPassword);
+
             var Client = HttpClientFactory.CreateClient();
-            Client.Timeout = TimeSpan.FromSeconds(10);
-            Client.DefaultRequestHeaders.Add("ContentType", "application/x-www-form-urlencoded");
             Client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+            Client.Timeout = TimeSpan.FromSeconds(10);
 
-            var MFDC = new MultipartFormDataContent();
-            MFDC.Add(new StringContent("client_id"), Global.ScienerID);
-            MFDC.Add(new StringContent("client_secret"), Global.ScienerSecret);
-            MFDC.Add(new StringContent("username"), Global.ScienerUsername);
-            MFDC.Add(new StringContent("password"), Global.ScienerPassword);
+            var Request = new HttpRequestMessage() {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://api.sciener.com/oauth2/token"),
+                Content = new FormUrlEncodedContent(Dictionary.ToList())
+            };
 
-            var Response = await Client.PostAsync("https://api.sciener.com/oauth2/token", MFDC);
+            var Response = await Client.SendAsync(Request);
 
             if (Response.IsSuccessStatusCode) {
                 string JSON = await Response.Content.ReadAsStringAsync();
+                Model = JsonSerializer.Deserialize<ScienerTokenModel>(JSON);
             }
-
+            
             return Model;
         }
 

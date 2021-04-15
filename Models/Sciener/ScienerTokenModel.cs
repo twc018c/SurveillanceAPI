@@ -1,4 +1,4 @@
-using System;
+using System.Text.Json.Serialization;
 
 
 namespace Surveillance.Models {
@@ -11,26 +11,31 @@ namespace Surveillance.Models {
         /// <summary>
         /// 
         /// </summary>
-        public string access_token { get; set; } = "";
+        [JsonPropertyName("access_token")]
+        public string AccessToken { get; set; } = "";
 
         /// <summary>
         /// 
         /// </summary>
-        public int uid { get; set; } = 0;
+        [JsonPropertyName("uid")]
+        public int UID { get; set; } = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        public int expires_in { get; set; } = 0;
+        [JsonPropertyName("expires_in")]
+        public int ExpiresIn { get; set; } = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        public string scope { get; set; } = "";
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; } = "";
 
         /// <summary>
         /// 
         /// </summary>
-        public string refresh_token { get; set; } = "";
+        [JsonPropertyName("refresh_token")]
+        public string RefreshToken { get; set; } = "";
     }
 }
