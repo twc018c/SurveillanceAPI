@@ -51,7 +51,7 @@ namespace Surveillance.Interfaces {
 
         Task<bool> CheckAccount(string _Account);
 
-        Task<bool> Login(UserLoginEntry _Entry);
+        Task<(bool Flag, UserModel Model)> Login(UserLoginEntry _Entry);
 
         #endregion
     }

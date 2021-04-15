@@ -184,14 +184,19 @@ namespace Surveillance.Controllers {
         [HttpPost("Login")]
         [SwaggerRequestExample(typeof(UserLoginEntry), typeof(UserLoginExample))]
         public async Task<Dictionary<string, object>> Login(UserLoginEntry _Entry) {
+            UserModel Model = null;
             string Token = string.Empty;
+            
             var ResultCode = API_RESULT_CODE.DB_ERROR;
             var ResultMessage = "使用者登入失敗";
 
             // 使用者登入
-            bool Flag = await UserRepository.Login(_Entry);
+            var Temp = await UserRepository.Login(_Entry);
 
-            if (Flag == true) {
+            if (Temp.Flag == true) {
+                // 使用者模型
+                Model = Temp.Model;
+
                 // 產生權杖
                 Token = JWTService.GenerateToken(_Entry.Account);
 
@@ -200,7 +205,8 @@ namespace Surveillance.Controllers {
             }
 
             var Dictionary = new Dictionary<string, object>();
-            Dictionary.Add("result", Token);
+            Dictionary.Add("model", Model);
+            Dictionary.Add("token", Token);
             Dictionary.Add("resultCode", ResultCode);
             Dictionary.Add("resultMessage", ResultMessage);
 

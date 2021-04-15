@@ -1311,7 +1311,7 @@
             使用者登入
             </summary>
             <param name="_Entry">模型</param>
-            <returns>bool</returns>
+            <returns>Tuple</returns>
         </member>
         <member name="T:Surveillance.Schafold.AutoMapperProfile">
             <summary>
