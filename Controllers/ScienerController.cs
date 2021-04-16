@@ -40,13 +40,21 @@ namespace Surveillance.Controllers {
         /// </summary>
         [HttpGet("Token")]
         public async Task<Dictionary<string, object>> GetToken() {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得令牌成功";
+
             // 取得令牌
             var Temp = await ScienerService.GetToken();
 
+            if (string.IsNullOrEmpty(Temp.AccessToken) || Temp.UID == 0) {
+                ResultCode = API_RESULT_CODE.UNKNOW;
+                ResultMessage = "取得令牌錯誤";
+            }
+
             var Dictionary = new Dictionary<string, object>();
             Dictionary.Add("result", Temp);
-            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
-            Dictionary.Add("resultMessage", "");
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
             
             return Dictionary;
         }

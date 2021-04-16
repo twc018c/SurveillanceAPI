@@ -25,75 +25,75 @@ namespace Surveillance.Enums {
     /// </summary>
     public enum SCIENER_CODE : int {
         [Description("成功或是")]
-        A = 0,
+        SUCCESS = 0,
         [Description("失敗或否")]
-        B = 1,
+        FAIL = 1,
         [Description("參數錯誤")]
-        C = -3,
+        FAIL_PARAMETER = -3,
         [Description("client_id不存在")]
-        D = 10000,
+        FAIL_CLIENT_ID = 10000,
         [Description("無效的client，client_id或client_secret錯")]
-        E = 10001,
+        FAIL_CLIENT_ID2 = 10001,
         [Description("無效的code或code已失效")]
-        F = 10002,
+        FAIL_CODE = 10002,
         [Description("token不存在")]
-        G = 1003,
+        FAIL_TOKEN = 1003,
         [Description("token無授權，token已失效或被撤銷授權")]
-        H = 10004,
+        FAIL_TOKEN2 = 10004,
         [Description("token權限不在範圍內")]
-        I = 10005,
+        FAIL_TOKEN3 = 10005,
         [Description("未審核的app，只能由特定的測試帳號授權")]
-        J = 10006,
+        FAIL_APP_VERIFY = 10006,
         [Description("username或password錯誤")]
-        K = 10007,
+        FAIL_LOGIN = 10007,
         [Description("redirect_uri無效，必須和應用信息裡保持一致")]
-        L = 10008,
+        FAIL_REDIRECT = 10008,
         [Description("請求的response_type類型未被支持")]
-        M = 10009,
+        FAIL_RESPONSE_TYPE = 10009,
         [Description("請求的grant_type類型未被支持")]
-        N = 10010,
+        FAIL_GRANT_TYPE = 10010,
         [Description("refresh_token無效")]
-        O = 10011,
+        FAIL_REFRESH_TOKEN = 10011,
         [Description("openid無效")]
-        P = 20000,
+        FAIL_OPENID = 20000,
         [Description("用戶不是鎖的鑰匙擁有者")]
-        Q = 20001,
+        FAIL_KEY_USER = 20001,
         [Description("不是鎖管理員")]
-        R = 20002,
+        FAIL_LOCK_ADMIN = 20002,
         [Description("鑰匙id和鎖id還有用戶的對應關係錯誤")]
-        S = 20003,
+        FAIL_KEY_LOCK_RELATION = 20003,
         [Description("鑰匙不存在")]
-        T = 20004,
+        FAIL_KEY = 20004,
         [Description("備份鑰匙的密碼錯誤")]
-        U = 20005,
+        FAIL_KEY_BACKUP_PASSWORD = 20005,
         [Description("接收方不存在")]
-        V = 20006,
+        FAIL_RECEIVE = 20006,
         [Description("鍵盤密碼版本無效，有效值：1、2、3、4")]
-        W = 20007,
+        FAIL_KEYBOARD_PASSWORD = 20007,
         [Description("鎖名稱無效")]
-        X = 20008,
+        FAIL_LOCK_NAME = 20008,
         [Description("沒有該接口的權限")]
-        Y = 30001,
+        FAIL_INTERFACE_AUTH = 30001,
         [Description("用戶名只能包含數字和字母")]
-        Z = 30002,
+        FAIL_USERNAME = 30002,
         [Description("用戶已存在")]
-        AA = 30003,
+        FAIL_USERNAME2 = 30003,
         [Description("要刪除的用戶的userid不合法")]
-        AB = 30004,
+        FAIL_DELETE = 30004,
         [Description("不是定制App的用戶")]
-        AC = 30005,
+        FAIL_APP_CUSTOMER = 30005,
         [Description("超過接口調用次數限制")]
-        AD = 30006,
+        FAIL_INTERFACE_LIMIT = 30006,
         [Description("請求時間必需為當前時間前後五分鐘以內")]
-        AE = 80000,
+        FAIL_TIME = 80000,
         [Description("JSON格式不正確")]
-        AF = 80002,
+        FAIL_JSON_FORMAT = 80002,
         [Description("系統內部錯誤")]
-        AG = 90000,
+        FAIL_SYSTEM = 90000,
         [Description("鎖附近沒有可用的網關")]
-        AH = -2012,
+        FAIL_GATEWAY = -2012,
         [Description("沒有權限")]
-        AI = -2018
+        FAIL_AUTH = -2018
     }
 
 

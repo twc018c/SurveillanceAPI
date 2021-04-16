@@ -1,4 +1,5 @@
-﻿using Surveillance.Interfaces;
+﻿using Surveillance.Enums;
+using Surveillance.Interfaces;
 using Surveillance.Models;
 using Surveillance.Schafold;
 using System;
@@ -36,6 +37,37 @@ namespace Surveillance.Services {
         }
 
 
+        /// <summary>
+        /// 檢查API代碼
+        /// </summary>
+        /// <param name="_JSON">JSON</param>
+        /// <returns>bool</returns>
+        public static bool CheckAPICode(string _JSON = "") {
+            bool Flag = false;
+
+            try {
+                var Temp = JsonSerializer.Deserialize<Dictionary<string, object>>(_JSON);
+                var ObjErrCode = Temp.Where(x => x.Key == "errcode").FirstOrDefault().Value;
+
+                if (ObjErrCode != null) {
+                    int.TryParse(ObjErrCode.ToString(), out int ErrCode);
+
+                    if (ErrCode == (int)SCIENER_CODE.SUCCESS) {
+                        Flag = true;
+                    }
+
+                    Console.WriteLine($"Sciener API Response Error #{ErrCode}");
+                }
+            } catch (Exception Exception) {
+                Console.WriteLine($"Sciener API Response Crash. {Exception.Message}");
+            }
+
+            return Flag;
+        }
+
+
+
+
         #region "令牌"
 
         /// <summary>
@@ -65,7 +97,13 @@ namespace Surveillance.Services {
 
             if (Response.IsSuccessStatusCode) {
                 string JSON = await Response.Content.ReadAsStringAsync();
-                Model = JsonSerializer.Deserialize<ScienerTokenModel>(JSON);
+
+                // 檢查API代碼
+                bool Flag = CheckAPICode(JSON);
+
+                if (Flag == true) {
+                    Model = JsonSerializer.Deserialize<ScienerTokenModel>(JSON);
+                }
             }
             
             return Model;

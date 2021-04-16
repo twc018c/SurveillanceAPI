@@ -1427,6 +1427,13 @@
             建構
             </summary>
         </member>
+        <member name="M:Surveillance.Services.ScienerService.CheckAPICode(System.String)">
+            <summary>
+            檢查API代碼
+            </summary>
+            <param name="_JSON">JSON</param>
+            <returns>bool</returns>
+        </member>
         <member name="M:Surveillance.Services.ScienerService.GetToken">
             <summary>
             取得令牌
