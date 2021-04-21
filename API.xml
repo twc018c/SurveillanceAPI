@@ -508,6 +508,13 @@
             <param name="_Enum">列舉</param>
             <returns>string</returns>
         </member>
+        <member name="M:Surveillance.Library.Tool.ToMD5(System.String)">
+            <summary>
+            MD5編碼
+            </summary>
+            <param name="_PlainText">明文</param>
+            <returns>string</returns>
+        </member>
         <member name="M:Surveillance.Library.Tool.FilterParameter(System.String)">
             <summary>
             過濾參數

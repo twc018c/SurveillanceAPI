@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
@@ -87,6 +89,26 @@ namespace Surveillance.Library {
             FieldInfo FI = _Enum.GetType().GetField(_Enum.ToString());
             DescriptionAttribute[] Attr = (DescriptionAttribute[])FI.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return Attr.Length > 0 ? Attr[0].Description : _Enum.ToString();
+        }
+        
+
+        /// <summary>
+        /// MD5編碼
+        /// </summary>
+        /// <param name="_PlainText">明文</param>
+        /// <returns>string</returns>
+        public static string ToMD5(this string _PlainText) {
+            using (var CryptoMD5 = MD5.Create()) {
+                byte[] Buffer = Encoding.UTF8.GetBytes(_PlainText);
+
+                byte[] Hash = CryptoMD5.ComputeHash(Buffer);
+
+                var Cipher = BitConverter.ToString(Hash)
+                                         .Replace("-", String.Empty)
+                                         .ToUpper();
+
+                return Cipher;
+            }
         }
 
 

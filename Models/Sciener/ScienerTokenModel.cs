@@ -17,8 +17,26 @@ namespace Surveillance.Models {
         /// <summary>
         /// 
         /// </summary>
+        [JsonPropertyName("refresh_token")]
+        public string RefreshToken { get; set; } = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("tokenType")]
+        public string TokenType { get; set; } = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonPropertyName("uid")]
         public int UID { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("openID")]
+        public int OpenID { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -31,11 +49,5 @@ namespace Surveillance.Models {
         /// </summary>
         [JsonPropertyName("scope")]
         public string Scope { get; set; } = "";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonPropertyName("refresh_token")]
-        public string RefreshToken { get; set; } = "";
     }
 }

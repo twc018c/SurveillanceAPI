@@ -1,5 +1,6 @@
 ﻿using Surveillance.Enums;
 using Surveillance.Interfaces;
+using Surveillance.Library;
 using Surveillance.Models;
 using Surveillance.Schafold;
 using System;
@@ -43,7 +44,7 @@ namespace Surveillance.Services {
         /// <param name="_JSON">JSON</param>
         /// <returns>bool</returns>
         public static bool CheckAPICode(string _JSON = "") {
-            bool Flag = false;
+            bool Flag = true;
 
             try {
                 var Temp = JsonSerializer.Deserialize<Dictionary<string, object>>(_JSON);
@@ -52,8 +53,8 @@ namespace Surveillance.Services {
                 if (ObjErrCode != null) {
                     int.TryParse(ObjErrCode.ToString(), out int ErrCode);
 
-                    if (ErrCode == (int)SCIENER_CODE.SUCCESS) {
-                        Flag = true;
+                    if (ErrCode != (int)SCIENER_CODE.SUCCESS) {
+                        Flag = false;
                     }
 
                     Console.WriteLine($"Sciener API Response Error #{ErrCode}");
@@ -81,7 +82,7 @@ namespace Surveillance.Services {
             Dictionary.Add("client_id", Global.ScienerID);
             Dictionary.Add("client_secret", Global.ScienerSecret);
             Dictionary.Add("username", Global.ScienerUsername);
-            Dictionary.Add("password", Global.ScienerPassword);
+            Dictionary.Add("password", Global.ScienerPassword.ToMD5()); // 密碼以MD5處理
 
             var Client = HttpClientFactory.CreateClient();
             Client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
