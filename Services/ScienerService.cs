@@ -39,25 +39,72 @@ namespace Surveillance.Services {
 
 
         /// <summary>
+        /// 產生請求
+        /// </summary>
+        /// <param name="_URL">網址</param>
+        /// <param name="_Dictionary">字典</param>
+        /// <returns>string</returns>
+        public async Task<string> GenerateRequest(string _URL, Dictionary<string, string> _Dictionary) {
+            string JSON = string.Empty;
+
+            var Client = HttpClientFactory.CreateClient();
+            Client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+            Client.Timeout = TimeSpan.FromSeconds(10);
+
+            var Request = new HttpRequestMessage() {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(_URL),
+                Content = new FormUrlEncodedContent(_Dictionary.ToList())
+            };
+
+            try {
+                var Response = await Client.SendAsync(Request);
+
+                if (Response.IsSuccessStatusCode) {
+                    JSON = await Response.Content.ReadAsStringAsync();
+                } else {
+                    Console.WriteLine($"Sciener API Request Error #{Response.StatusCode}");
+                }
+            } catch (Exception Exception) {
+                Console.WriteLine($"Sciener API Request Crash. {Exception.Message}");
+            }
+            
+            return JSON;
+        }
+
+
+        /// <summary>
         /// 檢查API代碼
         /// </summary>
         /// <param name="_JSON">JSON</param>
         /// <returns>bool</returns>
-        public static bool CheckAPICode(string _JSON = "") {
+        public bool CheckAPICode(string _JSON = "") {
             bool Flag = true;
 
             try {
                 var Temp = JsonSerializer.Deserialize<Dictionary<string, object>>(_JSON);
                 var ObjErrCode = Temp.Where(x => x.Key == "errcode").FirstOrDefault().Value;
 
+                // 判斷錯誤代碼
                 if (ObjErrCode != null) {
                     int.TryParse(ObjErrCode.ToString(), out int ErrCode);
 
+                    // 成功類型也包含在錯誤代碼的範圍
                     if (ErrCode != (int)SCIENER_CODE.SUCCESS) {
+                        // 改變旗標
                         Flag = false;
-                    }
 
-                    Console.WriteLine($"Sciener API Response Error #{ErrCode}");
+                        string Str = $"Sciener API Response Error #{ErrCode}";
+
+                        // 判斷錯誤訊息
+                        var ObjErrMsg = Temp.Where(x => x.Key == "errmsg").FirstOrDefault().Value;
+
+                        if (ObjErrMsg != null) {
+                            Str = $"{Str} {ObjErrMsg.ToString()}";
+                        }
+
+                        Console.WriteLine(Str);
+                    }
                 }
             } catch (Exception Exception) {
                 Console.WriteLine($"Sciener API Response Crash. {Exception.Message}");
@@ -78,35 +125,24 @@ namespace Surveillance.Services {
         public async Task<ScienerTokenModel> GetToken() {
             var Model = new ScienerTokenModel();
 
+            string URL = "https://api.sciener.com/oauth2/token";
+
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("client_id", Global.ScienerID);
             Dictionary.Add("client_secret", Global.ScienerSecret);
             Dictionary.Add("username", Global.ScienerUsername);
             Dictionary.Add("password", Global.ScienerPassword.ToMD5()); // 密碼以MD5處理
 
-            var Client = HttpClientFactory.CreateClient();
-            Client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
-            Client.Timeout = TimeSpan.FromSeconds(10);
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
 
-            var Request = new HttpRequestMessage() {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri("https://api.sciener.com/oauth2/token"),
-                Content = new FormUrlEncodedContent(Dictionary.ToList())
-            };
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
 
-            var Response = await Client.SendAsync(Request);
-
-            if (Response.IsSuccessStatusCode) {
-                string JSON = await Response.Content.ReadAsStringAsync();
-
-                // 檢查API代碼
-                bool Flag = CheckAPICode(JSON);
-
-                if (Flag == true) {
-                    Model = JsonSerializer.Deserialize<ScienerTokenModel>(JSON);
-                }
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerTokenModel>(JSON);
             }
-            
+
             return Model;
         }
 
@@ -116,6 +152,77 @@ namespace Surveillance.Services {
 
 
         #region "用戶"
+
+        /// <summary>
+        /// 用戶註冊
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>ScienerUserRegisterModel</returns>
+        public async Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry) {
+            var Model = new ScienerUserRegisterModel();
+
+            string URL = "https://api.sciener.com/v3/user/register";
+
+            if (_Entry.Date <= 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("clientSecret", Global.ScienerSecret);
+            Dictionary.Add("username", $"{_Entry.UserName}");
+            Dictionary.Add("password", $"{_Entry.Password}");
+            Dictionary.Add("date", $"{_Entry.Date}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerUserRegisterModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
+        /// 取得用戶清單
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>ScienerUserListModel</returns>
+        public async Task<ScienerUserListModel> GetUserList(SicenerUserListEntry _Entry) {
+            var Model = new ScienerUserListModel();
+
+            string URL = "https://api.sciener.com/v3/user/list";
+
+            if (_Entry.Date <= 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("clientSecret", Global.ScienerSecret);
+            Dictionary.Add("startDate", $"{_Entry.StartDate}");
+            Dictionary.Add("endDate", $"{_Entry.EndDate}");
+            Dictionary.Add("pageNo", $"{_Entry.PageNo}");
+            Dictionary.Add("pageSize", $"{_Entry.PageSize}");
+            Dictionary.Add("date", $"{_Entry.Date}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerUserListModel>(JSON);
+            }
+
+            return Model;
+        }
 
         #endregion
 

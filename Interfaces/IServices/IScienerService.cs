@@ -20,6 +20,9 @@ namespace Surveillance.Interfaces {
 
         #region "用戶"
 
+        Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry);
+        Task<ScienerUserListModel> GetUserList(SicenerUserListEntry _Entry);
+
         #endregion
 
 

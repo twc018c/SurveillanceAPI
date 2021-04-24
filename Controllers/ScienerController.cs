@@ -61,5 +61,53 @@ namespace Surveillance.Controllers {
 
         #endregion
 
+
+
+
+        #region "用戶"
+
+        /// <summary>
+        /// 用戶註冊
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("User/Register")]
+        public async Task<Dictionary<string, object>> RegisterUser(SicenerUserRegisterEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "用戶註冊成功";
+
+            // 用戶註冊
+            var Temp = await ScienerService.RegisterUser(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 取得用戶清單
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("User/List")]
+        public async Task<Dictionary<string, object>> GetUserList(SicenerUserListEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得用戶清單成功";
+
+            // 取得用戶清單
+            var Temp = await ScienerService.GetUserList(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+        #endregion
+
     }
 }

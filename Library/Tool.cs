@@ -81,6 +81,19 @@ namespace Surveillance.Library {
 
 
         /// <summary>
+        /// 取得日期長整數
+        /// </summary>
+        /// <remarks>
+        /// 毫秒精度
+        /// </remarks>
+        /// <returns>string</returns>
+        public static long GetDateLong() {
+            double UnixTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
+            return (long)UnixTimestamp;
+        }
+
+
+        /// <summary>
         /// 列舉描述
         /// </summary>
         /// <param name="_Enum">列舉</param>
