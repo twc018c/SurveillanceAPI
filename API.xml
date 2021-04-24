@@ -201,7 +201,7 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.GetUserList(Surveillance.Models.SicenerUserListEntry)">
+        <member name="M:Surveillance.Controllers.ScienerController.GetUserList(Surveillance.Models.SicenerUserEntry)">
             <summary>
             取得用戶清單
             </summary>
@@ -968,6 +968,246 @@
             每頁筆數
             </summary>
         </member>
+        <member name="T:Surveillance.Models.SicenerFingerprintListEntry">
+            <summary>
+            Sciener 指紋清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerFingerprintListEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerFingerprintListEntry.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerFingerprintListEntry.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerFingerprintListEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerGatewayListEntry">
+            <summary>
+            Sciener 網關清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerGatewayListEntry.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerGatewayListEntry.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerGatewayListEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerICListEntry">
+            <summary>
+            Sciener IC卡清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerICListEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerICListEntry.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerICListEntry.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerICListEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerKeyListEntry">
+            <summary>
+            Sciener 鑰匙清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerKeyListEntry.LockAlias">
+            <summary>
+            鎖別名
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerKeyListEntry.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerKeyListEntry.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerKeyListEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerLockListEntry">
+            <summary>
+            Sciener 鎖清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockListEntry.LockAlias">
+            <summary>
+            鎖別名
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockListEntry.Type">
+            <summary>
+            設備類型
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockListEntry.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockListEntry.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockListEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerUserRegisterEntry">
+            <summary>
+            Sciener 用戶註冊
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.UserName">
+            <summary>
+            用戶名
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.Password">
+            <summary>
+            密碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerUserEntry">
+            <summary>
+            Sciener 用戶清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserEntry.StartDate">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserEntry.EndDate">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserEntry.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserEntry.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerUserEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerGatewayListModel">
+            <summary>
+            Sciener 網關清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayListModel.List">
+            <summary>
+            清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayListModel.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayListModel.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayListModel.Pages">
+            <summary>
+            總頁數
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayListModel.Total">
+            <summary>
+            總數
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerGatewayModel">
+            <summary>
+            Sciener 網關
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayModel.GatewayID">
+            <summary>
+            網關編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayModel.GatewayMAC">
+            <summary>
+            網關MAC地址
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayModel.GatewayVersion">
+            <summary>
+            網關版本號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayModel.NetworkName">
+            <summary>
+            連接網關的網路名稱
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayModel.LockNum">
+            <summary>
+            網關管理的鎖數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerGatewayModel.IsOnline">
+            <summary>
+            是否在線
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.ScienerTokenModel">
             <summary>
             Sciener令牌
@@ -1055,62 +1295,12 @@
         </member>
         <member name="P:Surveillance.Models.ScienerUserModel.UserID">
             <summary>
-            
+            用戶編號
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerUserModel.RegTime">
             <summary>
             註冊時間
-            </summary>
-        </member>
-        <member name="T:Surveillance.Models.SicenerUserRegisterEntry">
-            <summary>
-            Sciener 用戶註冊
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.UserName">
-            <summary>
-            用戶名
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.Password">
-            <summary>
-            密碼
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.Date">
-            <summary>
-            目前時間 (毫秒)
-            </summary>
-        </member>
-        <member name="T:Surveillance.Models.SicenerUserListEntry">
-            <summary>
-            Sciener 用戶清單
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.StartDate">
-            <summary>
-            開始時間
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.EndDate">
-            <summary>
-            結束時間
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.PageNo">
-            <summary>
-            頁碼
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.PageSize">
-            <summary>
-            每頁數量
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.Date">
-            <summary>
-            目前時間 (毫秒)
             </summary>
         </member>
         <member name="T:Surveillance.Program">
@@ -1514,10 +1704,11 @@
             JWT金鑰
             </summary>
         </member>
-        <member name="F:Surveillance.Schafold.Global.ScienerToken">
+        <member name="F:Surveillance.Schafold.Global.ScienerAccessToken">
             <summary>
             Sciener權杖
             </summary>
+            <remarks>存放最新的權杖</remarks>
         </member>
         <member name="F:Surveillance.Schafold.Global.ScienerID">
             <summary>
@@ -1598,7 +1789,7 @@
             <param name="_Entry">模型</param>
             <returns>ScienerUserRegisterModel</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.GetUserList(Surveillance.Models.SicenerUserListEntry)">
+        <member name="M:Surveillance.Services.ScienerService.GetUserList(Surveillance.Models.SicenerUserEntry)">
             <summary>
             取得用戶清單
             </summary>

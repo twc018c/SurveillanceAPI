@@ -18,7 +18,8 @@
         /// <summary>
         /// Sciener權杖
         /// </summary>
-        public static string ScienerToken = "";
+        /// <remarks>存放最新的權杖</remarks>
+        public static string ScienerAccessToken = "";
 
         /// <summary>
         /// Sciener編號

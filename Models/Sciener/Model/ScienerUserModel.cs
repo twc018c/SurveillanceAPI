@@ -60,7 +60,7 @@ namespace Surveillance.Models {
     public class ScienerUserModel {
 
         /// <summary>
-        /// 
+        /// ¥Î¤á½s¸¹
         /// </summary>
         [JsonPropertyName("userid")]
         public string UserID { get; set; } = "";

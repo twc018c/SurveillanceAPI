@@ -25,7 +25,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 用戶清單
     /// </summary>
-    public class SicenerUserListEntry {
+    public class SicenerUserEntry {
 
         /// <summary>
         /// 開始時間

@@ -92,7 +92,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("User/List")]
-        public async Task<Dictionary<string, object>> GetUserList(SicenerUserListEntry _Entry) {
+        public async Task<Dictionary<string, object>> GetUserList(SicenerUserEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "取得用戶清單成功";
 

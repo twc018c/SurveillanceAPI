@@ -141,6 +141,9 @@ namespace Surveillance.Services {
 
             if (Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerTokenModel>(JSON);
+
+                // 更新令牌
+                Global.ScienerAccessToken = Model.AccessToken;
             }
 
             return Model;
@@ -193,7 +196,7 @@ namespace Surveillance.Services {
         /// </summary>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerUserListModel</returns>
-        public async Task<ScienerUserListModel> GetUserList(SicenerUserListEntry _Entry) {
+        public async Task<ScienerUserListModel> GetUserList(SicenerUserEntry _Entry) {
             var Model = new ScienerUserListModel();
 
             string URL = "https://api.sciener.com/v3/user/list";
