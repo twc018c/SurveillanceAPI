@@ -3,6 +3,9 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener «ü¯¾²M³æ
     /// </summary>
+    /// <remarks>
+    /// https://open.sciener.com/doc/api/v3/fingerprint/list
+    /// </remarks>
     public class SicenerFingerprintListEntry {
 
         /// <summary>

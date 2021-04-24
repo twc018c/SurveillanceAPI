@@ -972,6 +972,9 @@
             <summary>
             Sciener 指紋清單
             </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/fingerprint/list
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerFingerprintListEntry.LockID">
             <summary>
@@ -997,6 +1000,9 @@
             <summary>
             Sciener 網關清單
             </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/gateway/list
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerGatewayListEntry.PageNo">
             <summary>
@@ -1017,6 +1023,9 @@
             <summary>
             Sciener IC卡清單
             </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/identityCard/list
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerICListEntry.LockID">
             <summary>
@@ -1042,11 +1051,17 @@
             <summary>
             Sciener 鑰匙清單
             </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/key/list
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerKeyListEntry.LockAlias">
             <summary>
             鎖別名
             </summary>
+            <remarks>
+            選填
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerKeyListEntry.PageNo">
             <summary>
@@ -1067,16 +1082,27 @@
             <summary>
             Sciener 鎖清單
             </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lock/list
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerLockListEntry.LockAlias">
             <summary>
             鎖別名
             </summary>
+            <remarks>
+            選填
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerLockListEntry.Type">
             <summary>
             設備類型
             </summary>
+            <remarks>
+            選填
+            1=鎖
+            2=梯控
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerLockListEntry.PageNo">
             <summary>
@@ -1093,10 +1119,93 @@
             目前時間 (毫秒)
             </summary>
         </member>
+        <member name="T:Surveillance.Models.SicenerLockDetailEntry">
+            <summary>
+            Sciener 鎖詳細
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lock/detail
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockDetailEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockDetailEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerLockDateEntry">
+            <summary>
+            Sciener 鎖時間
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lock/queryDate
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockDateEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockDateEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerLockRecordListEntry">
+            <summary>
+            Sciener 開鎖紀錄清單
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lockRecord/list
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.StartDate">
+            <summary>
+            開始時間
+            </summary>
+            <remarks>
+            選填，0=無限制
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.EndDate">
+            <summary>
+            結束時間
+            </summary>
+            <remarks>
+            選填，0=無限制
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.SicenerUserRegisterEntry">
             <summary>
             Sciener 用戶註冊
             </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/user/register
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerUserRegisterEntry.UserName">
             <summary>
@@ -1117,16 +1226,25 @@
             <summary>
             Sciener 用戶清單
             </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/user/list
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerUserEntry.StartDate">
             <summary>
             開始時間
             </summary>
+            <remarks>
+            0=無限制
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerUserEntry.EndDate">
             <summary>
             結束時間
             </summary>
+            <remarks>
+            0=無限制
+            </remarks>
         </member>
         <member name="P:Surveillance.Models.SicenerUserEntry.PageNo">
             <summary>

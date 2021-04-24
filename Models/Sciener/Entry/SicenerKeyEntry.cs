@@ -3,11 +3,17 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 鑰匙清單
     /// </summary>
+    /// <remarks>
+    /// https://open.sciener.com/doc/api/v3/key/list
+    /// </remarks>
     public class SicenerKeyListEntry {
 
         /// <summary>
         /// 鎖別名
         /// </summary>
+        /// <remarks>
+        /// 選填
+        /// </remarks>
         public string LockAlias { get; set; } = "";
 
         /// <summary>
