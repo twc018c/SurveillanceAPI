@@ -98,6 +98,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("Cursor")]
+        [SwaggerRequestExample(typeof(UserCursorEntry), typeof(UserCursorExample))]
         public async Task<Dictionary<string, object>> GetCursor(UserCursorEntry _Entry) {
             // 取得使用者指標
             string Result = await UserRepository.GetCursor(_Entry);

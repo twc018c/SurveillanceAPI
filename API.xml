@@ -6,7 +6,7 @@
     <members>
         <member name="T:Surveillance.Controllers.CardAuthorityController">
             <summary>
-            門卡權限權限
+            門卡權限
             </summary>
         </member>
         <member name="M:Surveillance.Controllers.CardAuthorityController.#ctor(Surveillance.Interfaces.ICardAuthorityRepository)">
@@ -47,7 +47,7 @@
         </member>
         <member name="T:Surveillance.Controllers.CardBatchController">
             <summary>
-            門卡批次批次
+            門卡批次
             </summary>
         </member>
         <member name="M:Surveillance.Controllers.CardBatchController.#ctor(Surveillance.Interfaces.ICardBatchRepository)">
@@ -164,7 +164,7 @@
         </member>
         <member name="T:Surveillance.Controllers.EventLogController">
             <summary>
-            使用者紀錄
+            事件紀錄
             </summary>
         </member>
         <member name="M:Surveillance.Controllers.EventLogController.#ctor(Surveillance.Interfaces.IEventLogRepository)">
@@ -390,6 +390,17 @@
             建構
             </summary>
             <returns>EventLogEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.UserCursorExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.UserCursorExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>UserCursorEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.UserExample">
             <summary>

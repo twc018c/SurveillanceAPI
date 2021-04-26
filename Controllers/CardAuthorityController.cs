@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Surveillance.Controllers {
 
     /// <summary>
-    /// 門卡權限權限
+    /// 門卡權限
     /// </summary>
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
