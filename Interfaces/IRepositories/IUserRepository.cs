@@ -14,6 +14,8 @@ namespace Surveillance.Interfaces {
 
         Task<UserModel> Get(string _Account);
         Task<(List<UserModel> List, int Count)> GetList(UserEntry _Entry);
+        Task<List<SelectModel>> GetMenu();
+        Task<string> GetCursor(UserCursorEntry _Entry);
 
         #endregion
 
@@ -32,6 +34,7 @@ namespace Surveillance.Interfaces {
         #region "修改"
 
         Task Update(UserModel _Model);
+        Task UpdatePassword(UserPasswordEntry _Entry);
 
         #endregion
 

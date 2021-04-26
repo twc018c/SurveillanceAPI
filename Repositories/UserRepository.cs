@@ -82,6 +82,60 @@ namespace Surveillance.Repositories {
             return (List, Count);
         }
 
+
+        /// <summary>
+        /// 取得使用者選單
+        /// </summary>
+        /// <returns>List</returns>
+        public async Task<List<SelectModel>> GetMenu() {
+            List<SelectModel> List = new List<SelectModel>();
+
+            var Query = DatabaseContext.User.AsQueryable();
+
+            await Query.OrderBy(x => x.Seq).ForEachAsync(x => {
+                List.Add(new SelectModel() {
+                    Value = x.Seq,
+                    Label = x.Name
+                });
+            });
+
+            return List;
+        }
+
+
+        /// <summary>
+        /// 取得使用者指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>string</returns>
+        public async Task<string> GetCursor(UserCursorEntry _Entry) {
+            string Account = string.Empty;
+            UserModel Model = new UserModel();
+
+            var Query = DatabaseContext.User.AsQueryable();
+
+            // 流水編號
+            int Seq = await Query.Where(x => x.Account == _Entry.Account)
+                                 .Select(x => x.Seq)
+                                 .FirstOrDefaultAsync();
+
+            if (_Entry.Direction) {
+                Model = Query.Where(x => x.Seq > Seq)
+                             .OrderBy(x => x.Seq)
+                             .FirstOrDefault();
+            } else {
+                Model = Query.Where(x => x.Seq < Seq)
+                             .OrderByDescending(x => x.Seq)
+                             .FirstOrDefault();
+            }
+
+            if (Model != null) {
+                Account = Model.Account;
+            }
+
+            return Account;
+        }
+
         #endregion
 
 
@@ -122,6 +176,23 @@ namespace Surveillance.Repositories {
                 Temp.Name = _Model.Name;
                 Temp.Password = _Model.Password;
                 Temp.ActionTime = DateTime.Now;
+                Temp.IsWork = _Model.IsWork;
+
+                await DatabaseContext.SaveChangesAsync();
+            }
+        }
+
+
+        /// <summary>
+        /// 修改使用者密碼
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>Task</returns>
+        public async Task UpdatePassword(UserPasswordEntry _Entry) {
+            var Temp = await DatabaseContext.User.SingleAsync(x => x.Account == _Entry.Account);
+
+            if (Temp != null) {
+                Temp.Password = _Entry.Password;
 
                 await DatabaseContext.SaveChangesAsync();
             }

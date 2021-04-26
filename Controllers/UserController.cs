@@ -45,10 +45,10 @@ namespace Surveillance.Controllers {
         [HttpGet("{_Account}")]
         public async Task<Dictionary<string, object>> Get(string _Account = "") {
             // 取得使用者
-            var Temp = await UserRepository.Get(_Account);
+            var Model = await UserRepository.Get(_Account);
 
             var Dictionary = new Dictionary<string, object>();
-            Dictionary.Add("result", Temp);
+            Dictionary.Add("result", Model);
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
             Dictionary.Add("resultMessage", "取得使用者成功");
 
@@ -75,6 +75,41 @@ namespace Surveillance.Controllers {
             return Dictionary;
         }
 
+
+        /// <summary>
+        /// 取得使用者選單
+        /// </summary>
+        [HttpGet("Menu")]
+        public async Task<Dictionary<string, object>> GetMenu() {
+            // 取得使用者選單
+            var List = await UserRepository.GetMenu();
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", List);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得使用者選單成功");
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 取得使用者指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("Cursor")]
+        public async Task<Dictionary<string, object>> GetCursor(UserCursorEntry _Entry) {
+            // 取得使用者指標
+            string Result = await UserRepository.GetCursor(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Result);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得使用者指標成功");
+
+            return Dictionary;
+        }
+
         #endregion
 
 
@@ -91,6 +126,8 @@ namespace Surveillance.Controllers {
             var ResultCount = 0;
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "新增使用者失敗";
+
+            // TODO - 權限認證
 
             // 檢查使用者帳號
             bool IsExist = await UserRepository.CheckAccount(_Model.Account);
@@ -128,6 +165,8 @@ namespace Surveillance.Controllers {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改使用者失敗";
 
+            // TODO - 權限認證
+
             // 檢查使用者帳號
             bool IsExist = await UserRepository.CheckAccount(_Model.Account);
 
@@ -137,6 +176,34 @@ namespace Surveillance.Controllers {
 
                 ResultCode = API_RESULT_CODE.SUCCESS;
                 ResultMessage = "修改使用者成功";
+            }
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 修改使用者密碼
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPatch("Update/Password")]
+        public async Task<Dictionary<string, object>> UpdatePassword(UserPasswordEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.PARA_ERROR;
+            var ResultMessage = "修改使用者密碼失敗";
+
+            // 檢查使用者帳號
+            bool IsExist = await UserRepository.CheckAccount(_Entry.Account);
+
+            if (IsExist == true) {
+                // 修改使用者密碼
+                await UserRepository.UpdatePassword(_Entry);
+
+                ResultCode = API_RESULT_CODE.SUCCESS;
+                ResultMessage = "修改使用者密碼成功";
             }
 
             var Dictionary = new Dictionary<string, object>();
@@ -159,6 +226,8 @@ namespace Surveillance.Controllers {
         /// <param name="_Account">帳號</param>
         [HttpDelete("{_Account}")]
         public async Task<Dictionary<string, object>> Delete(string _Account = "") {
+            // TODO - 權限認證
+
             // 刪除使用者
             await UserRepository.Delete(_Account);
 
@@ -191,11 +260,11 @@ namespace Surveillance.Controllers {
             var ResultMessage = "使用者登入失敗";
 
             // 使用者登入
-            var Temp = await UserRepository.Login(_Entry);
+            var Tuple = await UserRepository.Login(_Entry);
 
-            if (Temp.Flag == true) {
+            if (Tuple.Flag == true) {
                 // 使用者模型
-                Model = Temp.Model;
+                Model = Tuple.Model;
 
                 // 產生權杖
                 Token = JWTService.GenerateToken(_Entry.Account);

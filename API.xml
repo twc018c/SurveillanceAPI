@@ -231,6 +231,17 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="M:Surveillance.Controllers.UserController.GetMenu">
+            <summary>
+            取得使用者選單
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.GetCursor(Surveillance.Models.UserCursorEntry)">
+            <summary>
+            取得使用者指標
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
         <member name="M:Surveillance.Controllers.UserController.Set(Surveillance.Models.UserModel)">
             <summary>
             新增使用者
@@ -242,6 +253,12 @@
             修改使用者
             </summary>
             <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.UserController.UpdatePassword(Surveillance.Models.UserPasswordEntry)">
+            <summary>
+            修改使用者密碼
+            </summary>
+            <param name="_Entry">模型</param>
         </member>
         <member name="M:Surveillance.Controllers.UserController.Delete(System.String)">
             <summary>
@@ -918,6 +935,37 @@
             關鍵字
             </summary>
         </member>
+        <member name="T:Surveillance.Models.UserPasswordEntry">
+            <summary>
+            使用者密碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserPasswordEntry.Account">
+            <summary>
+            帳號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserPasswordEntry.Password">
+            <summary>
+            密碼
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.UserCursorEntry">
+            <summary>
+            使用者指標
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserCursorEntry.Account">
+            <summary>
+            帳號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserCursorEntry.Direction">
+            <summary>
+            方向
+            </summary>
+            <remarks>true=往下、false=往上</remarks>
+        </member>
         <member name="T:Surveillance.Models.UserLogEntry">
             <summary>
             使用者紀錄
@@ -1421,6 +1469,26 @@
             註冊時間
             </summary>
         </member>
+        <member name="T:Surveillance.Models.SelectModel">
+            <summary>
+            選擇選單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SelectModel.Value">
+            <summary>
+            數值
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SelectModel.Label">
+            <summary>
+            標籤名稱
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SelectModel.LabelSub">
+            <summary>
+            次要標籤名稱
+            </summary>
+        </member>
         <member name="T:Surveillance.Program">
             <summary>
             主程式
@@ -1745,6 +1813,19 @@
             <param name="_Entry">模型</param>
             <returns>Tuple</returns>
         </member>
+        <member name="M:Surveillance.Repositories.UserRepository.GetMenu">
+            <summary>
+            取得使用者選單
+            </summary>
+            <returns>List</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.GetCursor(Surveillance.Models.UserCursorEntry)">
+            <summary>
+            取得使用者指標
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>string</returns>
+        </member>
         <member name="M:Surveillance.Repositories.UserRepository.Set(Surveillance.Models.UserModel)">
             <summary>
             新增使用者
@@ -1757,6 +1838,13 @@
             修改使用者
             </summary>
             <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.UpdatePassword(Surveillance.Models.UserPasswordEntry)">
+            <summary>
+            修改使用者密碼
+            </summary>
+            <param name="_Entry">模型</param>
             <returns>Task</returns>
         </member>
         <member name="M:Surveillance.Repositories.UserRepository.Delete(System.String)">
