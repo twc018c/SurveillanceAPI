@@ -104,6 +104,15 @@ namespace Surveillance.Repositories {
 
 
         /// <summary>
+        /// 取得使用者數量
+        /// </summary>
+        /// <returns>int</returns>
+        public async Task<int> GetCount() {
+            return await DatabaseContext.User.AsQueryable().CountAsync();
+        }
+
+
+        /// <summary>
         /// 取得使用者指標
         /// </summary>
         /// <param name="_Entry">模型</param>

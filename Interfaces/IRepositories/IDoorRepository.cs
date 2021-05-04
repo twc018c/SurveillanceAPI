@@ -13,6 +13,7 @@ namespace Surveillance.Interfaces {
 
         #region "讀取"
 
+        Task<int> GetCount();
         Task<(List<DoorViewModel> List, int Count)> GetList(DoorEntry _Entry);
 
         #endregion

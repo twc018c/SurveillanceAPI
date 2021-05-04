@@ -14,6 +14,7 @@ namespace Surveillance.Interfaces {
         #region "讀取"
 
         Task<(List<CardViewModel> List, int Count)> GetList(CardEntry _Entry);
+        Task<int> GetCount();
 
         #endregion
 

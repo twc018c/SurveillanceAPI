@@ -91,6 +91,7 @@ namespace Surveillance {
             _Services.AddTransient<IUserLogRepository, UserLogRepository>();
 
             // Service
+            _Services.AddTransient<IDashboardService, DashboardService>();
             _Services.AddSingleton<IJWTService, JWTService>();
             _Services.AddSingleton<IScienerService, ScienerService>();
 

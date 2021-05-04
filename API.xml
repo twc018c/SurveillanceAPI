@@ -127,6 +127,22 @@
             </summary>
             <param name="_ID">門卡編號</param>
         </member>
+        <member name="T:Surveillance.Controllers.DashboardController">
+            <summary>
+            儀錶板
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.DashboardController.#ctor(Surveillance.Interfaces.IDashboardService)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DashboardService">服務</param>
+        </member>
+        <member name="M:Surveillance.Controllers.DashboardController.GetHome">
+            <summary>
+            取得儀錶板首頁
+            </summary>
+        </member>
         <member name="T:Surveillance.Controllers.DoorController">
             <summary>
             門鎖
@@ -479,6 +495,11 @@
         <member name="T:Surveillance.Interfaces.IUserRepository">
             <summary>
             使用者
+            </summary>
+        </member>
+        <member name="T:Surveillance.Interfaces.IDashboardService">
+            <summary>
+            儀錶板
             </summary>
         </member>
         <member name="T:Surveillance.Interfaces.IJWTService">
@@ -1646,6 +1667,12 @@
             <param name="_Entry">模型</param>
             <returns>Tuple</returns>
         </member>
+        <member name="M:Surveillance.Repositories.CardRepository.GetCount">
+            <summary>
+            取得門卡數量
+            </summary>
+            <returns>int</returns>
+        </member>
         <member name="M:Surveillance.Repositories.CardRepository.Set(Surveillance.Models.CardModel)">
             <summary>
             新增門卡
@@ -1692,6 +1719,12 @@
             </summary>
             <param name="_Entry">模型</param>
             <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.GetCount">
+            <summary>
+            取得門鎖數量
+            </summary>
+            <returns>int</returns>
         </member>
         <member name="M:Surveillance.Repositories.DoorRepository.Set(Surveillance.Models.DoorModel)">
             <summary>
@@ -1830,6 +1863,12 @@
             </summary>
             <returns>List</returns>
         </member>
+        <member name="M:Surveillance.Repositories.UserRepository.GetCount">
+            <summary>
+            取得使用者數量
+            </summary>
+            <returns>int</returns>
+        </member>
         <member name="M:Surveillance.Repositories.UserRepository.GetCursor(Surveillance.Models.UserCursorEntry)">
             <summary>
             取得使用者指標
@@ -1946,6 +1985,25 @@
             <summary>
             Sciener密碼
             </summary>
+        </member>
+        <member name="T:Surveillance.Services.DashboardService">
+            <summary>
+            儀錶板
+            </summary>
+        </member>
+        <member name="M:Surveillance.Services.DashboardService.#ctor(Surveillance.Interfaces.ICardRepository,Surveillance.Interfaces.IDoorRepository,Surveillance.Interfaces.IUserRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_CardRepository">門卡倉儲</param>
+            <param name="_DoorRepository">門鎖倉儲</param>
+            <param name="_UserRepository">使用者倉儲</param>
+        </member>
+        <member name="M:Surveillance.Services.DashboardService.GetHome">
+            <summary>
+            取得儀錶板首頁
+            </summary>
+            <returns>DashboardViewModel</returns>
         </member>
         <member name="T:Surveillance.Services.JWTService">
             <summary>
@@ -2083,6 +2141,26 @@
         <member name="P:Surveillance.ViewModels.CardViewModel.ActionTimeStr">
             <summary>
             最後動作時間
+            </summary>
+        </member>
+        <member name="T:Surveillance.ViewModels.DashboardHomeViewModel">
+            <summary>
+            儀錶板首頁
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.DashboardHomeViewModel.CountCard">
+            <summary>
+            門卡數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.DashboardHomeViewModel.CountDoor">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.DashboardHomeViewModel.CountUser">
+            <summary>
+            使用者
             </summary>
         </member>
         <member name="T:Surveillance.ViewModels.DoorViewModel">

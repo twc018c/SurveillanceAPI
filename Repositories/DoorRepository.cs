@@ -74,6 +74,15 @@ namespace Surveillance.Repositories {
             return (ListVM, Count);
         }
 
+
+        /// <summary>
+        /// 取得門鎖數量
+        /// </summary>
+        /// <returns>int</returns>
+        public async Task<int> GetCount() {
+            return await DatabaseContext.Door.AsQueryable().CountAsync();
+        }
+
         #endregion
 
 
