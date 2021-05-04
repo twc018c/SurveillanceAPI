@@ -93,7 +93,7 @@ namespace Surveillance.Controllers {
         /// 修改門卡批次
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPatch("Update")]
+        [HttpPatch()]
         public async Task<Dictionary<string, object>> Update(CardBatchModel _Model) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "修改門卡批次成功";

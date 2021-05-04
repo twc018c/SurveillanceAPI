@@ -168,6 +168,7 @@ namespace Surveillance {
                 _App.UseDeveloperExceptionPage();
             }
 
+            _App.UseCors("CorsPolicy");
             _App.UseRouting();
             _App.UseAuthorization();
             _App.UseAuthentication();

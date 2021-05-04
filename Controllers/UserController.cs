@@ -161,7 +161,7 @@ namespace Surveillance.Controllers {
         /// 修改使用者
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPatch("Update")]
+        [HttpPatch()]
         public async Task<Dictionary<string, object>> Update(UserModel _Model) {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改使用者失敗";
@@ -191,7 +191,7 @@ namespace Surveillance.Controllers {
         /// 修改使用者密碼
         /// </summary>
         /// <param name="_Entry">模型</param>
-        [HttpPatch("Update/Password")]
+        [HttpPatch("Password")]
         public async Task<Dictionary<string, object>> UpdatePassword(UserPasswordEntry _Entry) {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改使用者密碼失敗";

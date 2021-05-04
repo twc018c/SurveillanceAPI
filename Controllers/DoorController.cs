@@ -102,7 +102,7 @@ namespace Surveillance.Controllers {
         /// 修改門鎖
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPatch("Update")]
+        [HttpPatch()]
         public async Task<Dictionary<string, object>> Update(DoorModel _Model) {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改門鎖失敗";
