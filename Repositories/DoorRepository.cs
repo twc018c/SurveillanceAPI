@@ -53,13 +53,14 @@ namespace Surveillance.Repositories {
             }
 
             // 樓層
-            if (Floor > 0) {
+            if (Floor != 0) {
                 Query = Query.Where(x => x.Floor == Floor);
             }
 
             int Count = await Query.CountAsync();
 
-            var List = await Query.Skip((PageNow - 1) * PageShow)
+            var List = await Query.OrderBy(x => x.Seq)
+                                  .Skip((PageNow - 1) * PageShow)
                                   .Take(PageShow)
                                   .ToListAsync();
 

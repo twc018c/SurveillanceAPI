@@ -56,6 +56,8 @@ namespace Surveillance.Repositories {
                                            // Model
                                            Seq = el.EventLog.Seq,
                                            Time = el.EventLog.Time,
+                                           DoorID = el.EventLog.DoorID,
+                                           CardID = el.EventLog.CardID,
                                            UserSeq = (u == null) ? 0 : u.Seq,
                                            Status = el.EventLog.Status,
                                            // ViewModel

@@ -70,7 +70,8 @@ namespace Surveillance.Repositories {
 
             int Count = await Query.CountAsync();
 
-            var List = await Query.Skip((PageNow - 1) * PageShow)
+            var List = await Query.OrderBy(x => x.Seq)
+                                  .Skip((PageNow - 1) * PageShow)
                                   .Take(PageShow)
                                   .ToListAsync();
 
