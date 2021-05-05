@@ -1,3 +1,4 @@
+using Surveillance.Enums;
 using System;
 
 
@@ -31,7 +32,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 狀態
         /// </summary>
-        public int Status { get; set; } = 0;
+        public EVENT_LOG_STATUS Status { get; set; } = EVENT_LOG_STATUS.UNKNOW;
 
         /// <summary>
         /// 使用者流水編號

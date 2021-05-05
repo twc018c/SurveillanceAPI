@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : Localhost
  Source Server Type    : MariaDB
  Source Server Version : 100418
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100418
  File Encoding         : 65001
 
- Date: 09/04/2021 16:42:23
+ Date: 04/05/2021 18:04:07
 */
 
 SET NAMES utf8mb4;
@@ -137,6 +137,7 @@ CREATE TABLE `User`  (
   `IsAdmin` int(1) UNSIGNED NOT NULL DEFAULT 0,
   `IsWork` int(1) UNSIGNED NOT NULL DEFAULT 1,
   `ActionTime` datetime(0) NOT NULL DEFAULT current_timestamp() ON UPDATE CURRENT_TIMESTAMP(0),
+  `IP` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Seq`, `Account`) USING BTREE,
   FULLTEXT INDEX `Idx_User`(`Account`, `Name`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -144,10 +145,10 @@ CREATE TABLE `User`  (
 -- ----------------------------
 -- Records of User
 -- ----------------------------
-INSERT INTO `User` VALUES (1, 'Fish', 'fish', 'fish', 1, 1, '2021-03-25 17:16:07');
-INSERT INTO `User` VALUES (2, 'Test', 'test', 'test', 0, 1, '2021-03-26 09:11:45');
-INSERT INTO `User` VALUES (3, 'Guest', 'guest', 'guest', 0, 0, '2021-01-01 08:00:00');
-INSERT INTO `User` VALUES (4, 'b', 'bb', 'bbb', 0, 0, '2021-04-06 11:58:03');
+INSERT INTO `User` VALUES (1, 'Fish', 'fish', 'fish', 1, 1, '2021-03-25 17:16:07', NULL);
+INSERT INTO `User` VALUES (2, 'Test', 'test', 'test', 0, 1, '2021-03-26 09:11:45', NULL);
+INSERT INTO `User` VALUES (3, 'Guest', 'guest', 'guest', 0, 0, '2021-01-01 08:00:00', NULL);
+INSERT INTO `User` VALUES (4, 'Admin', 'admin', 'admin', 1, 1, '2021-05-04 15:41:07', NULL);
 
 -- ----------------------------
 -- Table structure for UserLog

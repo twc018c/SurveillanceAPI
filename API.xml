@@ -310,6 +310,11 @@
             API回應代碼
             </summary>
         </member>
+        <member name="T:Surveillance.Enums.EVENT_LOG_STATUS">
+            <summary>
+            事件紀錄狀態
+            </summary>
+        </member>
         <member name="T:Surveillance.Enums.SCIENER_KEY">
             <summary>
             Sciener 鑰匙
@@ -842,6 +847,11 @@
             最後動作時間
             </summary>
         </member>
+        <member name="P:Surveillance.Models.UserModel.IP">
+            <summary>
+            IP
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.CardAuthorityCheckEntry">
             <summary>
             門卡權限檢查
@@ -957,6 +967,11 @@
             使用者流水編號
             </summary>
         </member>
+        <member name="P:Surveillance.Models.EventLogEntry.Status">
+            <summary>
+            狀態
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.UserEntry">
             <summary>
             使用者
@@ -1016,6 +1031,11 @@
         <member name="P:Surveillance.Models.UserLogEntry.UserSeq">
             <summary>
             使用者流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogEntry.Status">
+            <summary>
+            狀態
             </summary>
         </member>
         <member name="T:Surveillance.Models.UserLoginEntry">

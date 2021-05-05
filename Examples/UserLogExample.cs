@@ -1,4 +1,5 @@
-﻿using Surveillance.Models;
+﻿using Surveillance.Enums;
+using Surveillance.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System;
 
@@ -18,7 +19,8 @@ namespace Surveillance.Examples {
             return new UserLogEntry() {
                 StartTime = new DateTime(2021, 01, 01),
                 EndTime = new DateTime(2021, 12, 31),
-                UserSeq = 1
+                UserSeq = 1,
+                Status = USER_LOG_STATUS.LOGIN
             };
         }
     }

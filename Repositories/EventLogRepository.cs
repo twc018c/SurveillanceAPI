@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Surveillance.Enums;
 using Surveillance.Interfaces;
+using Surveillance.Library;
 using Surveillance.Models;
 using Surveillance.ViewModels;
 using Surveillance.Schafold;
@@ -42,21 +44,24 @@ namespace Surveillance.Repositories {
             DateTime EndTime = _Entry.EndTime;
             string Keyword = _Entry.Keyword;
             int UserSeq = _Entry.UserSeq;
+            EVENT_LOG_STATUS Status = _Entry.Status;
 
             var Query = DatabaseContext.EventLog
                                        .AsQueryable()
-                                       .GroupJoin(DatabaseContext.User, el => el.UserSeq, u => u.Seq, (el, u) => new {
+                                       .GroupJoin(DatabaseContext.User.AsQueryable(), el => el.UserSeq, u => u.Seq, (el, u) => new {
                                            EventLog = el,
                                            User = u
                                        })
                                        .SelectMany(x => x.User.DefaultIfEmpty(), (el, u) => new EventLogViewModel {
+                                           // Model
                                            Seq = el.EventLog.Seq,
                                            Time = el.EventLog.Time,
-                                           TimeStr = el.EventLog.Time.ToString("yyyy-MM-dd HH:mm:ss"),
-                                           UserSeq = u.Seq,
-                                           UserName = u.Name,
+                                           UserSeq = (u == null) ? 0 : u.Seq,
                                            Status = el.EventLog.Status,
-                                           StatusStr = ""  // TODO - 事件紀錄清單，狀態
+                                           // ViewModel
+                                           UserName = u.Name ?? "",
+                                           TimeStr = el.EventLog.Time.ToString("yyyy-MM-dd HH:mm:ss"),
+                                           StatusStr = el.EventLog.Status.ToEnumDescription()
                                        });
 
             // 開始時間
@@ -77,6 +82,11 @@ namespace Surveillance.Repositories {
             // 使用者流水編號
             if (UserSeq > 0) {
                 Query = Query.Where(x => x.UserSeq == UserSeq);
+            }
+
+            // 狀態
+            if (Status != EVENT_LOG_STATUS.UNKNOW) {
+                Query = Query.Where(x => x.Status == Status);
             }
 
             int Count = await Query.CountAsync();

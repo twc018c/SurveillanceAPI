@@ -102,7 +102,7 @@ namespace Surveillance {
                 Option.SwaggerDoc("v1", new OpenApiInfo { Title = "Surveillance", Version = "v1" });
                 
                 // ±Æ§Ç
-                Option.OrderActionsBy(x => x.HttpMethod);
+                Option.OrderActionsBy(x => x.RelativePath);
 
                 // Åv­­Âê
                 Option.OperationFilter<AddResponseHeadersFilter>();

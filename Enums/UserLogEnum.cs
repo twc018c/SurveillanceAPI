@@ -7,11 +7,11 @@ namespace Surveillance.Enums {
     /// 使用者紀錄狀態
     /// </summary>
     public enum USER_LOG_STATUS : int {
-        [Description("")]
+        [Description("未知")]
         UNKNOW = 0,
-        [Description("")]
+        [Description("登入")]
         LOGIN = 1,
-        [Description("")]
+        [Description("登出")]
         LOGOUT = 2
     }
 }

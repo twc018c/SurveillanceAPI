@@ -42,5 +42,10 @@ namespace Surveillance.Models {
         /// 最後動作時間
         /// </summary>
         public DateTime ActionTime { get; set; } = DateTime.MinValue;
+
+        /// <summary>
+        /// IP
+        /// </summary>
+        public string IP { get; set; } = "";
     }
 }

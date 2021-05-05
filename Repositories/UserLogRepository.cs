@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Surveillance.Enums;
 using Surveillance.Interfaces;
+using Surveillance.Library;
 using Surveillance.Models;
 using Surveillance.ViewModels;
 using Surveillance.Schafold;
@@ -41,6 +43,7 @@ namespace Surveillance.Repositories {
             DateTime StartTime = _Entry.StartTime;
             DateTime EndTime = _Entry.EndTime;
             int UserSeq = _Entry.UserSeq;
+            USER_LOG_STATUS Status = _Entry.Status;
 
             var Query = DatabaseContext.UserLog
                                        .AsQueryable()
@@ -52,13 +55,13 @@ namespace Surveillance.Repositories {
                                            // Model
                                            Seq = ul.UserLog.Seq,
                                            Time = ul.UserLog.Time,
-                                           UserSeq = u.Seq,
+                                           UserSeq = (u == null) ? 0 : u.Seq,
                                            Status = ul.UserLog.Status,
                                            Note = ul.UserLog.Note,
                                            // ViewModel
                                            TimeStr = ul.UserLog.Time.ToString("yyyy-MM-dd HH:mm:ss"),
-                                           UserName = u.Name,
-                                           StatusStr = ""  // TODO - 使用者紀錄清單，狀態
+                                           UserName = u.Name ?? "",
+                                           StatusStr = ul.UserLog.Status.ToEnumDescription()
                                        });
 
             // 開始時間
@@ -74,6 +77,11 @@ namespace Surveillance.Repositories {
             // 使用者流水編號
             if (UserSeq > 0) {
                 Query = Query.Where(x => x.UserSeq == UserSeq);
+            }
+
+            // 狀態
+            if (Status != USER_LOG_STATUS.UNKNOW) {
+                Query = Query.Where(x => x.Status == Status);
             }
 
             int Count = await Query.CountAsync();

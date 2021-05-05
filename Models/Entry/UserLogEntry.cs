@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Surveillance.Enums;
+using System;
 
 
 namespace Surveillance.Models {
@@ -22,5 +23,10 @@ namespace Surveillance.Models {
         /// 使用者流水編號
         /// </summary>
         public int UserSeq { get; set; } = 0;
+
+        /// <summary>
+        /// 狀態
+        /// </summary>
+        public USER_LOG_STATUS Status { get; set; } = USER_LOG_STATUS.UNKNOW;
     }
 }

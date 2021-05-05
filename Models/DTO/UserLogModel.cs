@@ -1,3 +1,4 @@
+using Surveillance.Enums;
 using System;
 
 
@@ -26,7 +27,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// ª¬ºA
         /// </summary>
-        public int Status { get; set; } = 0;
+        public USER_LOG_STATUS Status { get; set; } = USER_LOG_STATUS.UNKNOW;
 
         /// <summary>
         /// ³Æµù
