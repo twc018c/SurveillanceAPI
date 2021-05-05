@@ -14,5 +14,10 @@
         /// 密碼
         /// </summary>
         public string Password { get; set; } = "";
+
+        /// <summary>
+        /// IP
+        /// </summary>
+        public string IP { get; set; } = "";
     }
 }

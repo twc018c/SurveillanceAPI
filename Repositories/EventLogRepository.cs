@@ -112,6 +112,10 @@ namespace Surveillance.Repositories {
         /// <param name="_Model">模型</param>
         /// <returns>Task</returns>
         public async Task Set(EventLogModel _Model) {
+            if (_Model.Time == DateTime.MinValue) {
+                _Model.Time = DateTime.Now;
+            }
+
             DatabaseContext.EventLog.Add(_Model);
 
             await DatabaseContext.SaveChangesAsync();

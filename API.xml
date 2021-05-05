@@ -228,12 +228,13 @@
             使用者
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.UserController.#ctor(Surveillance.Interfaces.IJWTService,Surveillance.Interfaces.IUserRepository)">
+        <member name="M:Surveillance.Controllers.UserController.#ctor(Surveillance.Interfaces.IJWTService,Surveillance.Interfaces.IUserRepository,Surveillance.Interfaces.IUserLogRepository)">
             <summary>
             建構
             </summary>
             <param name="_JWTService">JWT</param>
             <param name="_UserRepository">倉儲</param>
+            <param name="_UserLogRepository">倉儲</param>
         </member>
         <member name="M:Surveillance.Controllers.UserController.Get(System.String)">
             <summary>
@@ -807,6 +808,11 @@
             備註
             </summary>
         </member>
+        <member name="P:Surveillance.Models.UserLogModel.IP">
+            <summary>
+            IP
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.UserModel">
             <summary>
             使用者
@@ -1051,6 +1057,11 @@
         <member name="P:Surveillance.Models.UserLoginEntry.Password">
             <summary>
             密碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLoginEntry.IP">
+            <summary>
+            IP
             </summary>
         </member>
         <member name="T:Surveillance.Models.Entry">
@@ -1915,6 +1926,14 @@
             修改使用者密碼
             </summary>
             <param name="_Entry">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserRepository.UpdateIP(System.String,System.String)">
+            <summary>
+            修改使用者IP
+            </summary>
+            <param name="_Account">帳號</param>
+            <param name="_IP">IP</param>
             <returns>Task</returns>
         </member>
         <member name="M:Surveillance.Repositories.UserRepository.Delete(System.String)">

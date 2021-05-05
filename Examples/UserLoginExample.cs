@@ -16,7 +16,8 @@ namespace Surveillance.Examples {
         public UserLoginEntry GetExamples() {
             return new UserLoginEntry() {
                 Account = "fish",
-                Password = "fish"
+                Password = "fish",
+                IP = ""
             };
         }
     }

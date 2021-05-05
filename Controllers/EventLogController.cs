@@ -16,7 +16,7 @@ namespace Surveillance.Controllers {
     /// 事件紀錄
     /// </summary>
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("[controller]")]
     public class EventLogController : ControllerBase {

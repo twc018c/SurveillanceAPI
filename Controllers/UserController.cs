@@ -23,6 +23,7 @@ namespace Surveillance.Controllers {
 
         private readonly IJWTService JWTService;
         private readonly IUserRepository UserRepository;
+        private readonly IUserLogRepository UserLogRepository;
 
 
         /// <summary>
@@ -30,9 +31,11 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_JWTService">JWT</param>
         /// <param name="_UserRepository">倉儲</param>
-        public UserController(IJWTService _JWTService, IUserRepository _UserRepository) {
+        /// <param name="_UserLogRepository">倉儲</param>
+        public UserController(IJWTService _JWTService, IUserRepository _UserRepository, IUserLogRepository _UserLogRepository) {
             JWTService = _JWTService;
             UserRepository = _UserRepository;
+            UserLogRepository = _UserLogRepository;
         }
 
 
@@ -260,6 +263,11 @@ namespace Surveillance.Controllers {
             var ResultCode = API_RESULT_CODE.DB_ERROR;
             var ResultMessage = "使用者登入失敗";
 
+            // 使用者IP
+            string IP = HttpContext.Connection.RemoteIpAddress?.ToString();
+
+            _Entry.IP = IP;
+
             // 使用者登入
             var Tuple = await UserRepository.Login(_Entry);
 
@@ -269,6 +277,13 @@ namespace Surveillance.Controllers {
 
                 // 產生權杖
                 Token = JWTService.GenerateToken(_Entry.Account);
+
+                // 新增使用者紀錄
+                await UserLogRepository.Set(new UserLogModel() {
+                    UserSeq = Model.Seq,
+                    Status = USER_LOG_STATUS.LOGIN,
+                    IP = IP
+                });
 
                 ResultCode = API_RESULT_CODE.SUCCESS;
                 ResultMessage = "使用者登入成功";

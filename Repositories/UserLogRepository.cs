@@ -58,6 +58,7 @@ namespace Surveillance.Repositories {
                                            UserSeq = (u == null) ? 0 : u.Seq,
                                            Status = ul.UserLog.Status,
                                            Note = ul.UserLog.Note,
+                                           IP = ul.UserLog.IP,
                                            // ViewModel
                                            TimeStr = ul.UserLog.Time.ToString("yyyy-MM-dd HH:mm:ss"),
                                            UserName = u.Name ?? "",
@@ -107,6 +108,10 @@ namespace Surveillance.Repositories {
         /// <param name="_Model">模型</param>
         /// <returns>Task</returns>
         public async Task Set(UserLogModel _Model) {
+            if (_Model.Time == DateTime.MinValue) {
+                _Model.Time = DateTime.Now;
+            }
+
             DatabaseContext.UserLog.Add(_Model);
 
             await DatabaseContext.SaveChangesAsync();

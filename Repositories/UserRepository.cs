@@ -207,6 +207,23 @@ namespace Surveillance.Repositories {
             }
         }
 
+
+        /// <summary>
+        /// 修改使用者IP
+        /// </summary>
+        /// <param name="_Account">帳號</param>
+        /// <param name="_IP">IP</param>
+        /// <returns>Task</returns>
+        public async Task UpdateIP(string _Account, string _IP) {
+            var Temp = await DatabaseContext.User.SingleAsync(x => x.Account == _Account);
+
+            if (Temp != null) {
+                Temp.IP = _IP;
+
+                await DatabaseContext.SaveChangesAsync();
+            }
+        }
+
         #endregion
 
 
@@ -274,6 +291,11 @@ namespace Surveillance.Repositories {
 
             if (Model != null) {
                 Flag = true;
+
+                Model.IP = _Entry.IP;
+
+                // 修改使用者IP
+                await UpdateIP(_Entry.Account, _Entry.IP);
             }
 
             return (Flag, Model);

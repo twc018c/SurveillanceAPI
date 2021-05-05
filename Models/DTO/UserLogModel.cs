@@ -33,5 +33,10 @@ namespace Surveillance.Models {
         /// ³Æµù
         /// </summary>
         public string Note { get; set; } = "";
+
+        /// <summary>
+        /// IP
+        /// </summary>
+        public string IP { get; set; } = "";
     }
 }
