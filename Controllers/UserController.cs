@@ -125,7 +125,7 @@ namespace Surveillance.Controllers {
         /// 新增使用者
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPut()]
+        [HttpPut]
         public async Task<Dictionary<string, object>> Set(UserModel _Model) {
             var ResultCount = 0;
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
@@ -164,7 +164,7 @@ namespace Surveillance.Controllers {
         /// 修改使用者
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPatch()]
+        [HttpPatch]
         public async Task<Dictionary<string, object>> Update(UserModel _Model) {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改使用者失敗";

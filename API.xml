@@ -103,9 +103,21 @@
             </summary>
             <param name="_CardRepository">倉儲</param>
         </member>
+        <member name="M:Surveillance.Controllers.CardController.Get(System.Int32)">
+            <summary>
+            取得門卡
+            </summary>
+            <param name="_Seq" example="1">流水編號</param>
+        </member>
         <member name="M:Surveillance.Controllers.CardController.GetList(Surveillance.Models.CardEntry)">
             <summary>
             取得門卡清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardController.GetCursor(Surveillance.Models.CardCursorEntry)">
+            <summary>
+            取得門卡指標
             </summary>
             <param name="_Entry">模型</param>
         </member>
@@ -154,9 +166,21 @@
             </summary>
             <param name="_DoorRepository">倉儲</param>
         </member>
+        <member name="M:Surveillance.Controllers.DoorController.Get(System.Int32)">
+            <summary>
+            取得門鎖
+            </summary>
+            <param name="_Seq" example="1">流水編號</param>
+        </member>
         <member name="M:Surveillance.Controllers.DoorController.GetList(Surveillance.Models.DoorEntry)">
             <summary>
             取得門鎖清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.DoorController.GetCursor(Surveillance.Models.DoorCursorEntry)">
+            <summary>
+            取得門鎖指標
             </summary>
             <param name="_Entry">模型</param>
         </member>
@@ -380,6 +404,17 @@
             </summary>
             <returns>CardBatchEntry</returns>
         </member>
+        <member name="T:Surveillance.Examples.CardCursorExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardCursorExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardCursorEntry</returns>
+        </member>
         <member name="T:Surveillance.Examples.CardExample">
             <summary>
             模型範例
@@ -390,6 +425,17 @@
             建構
             </summary>
             <returns>CardEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.DoorCursorExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.DoorCursorExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>DoorCursorEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.DoorExample">
             <summary>
@@ -933,6 +979,22 @@
             關鍵字
             </summary>
         </member>
+        <member name="T:Surveillance.Models.CardCursorEntry">
+            <summary>
+            門卡
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardCursorEntry.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardCursorEntry.Direction">
+            <summary>
+            方向
+            </summary>
+            <remarks>true=往下、false=往上</remarks>
+        </member>
         <member name="T:Surveillance.Models.DoorEntry">
             <summary>
             門鎖
@@ -947,6 +1009,22 @@
             <summary>
             樓層
             </summary>
+        </member>
+        <member name="T:Surveillance.Models.DoorCursorEntry">
+            <summary>
+            門鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorCursorEntry.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorCursorEntry.Direction">
+            <summary>
+            方向
+            </summary>
+            <remarks>true=往下、false=往上</remarks>
         </member>
         <member name="T:Surveillance.Models.EventLogEntry">
             <summary>
@@ -1691,6 +1769,13 @@
             <param name="_DatabaseContext">資料庫上下文</param>
             <param name="_Mapper">模型映射</param>
         </member>
+        <member name="M:Surveillance.Repositories.CardRepository.Get(System.Int32)">
+            <summary>
+            取得門卡
+            </summary>
+            <param name="_Seq">流水編號</param>
+            <returns>CardModel</returns>
+        </member>
         <member name="M:Surveillance.Repositories.CardRepository.GetList(Surveillance.Models.CardEntry)">
             <summary>
             取得門卡清單
@@ -1702,6 +1787,13 @@
             <summary>
             取得門卡數量
             </summary>
+            <returns>int</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardRepository.GetCursor(Surveillance.Models.CardCursorEntry)">
+            <summary>
+            取得門卡指標
+            </summary>
+            <param name="_Entry">模型</param>
             <returns>int</returns>
         </member>
         <member name="M:Surveillance.Repositories.CardRepository.Set(Surveillance.Models.CardModel)">
@@ -1744,6 +1836,13 @@
             <param name="_DatabaseContext">資料庫上下文</param>
             <param name="_Mapper">模型映射</param>
         </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Get(System.Int32)">
+            <summary>
+            取得門鎖
+            </summary>
+            <param name="_Seq">流水編號</param>
+            <returns>DoorModel</returns>
+        </member>
         <member name="M:Surveillance.Repositories.DoorRepository.GetList(Surveillance.Models.DoorEntry)">
             <summary>
             取得門鎖清單
@@ -1755,6 +1854,13 @@
             <summary>
             取得門鎖數量
             </summary>
+            <returns>int</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.GetCursor(Surveillance.Models.DoorCursorEntry)">
+            <summary>
+            取得門鎖指標
+            </summary>
+            <param name="_Entry">模型</param>
             <returns>int</returns>
         </member>
         <member name="M:Surveillance.Repositories.DoorRepository.Set(Surveillance.Models.DoorModel)">

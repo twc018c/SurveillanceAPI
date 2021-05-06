@@ -36,6 +36,24 @@ namespace Surveillance.Controllers {
         #region "讀取"
 
         /// <summary>
+        /// 取得門卡
+        /// </summary>
+        /// <param name="_Seq" example="1">流水編號</param>
+        [HttpGet("{_Seq}")]
+        public async Task<Dictionary<string, object>> Get(int _Seq = 0) {
+            // 取得門卡
+            var Model = await CardRepository.Get(_Seq);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Model);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得門卡成功");
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
         /// 取得門卡清單
         /// </summary>
         /// <param name="_Entry">模型</param>
@@ -54,6 +72,25 @@ namespace Surveillance.Controllers {
             return Dictionary;
         }
 
+
+        /// <summary>
+        /// 取得門卡指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("Cursor")]
+        [SwaggerRequestExample(typeof(CardCursorEntry), typeof(CardCursorExample))]
+        public async Task<Dictionary<string, object>> GetCursor(CardCursorEntry _Entry) {
+            // 取得門卡指標
+            int Result = await CardRepository.GetCursor(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Result);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得門卡指標成功");
+
+            return Dictionary;
+        }
+
         #endregion
 
 
@@ -65,7 +102,7 @@ namespace Surveillance.Controllers {
         /// 新增門卡
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPut()]
+        [HttpPut]
         public async Task<Dictionary<string, object>> Set(CardModel _Model) {
             var ResultCount = 0;
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
@@ -102,7 +139,7 @@ namespace Surveillance.Controllers {
         /// 修改門卡
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPatch()]
+        [HttpPatch]
         public async Task<Dictionary<string, object>> Update(CardModel _Model) {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改門卡失敗";

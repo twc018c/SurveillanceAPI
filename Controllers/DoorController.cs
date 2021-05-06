@@ -36,6 +36,24 @@ namespace Surveillance.Controllers {
         #region "讀取"
 
         /// <summary>
+        /// 取得門鎖
+        /// </summary>
+        /// <param name="_Seq" example="1">流水編號</param>
+        [HttpGet("{_Seq}")]
+        public async Task<Dictionary<string, object>> Get(int _Seq = 0) {
+            // 取得門鎖
+            var Model = await DoorRepository.Get(_Seq);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Model);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得門鎖成功");
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
         /// 取得門鎖清單
         /// </summary>
         /// <param name="_Entry">模型</param>
@@ -54,6 +72,25 @@ namespace Surveillance.Controllers {
             return Dictionary;
         }
 
+
+        /// <summary>
+        /// 取得門鎖指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("Cursor")]
+        [SwaggerRequestExample(typeof(DoorCursorEntry), typeof(DoorCursorExample))]
+        public async Task<Dictionary<string, object>> GetCursor(DoorCursorEntry _Entry) {
+            // 取得門鎖指標
+            int Result = await DoorRepository.GetCursor(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Result);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得門鎖指標成功");
+
+            return Dictionary;
+        }
+
         #endregion
 
 
@@ -65,7 +102,7 @@ namespace Surveillance.Controllers {
         /// 新增門鎖
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPut()]
+        [HttpPut]
         public async Task<Dictionary<string, object>> Set(DoorModel _Model) {
             var ResultCount = 0;
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
@@ -102,7 +139,7 @@ namespace Surveillance.Controllers {
         /// 修改門鎖
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPatch()]
+        [HttpPatch]
         public async Task<Dictionary<string, object>> Update(DoorModel _Model) {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改門鎖失敗";

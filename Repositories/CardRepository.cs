@@ -35,6 +35,25 @@ namespace Surveillance.Repositories {
         #region "讀取"
 
         /// <summary>
+        /// 取得門卡
+        /// </summary>
+        /// <param name="_Seq">流水編號</param>
+        /// <returns>CardModel</returns>
+        public async Task<CardModel> Get(int _Seq = 0) {
+            var Model = await DatabaseContext.Card
+                                             .AsQueryable()
+                                             .Where(x => x.Seq == _Seq)
+                                             .FirstOrDefaultAsync();
+
+            if (Model == null) {
+                Model = new CardModel();
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
         /// 取得門卡清單
         /// </summary>
         /// <param name="_Entry">模型</param>
@@ -75,6 +94,35 @@ namespace Surveillance.Repositories {
         /// <returns>int</returns>
         public async Task<int> GetCount() {
             return await DatabaseContext.Card.AsQueryable().CountAsync();
+        }
+
+
+        /// <summary>
+        /// 取得門卡指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>int</returns>
+        public async Task<int> GetCursor(CardCursorEntry _Entry) {
+            int Seq = 0;
+            CardModel Model = new CardModel();
+
+            var Query = DatabaseContext.Card.AsQueryable();
+
+            if (_Entry.Direction) {
+                Model = await Query.Where(x => x.Seq > _Entry.Seq)
+                                   .OrderBy(x => x.Seq)
+                                   .FirstOrDefaultAsync();
+            } else {
+                Model = await Query.Where(x => x.Seq < _Entry.Seq)
+                                   .OrderByDescending(x => x.Seq)
+                                   .FirstOrDefaultAsync();
+            }
+
+            if (Model != null) {
+                Seq = Model.Seq;
+            }
+
+            return Seq;
         }
 
         #endregion

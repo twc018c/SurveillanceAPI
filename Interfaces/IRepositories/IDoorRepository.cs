@@ -13,8 +13,10 @@ namespace Surveillance.Interfaces {
 
         #region "讀取"
 
+        Task<DoorModel> Get(int _Seq);
         Task<int> GetCount();
         Task<(List<DoorViewModel> List, int Count)> GetList(DoorEntry _Entry);
+        Task<int> GetCursor(DoorCursorEntry _Entry);
 
         #endregion
 

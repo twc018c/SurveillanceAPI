@@ -34,6 +34,25 @@ namespace Surveillance.Repositories {
 
         #region "讀取"
 
+
+        /// <summary>
+        /// 取得門鎖
+        /// </summary>
+        /// <param name="_Seq">流水編號</param>
+        /// <returns>DoorModel</returns>
+        public async Task<DoorModel> Get(int _Seq = 0) {
+            var Model = await DatabaseContext.Door
+                                             .AsQueryable()
+                                             .Where(x => x.Seq == _Seq)
+                                             .FirstOrDefaultAsync();
+
+            if (Model == null) {
+                Model = new DoorModel();
+            }
+
+            return Model;
+        }
+
         /// <summary>
         /// 取得門鎖清單
         /// </summary>
@@ -82,6 +101,35 @@ namespace Surveillance.Repositories {
         /// <returns>int</returns>
         public async Task<int> GetCount() {
             return await DatabaseContext.Door.AsQueryable().CountAsync();
+        }
+
+
+        /// <summary>
+        /// 取得門鎖指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>int</returns>
+        public async Task<int> GetCursor(DoorCursorEntry _Entry) {
+            int Seq = 0;
+            DoorModel Model = new DoorModel();
+
+            var Query = DatabaseContext.Door.AsQueryable();
+
+            if (_Entry.Direction) {
+                Model = await Query.Where(x => x.Seq > _Entry.Seq)
+                                   .OrderBy(x => x.Seq)
+                                   .FirstOrDefaultAsync();
+            } else {
+                Model = await Query.Where(x => x.Seq < _Entry.Seq)
+                                   .OrderByDescending(x => x.Seq)
+                                   .FirstOrDefaultAsync();
+            }
+
+            if (Model != null) {
+                Seq = Model.Seq;
+            }
+
+            return Seq;
         }
 
         #endregion

@@ -130,13 +130,13 @@ namespace Surveillance.Repositories {
                                  .FirstOrDefaultAsync();
 
             if (_Entry.Direction) {
-                Model = Query.Where(x => x.Seq > Seq)
-                             .OrderBy(x => x.Seq)
-                             .FirstOrDefault();
+                Model = await Query.Where(x => x.Seq > Seq)
+                                   .OrderBy(x => x.Seq)
+                                   .FirstOrDefaultAsync();
             } else {
-                Model = Query.Where(x => x.Seq < Seq)
-                             .OrderByDescending(x => x.Seq)
-                             .FirstOrDefault();
+                Model = await Query.Where(x => x.Seq < Seq)
+                                   .OrderByDescending(x => x.Seq)
+                                   .FirstOrDefaultAsync();
             }
 
             if (Model != null) {
