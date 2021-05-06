@@ -65,7 +65,7 @@ namespace Surveillance.Controllers {
         /// 新增門卡批次
         /// </summary>
         /// <param name="_List">清單</param>
-        [HttpPut("Set")]
+        [HttpPut()]
         public async Task<Dictionary<string, object>> Set(List<CardBatchModel> _List) {
             var ResultCount = _List.Count;
             var ResultCode = API_RESULT_CODE.SUCCESS;

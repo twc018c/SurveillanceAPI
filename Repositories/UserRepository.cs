@@ -184,9 +184,9 @@ namespace Surveillance.Repositories {
 
             if (Temp != null) {
                 Temp.Name = _Model.Name;
-                Temp.Password = _Model.Password;
                 Temp.ActionTime = DateTime.Now;
                 Temp.IsWork = _Model.IsWork;
+                Temp.IsAdmin = _Model.IsAdmin;
 
                 await DatabaseContext.SaveChangesAsync();
             }
@@ -202,6 +202,7 @@ namespace Surveillance.Repositories {
             var Temp = await DatabaseContext.User.SingleAsync(x => x.Account == _Entry.Account);
 
             if (Temp != null) {
+                Temp.ActionTime = DateTime.Now;
                 Temp.Password = _Entry.Password;
 
                 await DatabaseContext.SaveChangesAsync();
@@ -219,6 +220,7 @@ namespace Surveillance.Repositories {
             var Temp = await DatabaseContext.User.SingleAsync(x => x.Account == _Account);
 
             if (Temp != null) {
+                Temp.ActionTime = DateTime.Now;
                 Temp.IP = _IP;
 
                 await DatabaseContext.SaveChangesAsync();

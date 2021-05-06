@@ -125,7 +125,7 @@ namespace Surveillance.Controllers {
         /// 新增使用者
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPut("Set")]
+        [HttpPut()]
         public async Task<Dictionary<string, object>> Set(UserModel _Model) {
             var ResultCount = 0;
             var ResultCode = API_RESULT_CODE.PARA_ERROR;

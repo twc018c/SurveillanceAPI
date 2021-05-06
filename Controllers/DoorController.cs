@@ -65,7 +65,7 @@ namespace Surveillance.Controllers {
         /// 新增門鎖
         /// </summary>
         /// <param name="_Model">模型</param>
-        [HttpPut("Set")]
+        [HttpPut()]
         public async Task<Dictionary<string, object>> Set(DoorModel _Model) {
             var ResultCount = 0;
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
