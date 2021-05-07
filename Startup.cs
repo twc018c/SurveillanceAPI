@@ -94,6 +94,7 @@ namespace Surveillance {
             _Services.AddTransient<IDashboardService, DashboardService>();
             _Services.AddSingleton<IJWTService, JWTService>();
             _Services.AddSingleton<IScienerService, ScienerService>();
+            _Services.AddSingleton<IUIService, UIService>();
 
             // Swagger
             _Services.AddSwaggerGen(Option => {

@@ -20,7 +20,7 @@ namespace Surveillance.Services {
 
 
         /// <summary>
-        /// 樓層
+        /// 取得樓層
         /// </summary>
         /// <returns>List</returns>
         public List<SelectModel> GetFloor() {

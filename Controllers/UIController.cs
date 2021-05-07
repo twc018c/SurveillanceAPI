@@ -34,11 +34,11 @@ namespace Surveillance.Controllers {
 
 
         /// <summary>
-        /// 樓層
+        /// 取得樓層
         /// </summary>
-        [HttpGet]
+        [HttpGet("Floor")]
         public async Task<Dictionary<string, object>> GetFloor() {
-            // 樓層
+            // 取得樓層
             var List = UIService.GetFloor();
 
             var Dictionary = new Dictionary<string, object>();

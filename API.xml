@@ -260,7 +260,7 @@
         </member>
         <member name="M:Surveillance.Controllers.UIController.GetFloor">
             <summary>
-            樓層
+            取得樓層
             </summary>
         </member>
         <member name="T:Surveillance.Controllers.UserController">
@@ -2249,7 +2249,7 @@
         </member>
         <member name="M:Surveillance.Services.UIService.GetFloor">
             <summary>
-            樓層
+            取得樓層
             </summary>
             <returns>List</returns>
         </member>
