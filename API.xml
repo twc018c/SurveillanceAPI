@@ -247,6 +247,22 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="T:Surveillance.Controllers.UIController">
+            <summary>
+            UI
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.UIController.#ctor(Surveillance.Interfaces.IUIService)">
+            <summary>
+            建構
+            </summary>
+            <param name="_UIService">JWT</param>
+        </member>
+        <member name="M:Surveillance.Controllers.UIController.GetFloor">
+            <summary>
+            樓層
+            </summary>
+        </member>
         <member name="T:Surveillance.Controllers.UserController">
             <summary>
             使用者
@@ -562,6 +578,11 @@
         <member name="T:Surveillance.Interfaces.IScienerService">
             <summary>
             Sciener
+            </summary>
+        </member>
+        <member name="T:Surveillance.Interfaces.IUIService">
+            <summary>
+            UI
             </summary>
         </member>
         <member name="T:Surveillance.Library.AES">
@@ -2215,6 +2236,22 @@
             </summary>
             <param name="_Entry">模型</param>
             <returns>ScienerUserListModel</returns>
+        </member>
+        <member name="T:Surveillance.Services.UIService">
+            <summary>
+            UI
+            </summary>
+        </member>
+        <member name="M:Surveillance.Services.UIService.#ctor">
+            <summary>
+            建構
+            </summary>
+        </member>
+        <member name="M:Surveillance.Services.UIService.GetFloor">
+            <summary>
+            樓層
+            </summary>
+            <returns>List</returns>
         </member>
         <member name="T:Surveillance.Startup">
             <summary>

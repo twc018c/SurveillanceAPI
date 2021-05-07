@@ -34,7 +34,6 @@ namespace Surveillance.Repositories {
 
         #region "讀取"
 
-
         /// <summary>
         /// 取得門鎖
         /// </summary>
