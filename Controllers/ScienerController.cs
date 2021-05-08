@@ -71,6 +71,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("User/Register")]
+        [SwaggerRequestExample(typeof(SicenerUserRegisterEntry), typeof(SicenerUserRegisterExample))]
         public async Task<Dictionary<string, object>> RegisterUser(SicenerUserRegisterEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "用戶註冊成功";
@@ -92,6 +93,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("User/List")]
+        [SwaggerRequestExample(typeof(SicenerUserEntry), typeof(SicenerUserExample))]
         public async Task<Dictionary<string, object>> GetUserList(SicenerUserEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "取得用戶清單成功";
@@ -109,5 +111,32 @@ namespace Surveillance.Controllers {
 
         #endregion
 
+
+
+
+        #region "鎖"
+
+        /// <summary>
+        /// 取得鎖清單
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("Lock/List")]
+        [SwaggerRequestExample(typeof(SicenerLockListEntry), typeof(SicenerLockListExample))]
+        public async Task<Dictionary<string, object>> GetLockList(SicenerLockListEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鎖清單成功";
+
+            // 取得鎖清單
+            var Temp = await ScienerService.GetLockList(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+        #endregion
     }
 }

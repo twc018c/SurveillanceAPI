@@ -247,6 +247,12 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="M:Surveillance.Controllers.ScienerController.GetLockList(Surveillance.Models.SicenerLockListEntry)">
+            <summary>
+            取得鎖清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
         <member name="T:Surveillance.Controllers.UIController">
             <summary>
             UI
@@ -474,6 +480,39 @@
             建構
             </summary>
             <returns>EventLogEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.SicenerLockListExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.SicenerLockListExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>SicenerLockListEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.SicenerUserExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.SicenerUserExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>SicenerUserEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.SicenerUserRegisterExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.SicenerUserRegisterExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>SicenerUserRegisterEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.UserCursorExample">
             <summary>
@@ -1536,6 +1575,176 @@
             是否在線
             </summary>
         </member>
+        <member name="T:Surveillance.Models.ScienerLockListModel">
+            <summary>
+            Sciener 門鎖清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockListModel.List">
+            <summary>
+            清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockListModel.PageNo">
+            <summary>
+            頁碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockListModel.PageSize">
+            <summary>
+            每頁數量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockListModel.Pages">
+            <summary>
+            總頁數
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockListModel.Total">
+            <summary>
+            總數
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockModel">
+            <summary>
+            Sciener 門鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.SpecialValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.LockAlias">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.NoKeyPwd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.ElectricQuantityUpdateDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.LockMac">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.PassageMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.TimezoneRawOffset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.LockId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.FeatureValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.ElectricQuantity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.BindDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.LockData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.HasGateway">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.KeyboardPwdVersion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.WirelessKeypadFeatureValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.LockVersion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.LockName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockModel.Sector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockVersionModel">
+            <summary>
+            Sciener 門鎖版本
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockVersionModel.ShowAdminKbpwdFlag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockVersionModel.GroupId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockVersionModel.ProtocolVersion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockVersionModel.ProtocolType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockVersionModel.OrgId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockVersionModel.LogoUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockVersionModel.Scene">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.ScienerTokenModel">
             <summary>
             Sciener令牌
@@ -2236,6 +2445,13 @@
             </summary>
             <param name="_Entry">模型</param>
             <returns>ScienerUserListModel</returns>
+        </member>
+        <member name="M:Surveillance.Services.ScienerService.GetLockList(Surveillance.Models.SicenerLockListEntry)">
+            <summary>
+            取得鎖清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>ScienerLockListModel</returns>
         </member>
         <member name="T:Surveillance.Services.UIService">
             <summary>

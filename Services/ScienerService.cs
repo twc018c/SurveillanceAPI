@@ -166,10 +166,6 @@ namespace Surveillance.Services {
 
             string URL = "https://api.sciener.com/v3/user/register";
 
-            if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
-            }
-
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("clientSecret", Global.ScienerSecret);
@@ -201,10 +197,6 @@ namespace Surveillance.Services {
 
             string URL = "https://api.sciener.com/v3/user/list";
 
-            if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
-            }
-
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("clientSecret", Global.ScienerSecret);
@@ -233,6 +225,38 @@ namespace Surveillance.Services {
 
 
         #region "鎖"
+
+        /// <summary>
+        /// 取得鎖清單
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>ScienerLockListModel</returns>
+        public async Task<ScienerLockListModel> GetLockList(SicenerLockListEntry _Entry) {
+            var Model = new ScienerLockListModel();
+
+            string URL = "https://api.sciener.com/v3/lock/list";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockAlias", $"{_Entry.LockAlias}");
+            Dictionary.Add("type", $"{_Entry.Type}");
+            Dictionary.Add("pageNo", $"{_Entry.PageNo}");
+            Dictionary.Add("pageSize", $"{_Entry.PageSize}");
+            Dictionary.Add("date", $"{_Entry.Date}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockListModel>(JSON);
+            }
+
+            return Model;
+        }
 
         #endregion
 

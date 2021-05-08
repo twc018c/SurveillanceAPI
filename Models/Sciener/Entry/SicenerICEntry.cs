@@ -1,3 +1,6 @@
+using Surveillance.Library;
+
+
 namespace Surveillance.Models {
 
     /// <summary>
@@ -26,6 +29,6 @@ namespace Surveillance.Models {
         /// <summary>
         /// 目前時間 (毫秒)
         /// </summary>
-        public long Date { get; set; } = 0;
+        public long Date { get; set; } = Tool.GetDateLong();
     }
 }
