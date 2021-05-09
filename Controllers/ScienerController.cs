@@ -117,6 +117,48 @@ namespace Surveillance.Controllers {
         #region "鎖"
 
         /// <summary>
+        /// 取得鎖時間
+        /// </summary>
+        /// <param name="_LockID" example="2746218">鎖編號</param>
+        [HttpPost("Lock/Date/{_LockID}")]
+        public async Task<Dictionary<string, object>> GetLockDate(int _LockID) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鎖時間成功";
+
+            // 取得鎖時間
+            var Temp = await ScienerService.GetLockDate(_LockID);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp.Date);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 取得鎖內容
+        /// </summary>
+        /// <param name="_LockID" example="2746218">鎖編號</param>
+        [HttpPost("Lock/Detail/{_LockID}")]
+        public async Task<Dictionary<string, object>> GetLockDetail(int _LockID) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鎖內容成功";
+
+            // 取得鎖內容
+            var Temp = await ScienerService.GetLockDetail(_LockID);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
         /// 取得鎖清單
         /// </summary>
         /// <param name="_Entry">模型</param>

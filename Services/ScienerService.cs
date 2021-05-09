@@ -164,6 +164,10 @@ namespace Surveillance.Services {
         public async Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry) {
             var Model = new ScienerUserRegisterModel();
 
+            if (_Entry.Date == 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
+
             string URL = "https://api.sciener.com/v3/user/register";
 
             var Dictionary = new Dictionary<string, string>();
@@ -194,6 +198,10 @@ namespace Surveillance.Services {
         /// <returns>ScienerUserListModel</returns>
         public async Task<ScienerUserListModel> GetUserList(SicenerUserEntry _Entry) {
             var Model = new ScienerUserListModel();
+
+            if (_Entry.Date == 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
 
             string URL = "https://api.sciener.com/v3/user/list";
 
@@ -227,12 +235,76 @@ namespace Surveillance.Services {
         #region "鎖"
 
         /// <summary>
+        /// 取得鎖時間
+        /// </summary>
+        /// <param name="_LockID">鎖編號</param>
+        /// <returns>ScienerLockDateModel</returns>
+        public async Task<ScienerLockDateModel> GetLockDate(int _LockID = 0) {
+            var Model = new ScienerLockDateModel();
+
+            string URL = "https://api.sciener.com/v3/lock/queryDate";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_LockID}");
+            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockDateModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
+        /// 取得鎖內容
+        /// </summary>
+        /// <param name="_LockID">鎖編號</param>
+        /// <returns>ScienerLockDetailModel</returns>
+        public async Task<ScienerLockDetailModel> GetLockDetail(int _LockID = 0) {
+            var Model = new ScienerLockDetailModel();
+
+            string URL = "https://api.sciener.com/v3/lock/detail";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_LockID}");
+            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockDetailModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
         /// 取得鎖清單
         /// </summary>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerLockListModel</returns>
         public async Task<ScienerLockListModel> GetLockList(SicenerLockListEntry _Entry) {
             var Model = new ScienerLockListModel();
+
+            if (_Entry.Date == 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
 
             string URL = "https://api.sciener.com/v3/lock/list";
 
