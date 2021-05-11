@@ -43,6 +43,13 @@ namespace Surveillance.Interfaces {
 
 
 
+        #region "鎖紀錄"
+
+        #endregion
+
+
+
+
         #region "鑰匙"
 
         #endregion
@@ -58,13 +65,6 @@ namespace Surveillance.Interfaces {
 
 
         #region "IC"
-
-        #endregion
-
-
-
-
-        #region "鎖紀錄"
 
         #endregion
 

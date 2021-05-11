@@ -455,6 +455,13 @@ namespace Surveillance.Services {
 
 
 
+        #region "鎖紀錄"
+
+        #endregion
+
+
+
+
         #region "鑰匙"
 
         #endregion
@@ -470,13 +477,6 @@ namespace Surveillance.Services {
 
 
         #region "IC"
-
-        #endregion
-
-
-
-
-        #region "鎖紀錄"
 
         #endregion
 

@@ -34,6 +34,69 @@ namespace Surveillance.Enums {
 
 
     /// <summary>
+    /// Sciener 門鎖紀錄類型
+    /// </summary>
+    public enum SCIENER_LOCK_RECORD_TYPE : int {
+        [Description("手機開鎖")]
+        A = 1,
+        [Description("無人情況下動車位鎖")]
+        B = 2,
+        [Description("插座開鎖")]
+        C = 3,
+        [Description("鍵盤密碼開鎖")]
+        D = 4,
+        [Description("車位鎖升")]
+        E = 5,
+        [Description("車位鎖降")]
+        F = 6,
+        [Description("IC卡開鎖")]
+        G = 7,
+        [Description("指紋開鎖")]
+        H = 8,
+        [Description("手環開鎖")]
+        I = 9,
+        [Description("機械鑰匙開鎖")]
+        J = 10,
+        [Description("藍牙閉鎖")]
+        K = 11,
+        [Description("網關開鎖")]
+        L = 12,
+        [Description("非法開鎖")]
+        M = 29,
+        [Description("門磁合上")]
+        N = 30,
+        [Description("門磁打開")]
+        O = 31,
+        [Description("出門（從裡面開門）")]
+        P = 32,
+        [Description("指紋關鎖")]
+        Q = 33,
+        [Description("密碼關鎖")]
+        R = 34,
+        [Description("IC卡關鎖")]
+        S = 35,
+        [Description("械鑰匙關鎖")]
+        T = 36,
+        [Description("遙控按鍵")]
+        U = 37,
+        [Description("郵局本地郵件")]
+        V = 42,
+        [Description("郵局外地郵")]
+        W = 43,
+        [Description("防撬報警")]
+        X = 44,
+        [Description("自動閉鎖")]
+        Y = 45,
+        [Description("開鎖按鍵開鎖")]
+        Z = 46,
+        [Description("閉鎖按鍵閉鎖")]
+        AA = 47,
+        [Description("系統被鎖定")]
+        AB = 48
+    }
+
+
+    /// <summary>
     /// Sciener 代碼
     /// </summary>
     public enum SCIENER_CODE : int {

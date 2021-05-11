@@ -1,19 +1,19 @@
-using Surveillance.Enums;
+ï»¿using Surveillance.Enums;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 
 namespace Surveillance.Models {
 
-    #region "®É¶¡"
+    #region "æ™‚é–“"
 
     /// <summary>
-    /// Sciener ªùÂê®É¶¡
+    /// Sciener é–€é–æ™‚é–“
     /// </summary>
     public class ScienerLockDateModel {
 
         /// <summary>
-        /// ¥Ø«e®É¶¡ (²@¬í)
+        /// ç›®å‰æ™‚é–“ (æ¯«ç§’)
         /// </summary>
         [JsonPropertyName("date")]
         public long Date { get; set; } = 0;
@@ -24,15 +24,15 @@ namespace Surveillance.Models {
 
 
 
-    #region "¹q¶q"
+    #region "é›»é‡"
 
     /// <summary>
-    /// Sciener ªùÂê¹q¶q
+    /// Sciener é–€é–é›»é‡
     /// </summary>
     public class ScienerLockElectricQuantityModel {
 
         /// <summary>
-        /// ¹q¶q
+        /// é›»é‡
         /// </summary>
         [JsonPropertyName("electricQuantity")]
         public int ElectricQuantity { get; set; } = 0;
@@ -43,21 +43,21 @@ namespace Surveillance.Models {
 
 
 
-    #region "ª¬ºA"
+    #region "ç‹€æ…‹"
 
     /// <summary>
-    /// Sciener ªùÂêª¬ºA
+    /// Sciener é–€é–ç‹€æ…‹
     /// </summary>
     public class ScienerLockStateModel {
 
         /// <summary>
-        /// ª¬ºA
+        /// ç‹€æ…‹
         /// </summary>
         [JsonPropertyName("state")]
         public SCIENER_LOCK_STATE State { get; set; } = SCIENER_LOCK_STATE.UNKNOW;
 
         /// <summary>
-        /// ·P´ú¾¹ª¬ºA
+        /// æ„Ÿæ¸¬å™¨ç‹€æ…‹
         /// </summary>
         [JsonPropertyName("sensorState")]
         public int SensorState { get; set; } = 0;
@@ -65,24 +65,24 @@ namespace Surveillance.Models {
 
 
     /// <summary>
-    /// Sciener ¶}Âê
+    /// Sciener é–‹é–
     /// </summary>
     public class ScienerLockOpenModel {
 
         /// <summary>
-        /// ¥N½X
+        /// ä»£ç¢¼
         /// </summary>
         [JsonPropertyName("errcode")]
         public SCIENER_CODE Errcode { get; set; } = SCIENER_CODE.SUCCESS;
 
         /// <summary>
-        /// °T®§
+        /// è¨Šæ¯
         /// </summary>
         [JsonPropertyName("errmsg")]
         public string Errmsg { get; set; } = "";
 
         /// <summary>
-        /// ´y­z
+        /// æè¿°
         /// </summary>
         [JsonPropertyName("description")]
         public string Description { get; set; } = "";
@@ -90,24 +90,24 @@ namespace Surveillance.Models {
 
 
     /// <summary>
-    /// Sciener ³¬Âê
+    /// Sciener é–‰é–
     /// </summary>
     public class ScienerLockCloseModel {
 
         /// <summary>
-        /// ¥N½X
+        /// ä»£ç¢¼
         /// </summary>
         [JsonPropertyName("errcode")]
         public SCIENER_CODE Errcode { get; set; } = SCIENER_CODE.SUCCESS;
 
         /// <summary>
-        /// °T®§
+        /// è¨Šæ¯
         /// </summary>
         [JsonPropertyName("errmsg")]
         public string Errmsg { get; set; } = "";
 
         /// <summary>
-        /// ´y­z
+        /// æè¿°
         /// </summary>
         [JsonPropertyName("description")]
         public string Description { get; set; } = "";
@@ -118,15 +118,15 @@ namespace Surveillance.Models {
 
 
 
-    #region "¤º®e"
+    #region "å…§å®¹"
 
     /// <summary>
-    /// Sciener ªùÂê¤º®e
+    /// Sciener é–€é–å…§å®¹
     /// </summary>
     public class ScienerLockDetailModel {
 
         /// <summary>
-        /// ¥Ø«e®É¶¡ (²@¬í)
+        /// ç›®å‰æ™‚é–“ (æ¯«ç§’)
         /// </summary>
         [JsonPropertyName("date")]
         public long Date { get; set; } = 0;
@@ -293,39 +293,39 @@ namespace Surveillance.Models {
 
 
 
-    #region "²M³æ"
+    #region "æ¸…å–®"
 
     /// <summary>
-    /// Sciener ªùÂê²M³æ
+    /// Sciener é–€é–æ¸…å–®
     /// </summary>
     public class ScienerLockListModel {
 
         /// <summary>
-        /// ²M³æ
+        /// æ¸…å–®
         /// </summary>
         [JsonPropertyName("list")]
         public List<ScienerLockModel> List { get; set; } = new List<ScienerLockModel>();
 
         /// <summary>
-        /// ­¶½X
+        /// é ç¢¼
         /// </summary>
         [JsonPropertyName("pageNo")]
         public int PageNo { get; set; } = 0;
 
         /// <summary>
-        /// ¨C­¶¼Æ¶q
+        /// æ¯é æ•¸é‡
         /// </summary>
         [JsonPropertyName("pageSize")]
         public int PageSize { get; set; } = 0;
 
         /// <summary>
-        /// Á`­¶¼Æ
+        /// ç¸½é æ•¸
         /// </summary>
         [JsonPropertyName("pages")]
         public int Pages { get; set; } = 0;
 
         /// <summary>
-        /// Á`¼Æ
+        /// ç¸½æ•¸
         /// </summary>
         [JsonPropertyName("total")]
         public int Total { get; set; } = 0;
@@ -333,12 +333,12 @@ namespace Surveillance.Models {
 
 
     /// <summary>
-    /// Sciener ªùÂê
+    /// Sciener é–€é–
     /// </summary>
     public class ScienerLockModel {
 
         /// <summary>
-        /// ¥Ø«e®É¶¡ (²@¬í)
+        /// ç›®å‰æ™‚é–“ (æ¯«ç§’)
         /// </summary>
         [JsonPropertyName("date")]
         public long Date { get; set; } = 0;
@@ -457,10 +457,10 @@ namespace Surveillance.Models {
 
 
 
-    #region "ª©¥»"
+    #region "ç‰ˆæœ¬"
 
     /// <summary>
-    /// Sciener ªùÂêª©¥» (List±M¥Î)
+    /// Sciener é–€é–ç‰ˆæœ¬ (Listå°ˆç”¨)
     /// </summary>
     public class ScienerLockVersionByListModel {
 
@@ -509,7 +509,7 @@ namespace Surveillance.Models {
 
 
     /// <summary>
-    /// Sciener ªùÂêª©¥» (Detail±M¥Î)
+    /// Sciener é–€é–ç‰ˆæœ¬ (Detailå°ˆç”¨)
     /// </summary>
     public class ScienerLockVersionByDetailModel {
 
@@ -549,10 +549,10 @@ namespace Surveillance.Models {
 
 
 
-    #region "¬ö¿ı"
+    #region "ç´€éŒ„"
 
     /// <summary>
-    /// Sciener ªùÂê¬ö¿ı
+    /// Sciener é–€é–ç´€éŒ„
     /// </summary>
     public class ScienerLockRecordModel {
 
@@ -589,54 +589,54 @@ namespace Surveillance.Models {
 
 
     /// <summary>
-    /// Sciener ªùÂê¬ö¿ı
+    /// Sciener é–€é–ç´€éŒ„
     /// </summary>
     public class ScienerLockRecordListModel {
 
         /// <summary>
-        /// 
+        /// é–ç·¨è™Ÿ
         /// </summary>
         [JsonPropertyName("lockId")]
         public int LockId { get; set; } = 0;
 
         /// <summary>
-        /// 
+        /// è¨˜éŒ„ä¸Šå‚³åˆ°æœå‹™å™¨çš„æ™‚é–“
         /// </summary>
         [JsonPropertyName("serverDate")]
-        public int ServerDate { get; set; } = 0;
+        public long ServerDate { get; set; } = 0;
 
         /// <summary>
-        /// 
+        /// ?
         /// </summary>
         [JsonPropertyName("hotelUsername")]
         public string HotelUsername { get; set; } = "";
 
         /// <summary>
-        /// 
+        /// è¨˜éŒ„é¡å‹
         /// </summary>
         [JsonPropertyName("recordType")]
-        public int RecordType { get; set; } = 0;
+        public SCIENER_LOCK_RECORD_TYPE RecordType { get; set; } = SCIENER_LOCK_RECORD_TYPE.A;
 
         /// <summary>
-        /// 
+        /// æ˜¯å¦æˆåŠŸ
         /// </summary>
         [JsonPropertyName("success")]
         public int Success { get; set; } = 0;
 
         /// <summary>
-        /// 
+        /// éµç›¤å¯†ç¢¼çš„å¯†ç¢¼ï¼Œæˆ–è€…ICå¡è™Ÿæˆ–è€…æ‰‹ç’°åœ°â€‹â€‹å€
         /// </summary>
         [JsonPropertyName("keyboardPwd")]
         public string KeyboardPwd { get; set; } = "";
 
         /// <summary>
-        /// 
+        /// æ“ä½œäººç”¨æˆ¶å
         /// </summary>
         [JsonPropertyName("username")]
         public string Username { get; set; } = "";
 
         /// <summary>
-        /// 
+        /// æ“ä½œæ™‚é–ä¸Šçš„æ™‚é–“
         /// </summary>
         [JsonPropertyName("lockDate")]
         public long LockDate { get; set; } = 0;

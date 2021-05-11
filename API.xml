@@ -408,6 +408,11 @@
             Sciener 門鎖狀態
             </summary>
         </member>
+        <member name="T:Surveillance.Enums.SCIENER_LOCK_RECORD_TYPE">
+            <summary>
+            Sciener 門鎖紀錄類型
+            </summary>
+        </member>
         <member name="T:Surveillance.Enums.SCIENER_CODE">
             <summary>
             Sciener 代碼
@@ -2158,42 +2163,42 @@
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.LockId">
             <summary>
-            
+            鎖編號
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.ServerDate">
             <summary>
-            
+            記錄上傳到服務器的時間
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.HotelUsername">
             <summary>
-            
+            ?
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.RecordType">
             <summary>
-            
+            記錄類型
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.Success">
             <summary>
-            
+            是否成功
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.KeyboardPwd">
             <summary>
-            
+            鍵盤密碼的密碼，或者IC卡號或者手環地​​址
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.Username">
             <summary>
-            
+            操作人用戶名
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockRecordListModel.LockDate">
             <summary>
-            
+            操作時鎖上的時間
             </summary>
         </member>
         <member name="T:Surveillance.Models.ScienerTokenModel">
