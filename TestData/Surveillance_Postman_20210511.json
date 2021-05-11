@@ -1,0 +1,1220 @@
+{
+	"info": {
+		"_postman_id": "d319972a-37ed-48d7-a19c-d40aa7461072",
+		"name": "Sciener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "c662bda0f66fa08400a705741204f096",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "lock@bmdtec.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1c4934cfb4ed5b4a627c86b7e206e93a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "clientSecret",
+							"value": "c662bda0f66fa08400a705741204f096",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "fish",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "83e4a96aed96436c621b9809e258b309",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/user/register",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "clientSecret",
+							"value": "c662bda0f66fa08400a705741204f096",
+							"type": "text"
+						},
+						{
+							"key": "startDate",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "endDate",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/user/list",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockAlias",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/list",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock List Key",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/listKey",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"listKey"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Detail",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/detail",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Date",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/queryDate",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"queryDate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Open State (狀態)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/queryOpenState",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"queryOpenState"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Lock (閉鎖)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/lock",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"lock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock UnLock (開鎖)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/unlock",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"unlock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Freeze (凍結)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/freeze",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"freeze"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock UnFreeze (解除凍結)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/unfreeze",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"unfreeze"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Electric Quantity",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2746218",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lock/queryElectricQuantity",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lock",
+						"queryElectricQuantity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock Record List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2028181",
+							"type": "text"
+						},
+						{
+							"key": "startDate",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "endDate",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/lockRecord/list",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"lockRecord",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Key",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2028181",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/key/get",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"key",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Key List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockAlias",
+							"value": "",
+							"description": "锁别名模糊匹配",
+							"type": "text"
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/key/list",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"key",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IC List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2028181",
+							"type": "text"
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/identityCard/list",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"identityCard",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gateway List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/gateway/list",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"gateway",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fingerprint List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var milliseconds = new Date().getTime();\r",
+							"pm.globals.set(\"date\", milliseconds);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "2f5b9255c8154f3ea017e96d59d604e4",
+							"type": "text"
+						},
+						{
+							"key": "accessToken",
+							"value": "a8b0c9a1e31a60633c728526833f232b",
+							"type": "text"
+						},
+						{
+							"key": "lockId",
+							"value": "2028181",
+							"type": "text"
+						},
+						{
+							"key": "pageNo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.sciener.com/v3/fingerprint/list",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sciener",
+						"com"
+					],
+					"path": [
+						"v3",
+						"fingerprint",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

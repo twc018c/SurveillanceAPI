@@ -1,3 +1,4 @@
+using Surveillance.Enums;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -16,6 +17,100 @@ namespace Surveillance.Models {
         /// </summary>
         [JsonPropertyName("date")]
         public long Date { get; set; } = 0;
+    }
+
+    #endregion
+
+
+
+
+    #region "電量"
+
+    /// <summary>
+    /// Sciener 門鎖電量
+    /// </summary>
+    public class ScienerLockElectricQuantityModel {
+
+        /// <summary>
+        /// 電量
+        /// </summary>
+        [JsonPropertyName("electricQuantity")]
+        public int ElectricQuantity { get; set; } = 0;
+    }
+
+    #endregion
+
+
+
+
+    #region "狀態"
+
+    /// <summary>
+    /// Sciener 門鎖狀態
+    /// </summary>
+    public class ScienerLockStateModel {
+
+        /// <summary>
+        /// 狀態
+        /// </summary>
+        [JsonPropertyName("state")]
+        public SCIENER_LOCK_STATE State { get; set; } = SCIENER_LOCK_STATE.UNKNOW;
+
+        /// <summary>
+        /// 感測器狀態
+        /// </summary>
+        [JsonPropertyName("sensorState")]
+        public int SensorState { get; set; } = 0;
+    }
+
+
+    /// <summary>
+    /// Sciener 開鎖
+    /// </summary>
+    public class ScienerLockOpenModel {
+
+        /// <summary>
+        /// 代碼
+        /// </summary>
+        [JsonPropertyName("errcode")]
+        public SCIENER_CODE Errcode { get; set; } = SCIENER_CODE.SUCCESS;
+
+        /// <summary>
+        /// 訊息
+        /// </summary>
+        [JsonPropertyName("errmsg")]
+        public string Errmsg { get; set; } = "";
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        [JsonPropertyName("description")]
+        public string Description { get; set; } = "";
+    }
+
+
+    /// <summary>
+    /// Sciener 閉鎖
+    /// </summary>
+    public class ScienerLockCloseModel {
+
+        /// <summary>
+        /// 代碼
+        /// </summary>
+        [JsonPropertyName("errcode")]
+        public SCIENER_CODE Errcode { get; set; } = SCIENER_CODE.SUCCESS;
+
+        /// <summary>
+        /// 訊息
+        /// </summary>
+        [JsonPropertyName("errmsg")]
+        public string Errmsg { get; set; } = "";
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        [JsonPropertyName("description")]
+        public string Description { get; set; } = "";
     }
 
     #endregion
@@ -198,7 +293,7 @@ namespace Surveillance.Models {
 
 
 
-    #region ""
+    #region "清單"
 
     /// <summary>
     /// Sciener 門鎖清單

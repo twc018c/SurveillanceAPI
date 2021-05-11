@@ -265,6 +265,126 @@ namespace Surveillance.Services {
 
 
         /// <summary>
+        /// 取得鎖電量
+        /// </summary>
+        /// <param name="_LockID">鎖編號</param>
+        /// <returns>ScienerLockElectricQuantityModel</returns>
+        public async Task<ScienerLockElectricQuantityModel> GetLockElectricQuantity(int _LockID = 0) {
+            var Model = new ScienerLockElectricQuantityModel();
+
+            string URL = "https://api.sciener.com/v3/lock/queryElectricQuantity";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_LockID}");
+            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockElectricQuantityModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
+        /// 取得鎖狀態
+        /// </summary>
+        /// <param name="_LockID">鎖編號</param>
+        /// <returns>ScienerLockStateModel</returns>
+        public async Task<ScienerLockStateModel> GetLockState(int _LockID = 0) {
+            var Model = new ScienerLockStateModel();
+
+            string URL = "https://api.sciener.com/v3/lock/queryOpenState";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_LockID}");
+            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockStateModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
+        /// 開鎖
+        /// </summary>
+        /// <param name="_LockID">鎖編號</param>
+        /// <returns>ScienerLockOpenModel</returns>
+        public async Task<ScienerLockOpenModel> LockOpen(int _LockID = 0) {
+            var Model = new ScienerLockOpenModel();
+
+            string URL = "https://api.sciener.com/v3/lock/unlock";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_LockID}");
+            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockOpenModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
+        /// 閉鎖
+        /// </summary>
+        /// <param name="_LockID">鎖編號</param>
+        /// <returns>ScienerLockCloseModel</returns>
+        public async Task<ScienerLockCloseModel> LockClose(int _LockID = 0) {
+            var Model = new ScienerLockCloseModel();
+
+            string URL = "https://api.sciener.com/v3/lock/lock";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_LockID}");
+            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockCloseModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
         /// 取得鎖內容
         /// </summary>
         /// <param name="_LockID">鎖編號</param>

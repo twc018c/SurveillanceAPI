@@ -138,6 +138,98 @@ namespace Surveillance.Controllers {
 
 
         /// <summary>
+        /// 取得鎖電量
+        /// </summary>
+        /// <param name="_LockID" example="2746218">鎖編號</param>
+        [HttpPost("Lock/ElectricQuantity/{_LockID}")]
+        public async Task<Dictionary<string, object>> GetLockElectricQuantity(int _LockID) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鎖電量成功";
+
+            // 取得鎖電量
+            var Temp = await ScienerService.GetLockElectricQuantity(_LockID);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp.ElectricQuantity);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 取得鎖狀態
+        /// </summary>
+        /// <param name="_LockID" example="2746218">鎖編號</param>
+        [HttpPost("Lock/State/{_LockID}")]
+        public async Task<Dictionary<string, object>> GetLockState(int _LockID) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鎖狀態成功";
+
+            // 取得鎖狀態
+            var Temp = await ScienerService.GetLockState(_LockID);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp.State);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 開鎖
+        /// </summary>
+        /// <param name="_LockID" example="2746218">鎖編號</param>
+        [HttpPost("Lock/Open/{_LockID}")]
+        public async Task<Dictionary<string, object>> LockOpen(int _LockID) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "開鎖成功";
+
+            // 開鎖
+            var Temp = await ScienerService.LockOpen(_LockID);
+
+            if (Temp.Errcode != SCIENER_CODE.SUCCESS) {
+                ResultCode = API_RESULT_CODE.UNKNOW;
+                ResultMessage = $"{Temp.Errcode} {Temp.Errmsg} {Temp.Description}";
+            }
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 閉鎖
+        /// </summary>
+        /// <param name="_LockID" example="2746218">鎖編號</param>
+        [HttpPost("Lock/Close/{_LockID}")]
+        public async Task<Dictionary<string, object>> LockClose(int _LockID) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "閉鎖成功";
+
+            // 閉鎖
+            var Temp = await ScienerService.LockClose(_LockID);
+
+            if (Temp.Errcode != SCIENER_CODE.SUCCESS) {
+                ResultCode = API_RESULT_CODE.UNKNOW;
+                ResultMessage = $"{Temp.Errcode} {Temp.Errmsg} {Temp.Description}";
+            }
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
         /// 取得鎖內容
         /// </summary>
         /// <param name="_LockID" example="2746218">鎖編號</param>

@@ -21,6 +21,19 @@ namespace Surveillance.Enums {
 
 
     /// <summary>
+    /// Sciener 門鎖狀態
+    /// </summary>
+    public enum SCIENER_LOCK_STATE : int {
+        [Description("關")]
+        CLOSE = 0,
+        [Description("開")]
+        OPEN = 1,
+        [Description("未知")]
+        UNKNOW = 2
+    }
+
+
+    /// <summary>
     /// Sciener 代碼
     /// </summary>
     public enum SCIENER_CODE : int {

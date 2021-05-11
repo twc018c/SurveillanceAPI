@@ -31,6 +31,10 @@ namespace Surveillance.Interfaces {
         #region "鎖"
 
         Task<ScienerLockDateModel> GetLockDate(int _LockID);
+        Task<ScienerLockElectricQuantityModel> GetLockElectricQuantity(int _LockID);
+        Task<ScienerLockStateModel> GetLockState(int _LockID);
+        Task<ScienerLockOpenModel> LockOpen(int _LockID);
+        Task<ScienerLockCloseModel> LockClose(int _LockID);
         Task<ScienerLockDetailModel> GetLockDetail(int _LockID);
         Task<ScienerLockListModel> GetLockList(SicenerLockListEntry _Entry);
 

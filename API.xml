@@ -253,6 +253,30 @@
             </summary>
             <param name="_LockID" example="2746218">鎖編號</param>
         </member>
+        <member name="M:Surveillance.Controllers.ScienerController.GetLockElectricQuantity(System.Int32)">
+            <summary>
+            取得鎖電量
+            </summary>
+            <param name="_LockID" example="2746218">鎖編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.ScienerController.GetLockState(System.Int32)">
+            <summary>
+            取得鎖狀態
+            </summary>
+            <param name="_LockID" example="2746218">鎖編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.ScienerController.LockOpen(System.Int32)">
+            <summary>
+            開鎖
+            </summary>
+            <param name="_LockID" example="2746218">鎖編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.ScienerController.LockClose(System.Int32)">
+            <summary>
+            閉鎖
+            </summary>
+            <param name="_LockID" example="2746218">鎖編號</param>
+        </member>
         <member name="M:Surveillance.Controllers.ScienerController.GetLockDetail(System.Int32)">
             <summary>
             取得鎖內容
@@ -377,6 +401,11 @@
         <member name="T:Surveillance.Enums.SCIENER_KEY">
             <summary>
             Sciener 鑰匙
+            </summary>
+        </member>
+        <member name="T:Surveillance.Enums.SCIENER_LOCK_STATE">
+            <summary>
+            Sciener 門鎖狀態
             </summary>
         </member>
         <member name="T:Surveillance.Enums.SCIENER_CODE">
@@ -1434,6 +1463,78 @@
             目前時間 (毫秒)
             </summary>
         </member>
+        <member name="T:Surveillance.Models.SicenerLockElectricQuantityEntry">
+            <summary>
+            Sciener 鎖電量
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lock/queryElectricQuantity
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockElectricQuantityEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockElectricQuantityEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerLockStateEntry">
+            <summary>
+            Sciener 鎖狀態
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lock/queryOpenState
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockStateEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockStateEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerLockOpenEntry">
+            <summary>
+            Sciener 開鎖
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lock/lock
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockOpenEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockOpenEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.SicenerLockCloseEntry">
+            <summary>
+            Sciener 閉鎖
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/lock/unlock
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockCloseEntry.LockID">
+            <summary>
+            鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerLockCloseEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.SicenerLockRecordListEntry">
             <summary>
             Sciener 開鎖紀錄清單
@@ -1613,6 +1714,71 @@
         <member name="P:Surveillance.Models.ScienerLockDateModel.Date">
             <summary>
             目前時間 (毫秒)
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockElectricQuantityModel">
+            <summary>
+            Sciener 門鎖電量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockElectricQuantityModel.ElectricQuantity">
+            <summary>
+            電量
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockStateModel">
+            <summary>
+            Sciener 門鎖狀態
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockStateModel.State">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockStateModel.SensorState">
+            <summary>
+            感測器狀態
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockOpenModel">
+            <summary>
+            Sciener 開鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockOpenModel.Errcode">
+            <summary>
+            代碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockOpenModel.Errmsg">
+            <summary>
+            訊息
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockOpenModel.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockCloseModel">
+            <summary>
+            Sciener 閉鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockCloseModel.Errcode">
+            <summary>
+            代碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockCloseModel.Errmsg">
+            <summary>
+            訊息
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockCloseModel.Description">
+            <summary>
+            描述
             </summary>
         </member>
         <member name="T:Surveillance.Models.ScienerLockDetailModel">
@@ -2737,6 +2903,34 @@
             </summary>
             <param name="_LockID">鎖編號</param>
             <returns>ScienerLockDateModel</returns>
+        </member>
+        <member name="M:Surveillance.Services.ScienerService.GetLockElectricQuantity(System.Int32)">
+            <summary>
+            取得鎖電量
+            </summary>
+            <param name="_LockID">鎖編號</param>
+            <returns>ScienerLockElectricQuantityModel</returns>
+        </member>
+        <member name="M:Surveillance.Services.ScienerService.GetLockState(System.Int32)">
+            <summary>
+            取得鎖狀態
+            </summary>
+            <param name="_LockID">鎖編號</param>
+            <returns>ScienerLockStateModel</returns>
+        </member>
+        <member name="M:Surveillance.Services.ScienerService.LockOpen(System.Int32)">
+            <summary>
+            開鎖
+            </summary>
+            <param name="_LockID">鎖編號</param>
+            <returns>ScienerLockOpenModel</returns>
+        </member>
+        <member name="M:Surveillance.Services.ScienerService.LockClose(System.Int32)">
+            <summary>
+            閉鎖
+            </summary>
+            <param name="_LockID">鎖編號</param>
+            <returns>ScienerLockCloseModel</returns>
         </member>
         <member name="M:Surveillance.Services.ScienerService.GetLockDetail(System.Int32)">
             <summary>

@@ -87,6 +87,86 @@ namespace Surveillance.Models {
 
 
     /// <summary>
+    /// Sciener 鎖電量
+    /// </summary>
+    /// <remarks>
+    /// https://open.sciener.com/doc/api/v3/lock/queryElectricQuantity
+    /// </remarks>
+    public class SicenerLockElectricQuantityEntry {
+
+        /// <summary>
+        /// 鎖編號
+        /// </summary>
+        public int LockID { get; set; } = 0;
+
+        /// <summary>
+        /// 目前時間 (毫秒)
+        /// </summary>
+        public long Date { get; set; } = Tool.GetDateLong();
+    }
+
+
+    /// <summary>
+    /// Sciener 鎖狀態
+    /// </summary>
+    /// <remarks>
+    /// https://open.sciener.com/doc/api/v3/lock/queryOpenState
+    /// </remarks>
+    public class SicenerLockStateEntry {
+
+        /// <summary>
+        /// 鎖編號
+        /// </summary>
+        public int LockID { get; set; } = 0;
+
+        /// <summary>
+        /// 目前時間 (毫秒)
+        /// </summary>
+        public long Date { get; set; } = Tool.GetDateLong();
+    }
+
+
+    /// <summary>
+    /// Sciener 開鎖
+    /// </summary>
+    /// <remarks>
+    /// https://open.sciener.com/doc/api/v3/lock/lock
+    /// </remarks>
+    public class SicenerLockOpenEntry {
+
+        /// <summary>
+        /// 鎖編號
+        /// </summary>
+        public int LockID { get; set; } = 0;
+
+        /// <summary>
+        /// 目前時間 (毫秒)
+        /// </summary>
+        public long Date { get; set; } = Tool.GetDateLong();
+    }
+
+
+    /// <summary>
+    /// Sciener 閉鎖
+    /// </summary>
+    /// <remarks>
+    /// https://open.sciener.com/doc/api/v3/lock/unlock
+    /// </remarks>
+    public class SicenerLockCloseEntry {
+
+        /// <summary>
+        /// 鎖編號
+        /// </summary>
+        public int LockID { get; set; } = 0;
+
+        /// <summary>
+        /// 目前時間 (毫秒)
+        /// </summary>
+        public long Date { get; set; } = Tool.GetDateLong();
+    }
+
+
+    /// <summary>
     /// Sciener 開鎖紀錄清單
     /// </summary>
     /// <remarks>
