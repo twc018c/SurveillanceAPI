@@ -4,6 +4,26 @@ using Surveillance.Library;
 namespace Surveillance.Models {
 
     /// <summary>
+    /// Sciener 鑰匙
+    /// </summary>
+    /// <remarks>
+    /// https://open.sciener.com/doc/api/v3/key/get
+    /// </remarks>
+    public class SicenerKeyEntry {
+
+        /// <summary>
+        /// 鑰匙編號
+        /// </summary>
+        public int LockId { get; set; } = 0;
+
+        /// <summary>
+        /// 目前時間 (毫秒)
+        /// </summary>
+        public long Date { get; set; } = Tool.GetDateLong();
+    }
+
+
+    /// <summary>
     /// Sciener 鑰匙清單
     /// </summary>
     /// <remarks>

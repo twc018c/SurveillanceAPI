@@ -1308,6 +1308,24 @@
             目前時間 (毫秒)
             </summary>
         </member>
+        <member name="T:Surveillance.Models.SicenerKeyEntry">
+            <summary>
+            Sciener 鑰匙
+            </summary>
+            <remarks>
+            https://open.sciener.com/doc/api/v3/key/get
+            </remarks>
+        </member>
+        <member name="P:Surveillance.Models.SicenerKeyEntry.LockId">
+            <summary>
+            鑰匙編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.SicenerKeyEntry.Date">
+            <summary>
+            目前時間 (毫秒)
+            </summary>
+        </member>
         <member name="T:Surveillance.Models.SicenerKeyListEntry">
             <summary>
             Sciener 鑰匙清單
@@ -1933,6 +1951,81 @@
             </summary>
         </member>
         <member name="P:Surveillance.Models.ScienerLockVersionByDetailModel.Scene">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockRecordModel">
+            <summary>
+            Sciener 門鎖紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordModel.Total">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordModel.Pages">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordModel.PageNo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordModel.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordModel.List">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.ScienerLockRecordListModel">
+            <summary>
+            Sciener 門鎖紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.LockId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.ServerDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.HotelUsername">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.RecordType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.Success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.KeyboardPwd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.Username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.ScienerLockRecordListModel.LockDate">
             <summary>
             
             </summary>

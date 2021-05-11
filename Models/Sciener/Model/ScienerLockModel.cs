@@ -4,6 +4,8 @@ using System.Text.Json.Serialization;
 
 namespace Surveillance.Models {
 
+    #region "時間"
+
     /// <summary>
     /// Sciener 門鎖時間
     /// </summary>
@@ -16,6 +18,12 @@ namespace Surveillance.Models {
         public long Date { get; set; } = 0;
     }
 
+    #endregion
+
+
+
+
+    #region "內容"
 
     /// <summary>
     /// Sciener 門鎖內容
@@ -185,6 +193,12 @@ namespace Surveillance.Models {
         public ScienerLockVersionByDetailModel LockVersion { get; set; } = new ScienerLockVersionByDetailModel();
     }
 
+    #endregion
+
+
+
+
+    #region ""
 
     /// <summary>
     /// Sciener 門鎖清單
@@ -343,6 +357,12 @@ namespace Surveillance.Models {
         public string Sector { get; set; } = "";
     }
 
+    #endregion
+
+
+
+
+    #region "版本"
 
     /// <summary>
     /// Sciener 門鎖版本 (List專用)
@@ -428,4 +448,105 @@ namespace Surveillance.Models {
         [JsonPropertyName("scene")]
         public int Scene { get; set; } = 0;
     }
+
+    #endregion
+
+
+
+
+    #region "紀錄"
+
+    /// <summary>
+    /// Sciener 門鎖紀錄
+    /// </summary>
+    public class ScienerLockRecordModel {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("total")]
+        public int Total { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("pages")]
+        public int Pages { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("pageNo")]
+        public int PageNo { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("pageSize")]
+        public int PageSize { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("list")]
+        public List<ScienerLockRecordListModel> List { get; set; } = new List<ScienerLockRecordListModel>();
+    }
+
+
+    /// <summary>
+    /// Sciener 門鎖紀錄
+    /// </summary>
+    public class ScienerLockRecordListModel {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("lockId")]
+        public int LockId { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("serverDate")]
+        public int ServerDate { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("hotelUsername")]
+        public string HotelUsername { get; set; } = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("recordType")]
+        public int RecordType { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("success")]
+        public int Success { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("keyboardPwd")]
+        public string KeyboardPwd { get; set; } = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("username")]
+        public string Username { get; set; } = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("lockDate")]
+        public long LockDate { get; set; } = 0;
+    }
+
+    #endregion
+
 }
