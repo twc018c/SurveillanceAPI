@@ -6,9 +6,6 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 用戶註冊
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/user/register
-    /// </remarks>
     public class SicenerUserRegisterEntry {
 
         /// <summary>
@@ -31,10 +28,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 用戶清單
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/user/list
-    /// </remarks>
-    public class SicenerUserEntry {
+    public class SicenerUserListEntry {
 
         /// <summary>
         /// 開始時間

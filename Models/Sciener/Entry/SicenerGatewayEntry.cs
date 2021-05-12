@@ -6,9 +6,6 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 網關清單
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/gateway/list
-    /// </remarks>
     public class SicenerGatewayListEntry {
 
         /// <summary>

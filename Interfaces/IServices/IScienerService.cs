@@ -9,6 +9,15 @@ namespace Surveillance.Interfaces {
     /// </summary>
     public interface IScienerService {
 
+        #region "爬蟲"
+
+        Task CrawlerLock();
+
+        #endregion
+
+
+
+
         #region "令牌"
 
         Task<ScienerTokenModel> GetToken();
@@ -21,7 +30,7 @@ namespace Surveillance.Interfaces {
         #region "用戶"
 
         Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry);
-        Task<ScienerUserListModel> GetUserList(SicenerUserEntry _Entry);
+        Task<ScienerUserListModel> GetUserList(SicenerUserListEntry _Entry);
 
         #endregion
 
@@ -54,7 +63,7 @@ namespace Surveillance.Interfaces {
 
         #region "鑰匙"
 
-        Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyEntry _Entry);
+        Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyDetailEntry _Entry);
         Task<ScienerKeyListModel> GetKeyList(SicenerKeyListEntry _Entry);
 
         #endregion
@@ -70,6 +79,20 @@ namespace Surveillance.Interfaces {
 
 
         #region "IC"
+
+        #endregion
+
+
+
+
+        #region "指紋"
+
+        #endregion
+
+
+
+
+        #region "網關"
 
         #endregion
 

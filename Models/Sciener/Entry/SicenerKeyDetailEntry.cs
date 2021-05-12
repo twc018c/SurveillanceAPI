@@ -4,12 +4,9 @@ using Surveillance.Library;
 namespace Surveillance.Models {
 
     /// <summary>
-    /// Sciener 鑰匙
+    /// Sciener 鑰匙內容
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/key/get
-    /// </remarks>
-    public class SicenerKeyEntry {
+    public class SicenerKeyDetailEntry {
 
         /// <summary>
         /// 鑰匙編號
@@ -26,9 +23,6 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 鑰匙清單
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/key/list
-    /// </remarks>
     public class SicenerKeyListEntry {
 
         /// <summary>

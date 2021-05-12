@@ -6,11 +6,8 @@ using Surveillance.Schafold;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 
@@ -116,6 +113,21 @@ namespace Surveillance.Services {
 
 
 
+        #region "爬蟲"
+
+        /// <summary>
+        /// 鎖爬蟲
+        /// </summary>
+        /// <returns>Task</returns>
+        public async Task CrawlerLock() {
+
+        }
+
+        #endregion
+
+
+
+
         #region "令牌"
 
         /// <summary>
@@ -125,7 +137,7 @@ namespace Surveillance.Services {
         public async Task<ScienerTokenModel> GetToken() {
             var Model = new ScienerTokenModel();
 
-            string URL = "https://api.sciener.com/oauth2/token";
+            const string URL = "https://api.sciener.com/oauth2/token";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("client_id", Global.ScienerID);
@@ -159,6 +171,9 @@ namespace Surveillance.Services {
         /// <summary>
         /// 用戶註冊
         /// </summary>
+        /// <remarks>
+        /// 說明 https://open.sciener.com/doc/api/v3/user/register
+        /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerUserRegisterModel</returns>
         public async Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry) {
@@ -168,7 +183,7 @@ namespace Surveillance.Services {
                 _Entry.Date = Tool.GetDateLong();
             }
 
-            string URL = "https://api.sciener.com/v3/user/register";
+            const string URL = "https://api.sciener.com/v3/user/register";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -194,16 +209,19 @@ namespace Surveillance.Services {
         /// <summary>
         /// 取得用戶清單
         /// </summary>
+        /// <remarks>
+        /// 說明 https://open.sciener.com/doc/api/v3/user/list
+        /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerUserListModel</returns>
-        public async Task<ScienerUserListModel> GetUserList(SicenerUserEntry _Entry) {
+        public async Task<ScienerUserListModel> GetUserList(SicenerUserListEntry _Entry) {
             var Model = new ScienerUserListModel();
 
             if (_Entry.Date <= 0) {
                 _Entry.Date = Tool.GetDateLong();
             }
 
-            string URL = "https://api.sciener.com/v3/user/list";
+            const string URL = "https://api.sciener.com/v3/user/list";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -242,7 +260,7 @@ namespace Surveillance.Services {
         public async Task<ScienerLockDateModel> GetLockDate(int _LockID = 0) {
             var Model = new ScienerLockDateModel();
 
-            string URL = "https://api.sciener.com/v3/lock/queryDate";
+            const string URL = "https://api.sciener.com/v3/lock/queryDate";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -272,7 +290,7 @@ namespace Surveillance.Services {
         public async Task<ScienerLockElectricQuantityModel> GetLockElectricQuantity(int _LockID = 0) {
             var Model = new ScienerLockElectricQuantityModel();
 
-            string URL = "https://api.sciener.com/v3/lock/queryElectricQuantity";
+            const string URL = "https://api.sciener.com/v3/lock/queryElectricQuantity";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -302,7 +320,7 @@ namespace Surveillance.Services {
         public async Task<ScienerLockStateModel> GetLockState(int _LockID = 0) {
             var Model = new ScienerLockStateModel();
 
-            string URL = "https://api.sciener.com/v3/lock/queryOpenState";
+            const string URL = "https://api.sciener.com/v3/lock/queryOpenState";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -332,7 +350,7 @@ namespace Surveillance.Services {
         public async Task<ScienerLockOpenModel> LockOpen(int _LockID = 0) {
             var Model = new ScienerLockOpenModel();
 
-            string URL = "https://api.sciener.com/v3/lock/unlock";
+            const string URL = "https://api.sciener.com/v3/lock/unlock";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -362,7 +380,7 @@ namespace Surveillance.Services {
         public async Task<ScienerLockCloseModel> LockClose(int _LockID = 0) {
             var Model = new ScienerLockCloseModel();
 
-            string URL = "https://api.sciener.com/v3/lock/lock";
+            const string URL = "https://api.sciener.com/v3/lock/lock";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -392,7 +410,7 @@ namespace Surveillance.Services {
         public async Task<ScienerLockDetailModel> GetLockDetail(int _LockID = 0) {
             var Model = new ScienerLockDetailModel();
 
-            string URL = "https://api.sciener.com/v3/lock/detail";
+            const string URL = "https://api.sciener.com/v3/lock/detail";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -417,6 +435,9 @@ namespace Surveillance.Services {
         /// <summary>
         /// 取得鎖清單
         /// </summary>
+        /// <remarks>
+        /// 說明 https://open.sciener.com/doc/api/v3/lock/list
+        /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerLockListModel</returns>
         public async Task<ScienerLockListModel> GetLockList(SicenerLockListEntry _Entry) {
@@ -426,7 +447,7 @@ namespace Surveillance.Services {
                 _Entry.Date = Tool.GetDateLong();
             }
 
-            string URL = "https://api.sciener.com/v3/lock/list";
+            const string URL = "https://api.sciener.com/v3/lock/list";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -460,6 +481,9 @@ namespace Surveillance.Services {
         /// <summary>
         /// 取得鎖紀錄
         /// </summary>
+        /// <remarks>
+        /// 說明 https://open.sciener.com/doc/api/v3/lockRecord/list
+        /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerLockRecordModel</returns>
         public async Task<ScienerLockRecordModel> GetLockRecordList(SicenerLockRecordListEntry _Entry) {
@@ -469,7 +493,7 @@ namespace Surveillance.Services {
                 _Entry.Date = Tool.GetDateLong();
             }
 
-            string URL = "https://api.sciener.com/v3/lockRecord/list";
+            const string URL = "https://api.sciener.com/v3/lockRecord/list";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -504,16 +528,19 @@ namespace Surveillance.Services {
         /// <summary>
         /// 取得鑰匙內容
         /// </summary>
+        /// <remarks>
+        /// 說明 https://open.sciener.com/doc/api/v3/key/get
+        /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerKeyDetailModel</returns>
-        public async Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyEntry _Entry) {
+        public async Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyDetailEntry _Entry) {
             var Model = new ScienerKeyDetailModel();
 
             if (_Entry.Date <= 0) {
                 _Entry.Date = Tool.GetDateLong();
             }
 
-            string URL = "https://api.sciener.com/v3/key/get";
+            const string URL = "https://api.sciener.com/v3/key/get";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -536,8 +563,11 @@ namespace Surveillance.Services {
 
 
         /// <summary>
-        /// 取得鑰匙內容
+        /// 取得鑰匙清單
         /// </summary>
+        /// <remarks>
+        /// 說明 https://open.sciener.com/doc/api/v3/key/list
+        /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerKeyListModel</returns>
         public async Task<ScienerKeyListModel> GetKeyList(SicenerKeyListEntry _Entry) {
@@ -547,7 +577,7 @@ namespace Surveillance.Services {
                 _Entry.Date = Tool.GetDateLong();
             }
 
-            string URL = "https://api.sciener.com/v3/key/list";
+            const string URL = "https://api.sciener.com/v3/key/list";
 
             var Dictionary = new Dictionary<string, string>();
             Dictionary.Add("clientId", Global.ScienerID);
@@ -583,6 +613,26 @@ namespace Surveillance.Services {
 
 
         #region "IC"
+
+        // https://open.sciener.com/doc/api/v3/identityCard/list
+
+        #endregion
+
+
+
+
+        #region "指紋"
+
+        // https://open.sciener.com/doc/api/v3/fingerprint/list
+
+        #endregion
+
+
+
+
+        #region "網關"
+
+        // https://open.sciener.com/doc/api/v3/gateway/list
 
         #endregion
 

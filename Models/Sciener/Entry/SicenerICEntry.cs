@@ -6,9 +6,6 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener IC¥d²M³æ
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/identityCard/list
-    /// </remarks>
     public class SicenerICListEntry {
 
         /// <summary>

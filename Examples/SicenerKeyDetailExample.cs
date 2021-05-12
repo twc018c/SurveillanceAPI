@@ -8,14 +8,14 @@ namespace Surveillance.Examples {
     /// <summary>
     /// 模型範例
     /// </summary>
-    public class SicenerKeyExample : IExamplesProvider<SicenerKeyEntry> {
+    public class SicenerKeyDetailExample : IExamplesProvider<SicenerKeyDetailEntry> {
 
         /// <summary>
         /// 建構
         /// </summary>
-        /// <returns>SicenerKeyEntry</returns>
-        public SicenerKeyEntry GetExamples() {
-            return new SicenerKeyEntry() {
+        /// <returns>SicenerKeyDetailEntry</returns>
+        public SicenerKeyDetailEntry GetExamples() {
+            return new SicenerKeyDetailEntry() {
                 LockID = 2746218,
                 Date = Tool.GetDateLong()
             };

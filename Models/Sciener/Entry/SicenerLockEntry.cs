@@ -6,9 +6,6 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 鎖清單
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/lock/list
-    /// </remarks>
     public class SicenerLockListEntry {
 
         /// <summary>
@@ -49,9 +46,6 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 開鎖紀錄清單
     /// </summary>
-    /// <remarks>
-    /// https://open.sciener.com/doc/api/v3/lockRecord/list
-    /// </remarks>
     public class SicenerLockRecordListEntry {
 
         /// <summary>

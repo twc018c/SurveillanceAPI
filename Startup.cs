@@ -17,6 +17,8 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 
 namespace Surveillance {
@@ -36,6 +38,7 @@ namespace Surveillance {
         public Startup(IConfiguration _Configuration) {
             Configuration = _Configuration;
 
+            // 讀取appsettings.json
             try {
                 // 設定檔
                 Global.ConnectionString = this.Configuration.GetConnectionString("DefaultConnection");
@@ -132,6 +135,7 @@ namespace Surveillance {
                     }
                 });
             });
+            _Services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
 
             // JWT
             _Services.AddAuthentication(Option => {
@@ -152,7 +156,8 @@ namespace Surveillance {
                 };
             });
 
-            _Services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
+            // 建立服務供應 (必須設定完所有服務才能建立)
+            ProviderService.Collection = _Services.BuildServiceProvider();
         }
 
 
@@ -184,6 +189,16 @@ namespace Surveillance {
                 Option.DocumentTitle = "Surveillance";
                 Option.SwaggerEndpoint("/swagger/v1/swagger.json", "Surveillance v1");
             });
+
+            try {
+                // 取得服務
+                var ScienerService = _App.ApplicationServices.GetService<IScienerService>();
+
+                // 取得令牌
+                var Model = ScienerService.GetToken().GetAwaiter().GetResult();
+            } catch (Exception Exception) {
+                Console.WriteLine($"Startup {Exception.Message}");
+            }
         }
     }
 }
