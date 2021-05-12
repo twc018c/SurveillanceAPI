@@ -243,7 +243,7 @@ namespace Surveillance.Models {
         /// 
         /// </summary>
         [JsonPropertyName("lockId")]
-        public int LockId { get; set; } = 0;
+        public int LockID { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -389,7 +389,7 @@ namespace Surveillance.Models {
         /// 
         /// </summary>
         [JsonPropertyName("lockId")]
-        public int LockId { get; set; } = 0;
+        public int LockID { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -462,6 +462,9 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 門鎖版本 (List專用)
     /// </summary>
+    /// <remarks>
+    /// 與鑰匙共用
+    /// </remarks>
     public class ScienerLockVersionByListModel {
 
         /// <summary>
@@ -474,7 +477,7 @@ namespace Surveillance.Models {
         /// 
         /// </summary>
         [JsonPropertyName("groupId")]
-        public int GroupId { get; set; } = 0;
+        public int GroupID { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -492,7 +495,7 @@ namespace Surveillance.Models {
         /// 
         /// </summary>
         [JsonPropertyName("orgId")]
-        public int OrgId { get; set; } = 0;
+        public int OrgID { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -517,7 +520,7 @@ namespace Surveillance.Models {
         /// 
         /// </summary>
         [JsonPropertyName("groupId")]
-        public int GroupId { get; set; } = 0;
+        public int GroupID { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -535,7 +538,7 @@ namespace Surveillance.Models {
         /// 
         /// </summary>
         [JsonPropertyName("orgId")]
-        public int OrgId { get; set; } = 0;
+        public int OrgID { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -597,7 +600,7 @@ namespace Surveillance.Models {
         /// 鎖編號
         /// </summary>
         [JsonPropertyName("lockId")]
-        public int LockId { get; set; } = 0;
+        public int LockID { get; set; } = 0;
 
         /// <summary>
         /// 記錄上傳到服務器的時間
@@ -615,7 +618,7 @@ namespace Surveillance.Models {
         /// 記錄類型
         /// </summary>
         [JsonPropertyName("recordType")]
-        public SCIENER_LOCK_RECORD_TYPE RecordType { get; set; } = SCIENER_LOCK_RECORD_TYPE.A;
+        public SCIENER_LOCK_RECORD_TYPE RecordType { get; set; } = SCIENER_LOCK_RECORD_TYPE.MOBILE_OPEN;
 
         /// <summary>
         /// 是否成功

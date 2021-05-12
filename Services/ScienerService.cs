@@ -164,7 +164,7 @@ namespace Surveillance.Services {
         public async Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry) {
             var Model = new ScienerUserRegisterModel();
 
-            if (_Entry.Date == 0) {
+            if (_Entry.Date <= 0) {
                 _Entry.Date = Tool.GetDateLong();
             }
 
@@ -199,7 +199,7 @@ namespace Surveillance.Services {
         public async Task<ScienerUserListModel> GetUserList(SicenerUserEntry _Entry) {
             var Model = new ScienerUserListModel();
 
-            if (_Entry.Date == 0) {
+            if (_Entry.Date <= 0) {
                 _Entry.Date = Tool.GetDateLong();
             }
 
@@ -422,7 +422,7 @@ namespace Surveillance.Services {
         public async Task<ScienerLockListModel> GetLockList(SicenerLockListEntry _Entry) {
             var Model = new ScienerLockListModel();
 
-            if (_Entry.Date == 0) {
+            if (_Entry.Date <= 0) {
                 _Entry.Date = Tool.GetDateLong();
             }
 
@@ -446,7 +446,7 @@ namespace Surveillance.Services {
             if (Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockListModel>(JSON);
             }
-
+            
             return Model;
         }
 
@@ -457,12 +457,118 @@ namespace Surveillance.Services {
 
         #region "鎖紀錄"
 
+        /// <summary>
+        /// 取得鎖紀錄
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>ScienerLockRecordModel</returns>
+        public async Task<ScienerLockRecordModel> GetLockRecordList(SicenerLockRecordListEntry _Entry) {
+            var Model = new ScienerLockRecordModel();
+
+            if (_Entry.Date <= 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
+
+            string URL = "https://api.sciener.com/v3/lockRecord/list";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_Entry.LockID}");
+            Dictionary.Add("startDate", $"{_Entry.StartDate}");
+            Dictionary.Add("endDate", $"{_Entry.EndDate}");
+            Dictionary.Add("pageNo", $"{_Entry.PageNo}");
+            Dictionary.Add("pageSize", $"{_Entry.PageSize}");
+            Dictionary.Add("date", $"{_Entry.Date}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerLockRecordModel>(JSON);
+            }
+
+            return Model;
+        }
+
         #endregion
 
 
 
 
         #region "鑰匙"
+
+        /// <summary>
+        /// 取得鑰匙內容
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>ScienerKeyDetailModel</returns>
+        public async Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyEntry _Entry) {
+            var Model = new ScienerKeyDetailModel();
+
+            if (_Entry.Date <= 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
+
+            string URL = "https://api.sciener.com/v3/key/get";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockId", $"{_Entry.LockID}");
+            Dictionary.Add("date", $"{_Entry.Date}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerKeyDetailModel>(JSON);
+            }
+
+            return Model;
+        }
+
+
+        /// <summary>
+        /// 取得鑰匙內容
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>ScienerKeyListModel</returns>
+        public async Task<ScienerKeyListModel> GetKeyList(SicenerKeyListEntry _Entry) {
+            var Model = new ScienerKeyListModel();
+
+            if (_Entry.Date <= 0) {
+                _Entry.Date = Tool.GetDateLong();
+            }
+
+            string URL = "https://api.sciener.com/v3/key/list";
+
+            var Dictionary = new Dictionary<string, string>();
+            Dictionary.Add("clientId", Global.ScienerID);
+            Dictionary.Add("accessToken", Global.ScienerAccessToken);
+            Dictionary.Add("lockAlias", $"{_Entry.LockAlias}");
+            Dictionary.Add("pageNo", $"{_Entry.PageNo}");
+            Dictionary.Add("pageSize", $"{_Entry.PageSize}");
+            Dictionary.Add("date", $"{_Entry.Date}");
+
+            // 產生請求
+            string JSON = await GenerateRequest(URL, Dictionary);
+
+            // 檢查API代碼
+            bool Flag = CheckAPICode(JSON);
+
+            if (Flag == true) {
+                Model = JsonSerializer.Deserialize<ScienerKeyListModel>(JSON);
+            }
+
+            return Model;
+        }
 
         #endregion
 

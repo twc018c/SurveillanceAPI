@@ -14,7 +14,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 鑰匙編號
         /// </summary>
-        public int LockId { get; set; } = 0;
+        public int LockID { get; set; } = 0;
 
         /// <summary>
         /// 目前時間 (毫秒)

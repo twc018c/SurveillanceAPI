@@ -45,12 +45,17 @@ namespace Surveillance.Interfaces {
 
         #region "鎖紀錄"
 
+        Task<ScienerLockRecordModel> GetLockRecordList(SicenerLockRecordListEntry _Entry);
+
         #endregion
 
 
 
 
         #region "鑰匙"
+
+        Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyEntry _Entry);
+        Task<ScienerKeyListModel> GetKeyList(SicenerKeyListEntry _Entry);
 
         #endregion
 

@@ -272,5 +272,84 @@ namespace Surveillance.Controllers {
         }
 
         #endregion
+
+
+
+
+        #region "鎖紀錄"
+
+        /// <summary>
+        /// 取得鎖紀錄
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("LockRecord/List")]
+        [SwaggerRequestExample(typeof(SicenerLockRecordListEntry), typeof(SicenerLockRecordListExample))]
+        public async Task<Dictionary<string, object>> GetLockRecordList(SicenerLockRecordListEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鎖紀錄成功";
+
+            // 取得鎖紀錄
+            var Temp = await ScienerService.GetLockRecordList(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+        #endregion
+
+
+
+
+        #region "鑰匙"
+
+        /// <summary>
+        /// 取得鑰匙內容
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("Key/Detail")]
+        [SwaggerRequestExample(typeof(SicenerKeyEntry), typeof(SicenerKeyExample))]
+        public async Task<Dictionary<string, object>> GetKeyDetail(SicenerKeyEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鑰匙內容成功";
+
+            // 取得鑰匙內容
+            var Temp = await ScienerService.GetKeyDetail(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 取得鑰匙清單
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("Key/List")]
+        [SwaggerRequestExample(typeof(SicenerKeyListEntry), typeof(SicenerKeyListExample))]
+        public async Task<Dictionary<string, object>> GetKeyList(SicenerKeyListEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.SUCCESS;
+            var ResultMessage = "取得鑰匙清單成功";
+
+            // 取得鑰匙清單
+            var Temp = await ScienerService.GetKeyList(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+        #endregion
+
     }
 }
