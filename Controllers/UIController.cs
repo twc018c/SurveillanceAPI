@@ -27,7 +27,7 @@ namespace Surveillance.Controllers {
         /// <summary>
         /// 建構
         /// </summary>
-        /// <param name="_UIService">JWT</param>
+        /// <param name="_UIService">注入服務</param>
         public UIController(IUIService _UIService) {
             UIService = _UIService;
         }

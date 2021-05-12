@@ -27,7 +27,7 @@ namespace Surveillance.Controllers {
         /// <summary>
         /// 建構
         /// </summary>
-        /// <param name="_EventLogRepository">倉儲</param>
+        /// <param name="_EventLogRepository">依賴性注入</param>
         public EventLogController(IEventLogRepository _EventLogRepository) {
             EventLogRepository = _EventLogRepository;
         }

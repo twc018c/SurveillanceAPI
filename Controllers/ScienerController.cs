@@ -16,7 +16,7 @@ namespace Surveillance.Controllers {
     /// Sciener
     /// </summary>
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("[controller]")]
     public class ScienerController : ControllerBase {
@@ -27,7 +27,7 @@ namespace Surveillance.Controllers {
         /// <summary>
         /// 建構
         /// </summary>
-        /// <param name="_ScienerService">服務</param>
+        /// <param name="_ScienerService">依賴性注入</param>
         public ScienerController(IScienerService _ScienerService) {
             ScienerService = _ScienerService;
         }
@@ -71,8 +71,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("User/Register")]
-        [SwaggerRequestExample(typeof(SicenerUserRegisterEntry), typeof(SicenerUserRegisterExample))]
-        public async Task<Dictionary<string, object>> RegisterUser(SicenerUserRegisterEntry _Entry) {
+        [SwaggerRequestExample(typeof(ScienerUserRegisterEntry), typeof(SicenerUserRegisterExample))]
+        public async Task<Dictionary<string, object>> RegisterUser(ScienerUserRegisterEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "用戶註冊成功";
 
@@ -93,8 +93,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("User/List")]
-        [SwaggerRequestExample(typeof(SicenerUserListEntry), typeof(SicenerUserExample))]
-        public async Task<Dictionary<string, object>> GetUserList(SicenerUserListEntry _Entry) {
+        [SwaggerRequestExample(typeof(ScienerUserListEntry), typeof(SicenerUserExample))]
+        public async Task<Dictionary<string, object>> GetUserList(ScienerUserListEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "取得用戶清單成功";
 
@@ -255,8 +255,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("Lock/List")]
-        [SwaggerRequestExample(typeof(SicenerLockListEntry), typeof(SicenerLockListExample))]
-        public async Task<Dictionary<string, object>> GetLockList(SicenerLockListEntry _Entry) {
+        [SwaggerRequestExample(typeof(ScienerLockListEntry), typeof(SicenerLockListExample))]
+        public async Task<Dictionary<string, object>> GetLockList(ScienerLockListEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "取得鎖清單成功";
 
@@ -283,8 +283,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("LockRecord/List")]
-        [SwaggerRequestExample(typeof(SicenerLockRecordListEntry), typeof(SicenerLockRecordListExample))]
-        public async Task<Dictionary<string, object>> GetLockRecordList(SicenerLockRecordListEntry _Entry) {
+        [SwaggerRequestExample(typeof(ScienerLockRecordListEntry), typeof(SicenerLockRecordListExample))]
+        public async Task<Dictionary<string, object>> GetLockRecordList(ScienerLockRecordListEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "取得鎖紀錄成功";
 
@@ -311,8 +311,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("Key/Detail")]
-        [SwaggerRequestExample(typeof(SicenerKeyDetailEntry), typeof(SicenerKeyDetailExample))]
-        public async Task<Dictionary<string, object>> GetKeyDetail(SicenerKeyDetailEntry _Entry) {
+        [SwaggerRequestExample(typeof(ScienerKeyDetailEntry), typeof(SicenerKeyDetailExample))]
+        public async Task<Dictionary<string, object>> GetKeyDetail(ScienerKeyDetailEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "取得鑰匙內容成功";
 
@@ -333,8 +333,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("Key/List")]
-        [SwaggerRequestExample(typeof(SicenerKeyListEntry), typeof(SicenerKeyListExample))]
-        public async Task<Dictionary<string, object>> GetKeyList(SicenerKeyListEntry _Entry) {
+        [SwaggerRequestExample(typeof(ScienerKeyListEntry), typeof(SicenerKeyListExample))]
+        public async Task<Dictionary<string, object>> GetKeyList(ScienerKeyListEntry _Entry) {
             var ResultCode = API_RESULT_CODE.SUCCESS;
             var ResultMessage = "取得鑰匙清單成功";
 

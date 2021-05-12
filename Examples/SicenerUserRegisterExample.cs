@@ -8,14 +8,14 @@ namespace Surveillance.Examples {
     /// <summary>
     /// 模型範例
     /// </summary>
-    public class SicenerUserRegisterExample : IExamplesProvider<SicenerUserRegisterEntry> {
+    public class SicenerUserRegisterExample : IExamplesProvider<ScienerUserRegisterEntry> {
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <returns>SicenerUserRegisterEntry</returns>
-        public SicenerUserRegisterEntry GetExamples() {
-            return new SicenerUserRegisterEntry() {
+        public ScienerUserRegisterEntry GetExamples() {
+            return new ScienerUserRegisterEntry() {
                 UserName = "",
                 Password = "",
                 Date = Tool.GetDateLong()

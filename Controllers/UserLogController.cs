@@ -27,7 +27,7 @@ namespace Surveillance.Controllers {
         /// <summary>
         /// 建構
         /// </summary>
-        /// <param name="_UserLogRepository">倉儲</param>
+        /// <param name="_UserLogRepository">依賴性注入</param>
         public UserLogController(IUserLogRepository _UserLogRepository) {
             UserLogRepository = _UserLogRepository;
         }

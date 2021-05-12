@@ -8,14 +8,14 @@ namespace Surveillance.Examples {
     /// <summary>
     /// 模型範例
     /// </summary>
-    public class SicenerUserExample : IExamplesProvider<SicenerUserListEntry> {
+    public class SicenerUserExample : IExamplesProvider<ScienerUserListEntry> {
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <returns>SicenerUserListEntry</returns>
-        public SicenerUserListEntry GetExamples() {
-            return new SicenerUserListEntry() {
+        public ScienerUserListEntry GetExamples() {
+            return new ScienerUserListEntry() {
                 StartDate = 0,
                 EndDate = 0,
                 PageNo = 1,

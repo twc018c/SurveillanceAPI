@@ -149,6 +149,17 @@ namespace Surveillance.Repositories {
             await DatabaseContext.SaveChangesAsync();
         }
 
+
+        /// <summary>
+        /// 新增門鎖
+        /// </summary>
+        /// <param name="_List">清單</param>
+        /// <returns>Task</returns>
+        public async Task Set(List<DoorModel> _List) {
+            await DatabaseContext.Door.AddRangeAsync(_List);
+
+            await DatabaseContext.SaveChangesAsync();
+        }
         #endregion
 
 
@@ -190,6 +201,22 @@ namespace Surveillance.Repositories {
             var Query = DatabaseContext.Door
                                        .AsQueryable()
                                        .Where(x => x.ID == _ID);
+
+            DatabaseContext.Door.RemoveRange(Query);
+
+            await DatabaseContext.SaveChangesAsync();
+        }
+
+
+        /// <summary>
+        /// 刪除門鎖
+        /// </summary>
+        /// <param name="_List">門鎖編號清單</param>
+        /// <returns>Task</returns>
+        public async Task Delete(List<int> _List) {
+            var Query = DatabaseContext.Door
+                                       .AsQueryable()
+                                       .Where(x => _List.Contains(x.ID));
 
             DatabaseContext.Door.RemoveRange(Query);
 

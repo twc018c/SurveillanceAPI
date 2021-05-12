@@ -21,7 +21,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 每頁數量
         /// </summary>
-        public int PageSize { get; set; } = 50;
+        public int PageSize { get; set; } = 100;
 
         /// <summary>
         /// 目前時間 (毫秒)

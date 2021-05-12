@@ -10,45 +10,40 @@ using System.Threading.Tasks;
 namespace Surveillance.Controllers {
 
     /// <summary>
-    /// 儀錶板
+    /// 爬蟲
     /// </summary>
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("[controller]")]
-    public class DashboardController : ControllerBase {
+    public class CrawlerController : ControllerBase {
 
-        private readonly IDashboardService DashboardService;
+        private readonly ICrawlerService CrawlerService;
 
 
         /// <summary>
         /// 建構
         /// </summary>
-        /// <param name="_DashboardService">依賴性注入</param>
-        public DashboardController(IDashboardService _DashboardService) {
-            DashboardService = _DashboardService;
+        /// <param name="_CrawlerService">依賴性注入</param>
+        public CrawlerController(ICrawlerService _CrawlerService) {
+            CrawlerService = _CrawlerService;
         }
 
-
-        #region "讀取"
 
         /// <summary>
-        /// 取得儀錶板首頁
+        /// 執行門鎖清單爬蟲
         /// </summary>
-        [HttpGet("Home")]
-        public async Task<Dictionary<string, object>> GetHome() {
-            // 取得儀錶板首頁
-            var Temp = await DashboardService.GetHome();
+        [HttpPost("ExecuteLockList")]
+        public async Task<Dictionary<string, object>> ExecuteLockList() {
+            // 執行門鎖清單爬蟲
+            var List = CrawlerService.ExecuteLockList();
 
             var Dictionary = new Dictionary<string, object>();
-            Dictionary.Add("result", Temp);
+            Dictionary.Add("result", List);
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
-            Dictionary.Add("resultMessage", "取得儀錶板首頁成功");
-            
+            Dictionary.Add("resultMessage", "執行門鎖清單爬蟲成功");
+
             return Dictionary;
         }
-
-        #endregion
-
     }
 }

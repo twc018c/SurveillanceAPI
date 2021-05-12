@@ -94,6 +94,7 @@ namespace Surveillance {
             _Services.AddTransient<IUserLogRepository, UserLogRepository>();
 
             // Service
+            _Services.AddTransient<ICrawlerService, CrawlerService>();
             _Services.AddTransient<IDashboardService, DashboardService>();
             _Services.AddSingleton<IJWTService, JWTService>();
             _Services.AddSingleton<IScienerService, ScienerService>();
@@ -156,6 +157,9 @@ namespace Surveillance {
                 };
             });
 
+            // ISSUE - 依賴性注入&建立服務供應
+            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-5.0#ASP0000
+
             // 建立服務供應 (必須設定完所有服務才能建立)
             ProviderService.Collection = _Services.BuildServiceProvider();
         }
@@ -196,8 +200,10 @@ namespace Surveillance {
 
                 // 取得令牌
                 var Model = ScienerService.GetToken().GetAwaiter().GetResult();
+
+                Console.WriteLine($"Startup Sciener GetToken {Model.AccessToken}");
             } catch (Exception Exception) {
-                Console.WriteLine($"Startup {Exception.Message}");
+                Console.WriteLine($"Startup Sciener GetToken Error. {Exception.Message}");
             }
         }
     }

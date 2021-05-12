@@ -21,6 +21,17 @@ namespace Surveillance.Enums {
 
 
     /// <summary>
+    /// Sciener 設備類型
+    /// </summary>
+    public enum SCIENER_DEVICE_TYPE : int {
+        [Description("鎖")]
+        LOCK = 1,
+        [Description("梯控")]
+        ELEVATOR = 2
+    }
+
+
+    /// <summary>
     /// Sciener 門鎖狀態
     /// </summary>
     public enum SCIENER_LOCK_STATE : int {

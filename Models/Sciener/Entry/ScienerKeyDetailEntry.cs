@@ -6,7 +6,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 鑰匙內容
     /// </summary>
-    public class SicenerKeyDetailEntry {
+    public class ScienerKeyDetailEntry {
 
         /// <summary>
         /// 鑰匙編號
@@ -23,7 +23,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 鑰匙清單
     /// </summary>
-    public class SicenerKeyListEntry {
+    public class ScienerKeyListEntry {
 
         /// <summary>
         /// 鎖別名
@@ -41,7 +41,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 每頁數量
         /// </summary>
-        public int PageSize { get; set; } = 50;
+        public int PageSize { get; set; } = 100;
 
         /// <summary>
         /// 目前時間 (毫秒)

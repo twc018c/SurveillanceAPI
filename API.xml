@@ -13,7 +13,7 @@
             <summary>
             建構
             </summary>
-            <param name="_CardAuthorityRepository">倉儲</param>
+            <param name="_CardAuthorityRepository">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.CardAuthorityController.GetList(Surveillance.Models.CardAuthorityEntry)">
             <summary>
@@ -54,7 +54,7 @@
             <summary>
             建構
             </summary>
-            <param name="_CardBatchRepository">倉儲</param>
+            <param name="_CardBatchRepository">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.CardBatchController.GetList(Surveillance.Models.CardBatchEntry)">
             <summary>
@@ -101,7 +101,7 @@
             <summary>
             建構
             </summary>
-            <param name="_CardRepository">倉儲</param>
+            <param name="_CardRepository">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.CardController.Get(System.Int32)">
             <summary>
@@ -139,6 +139,22 @@
             </summary>
             <param name="_ID">門卡編號</param>
         </member>
+        <member name="T:Surveillance.Controllers.CrawlerController">
+            <summary>
+            爬蟲
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.CrawlerController.#ctor(Surveillance.Interfaces.ICrawlerService)">
+            <summary>
+            建構
+            </summary>
+            <param name="_CrawlerService">依賴性注入</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CrawlerController.ExecuteLockList">
+            <summary>
+            執行門鎖清單爬蟲
+            </summary>
+        </member>
         <member name="T:Surveillance.Controllers.DashboardController">
             <summary>
             儀錶板
@@ -148,7 +164,7 @@
             <summary>
             建構
             </summary>
-            <param name="_DashboardService">服務</param>
+            <param name="_DashboardService">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.DashboardController.GetHome">
             <summary>
@@ -164,7 +180,7 @@
             <summary>
             建構
             </summary>
-            <param name="_DoorRepository">倉儲</param>
+            <param name="_DoorRepository">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.DoorController.Get(System.Int32)">
             <summary>
@@ -211,7 +227,7 @@
             <summary>
             建構
             </summary>
-            <param name="_EventLogRepository">倉儲</param>
+            <param name="_EventLogRepository">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.EventLogController.GetList(Surveillance.Models.EventLogEntry)">
             <summary>
@@ -228,20 +244,20 @@
             <summary>
             建構
             </summary>
-            <param name="_ScienerService">服務</param>
+            <param name="_ScienerService">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.ScienerController.GetToken">
             <summary>
             取得令牌
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.RegisterUser(Surveillance.Models.SicenerUserRegisterEntry)">
+        <member name="M:Surveillance.Controllers.ScienerController.RegisterUser(Surveillance.Models.ScienerUserRegisterEntry)">
             <summary>
             用戶註冊
             </summary>
             <param name="_Entry">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.GetUserList(Surveillance.Models.SicenerUserListEntry)">
+        <member name="M:Surveillance.Controllers.ScienerController.GetUserList(Surveillance.Models.ScienerUserListEntry)">
             <summary>
             取得用戶清單
             </summary>
@@ -283,25 +299,25 @@
             </summary>
             <param name="_LockID" example="2746218">鎖編號</param>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.GetLockList(Surveillance.Models.SicenerLockListEntry)">
+        <member name="M:Surveillance.Controllers.ScienerController.GetLockList(Surveillance.Models.ScienerLockListEntry)">
             <summary>
             取得鎖清單
             </summary>
             <param name="_Entry">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.GetLockRecordList(Surveillance.Models.SicenerLockRecordListEntry)">
+        <member name="M:Surveillance.Controllers.ScienerController.GetLockRecordList(Surveillance.Models.ScienerLockRecordListEntry)">
             <summary>
             取得鎖紀錄
             </summary>
             <param name="_Entry">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.GetKeyDetail(Surveillance.Models.SicenerKeyDetailEntry)">
+        <member name="M:Surveillance.Controllers.ScienerController.GetKeyDetail(Surveillance.Models.ScienerKeyDetailEntry)">
             <summary>
             取得鑰匙內容
             </summary>
             <param name="_Entry">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.GetKeyList(Surveillance.Models.SicenerKeyListEntry)">
+        <member name="M:Surveillance.Controllers.ScienerController.GetKeyList(Surveillance.Models.ScienerKeyListEntry)">
             <summary>
             取得鑰匙清單
             </summary>
@@ -316,7 +332,7 @@
             <summary>
             建構
             </summary>
-            <param name="_UIService">JWT</param>
+            <param name="_UIService">注入服務</param>
         </member>
         <member name="M:Surveillance.Controllers.UIController.GetFloor">
             <summary>
@@ -332,9 +348,9 @@
             <summary>
             建構
             </summary>
-            <param name="_JWTService">JWT</param>
-            <param name="_UserRepository">倉儲</param>
-            <param name="_UserLogRepository">倉儲</param>
+            <param name="_JWTService">依賴性注入</param>
+            <param name="_UserRepository">依賴性注入</param>
+            <param name="_UserLogRepository">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.UserController.Get(System.String)">
             <summary>
@@ -398,7 +414,7 @@
             <summary>
             建構
             </summary>
-            <param name="_UserLogRepository">倉儲</param>
+            <param name="_UserLogRepository">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.UserLogController.GetList(Surveillance.Models.UserLogEntry)">
             <summary>
@@ -419,6 +435,11 @@
         <member name="T:Surveillance.Enums.SCIENER_KEY">
             <summary>
             Sciener 鑰匙
+            </summary>
+        </member>
+        <member name="T:Surveillance.Enums.SCIENER_DEVICE_TYPE">
+            <summary>
+            Sciener 設備類型
             </summary>
         </member>
         <member name="T:Surveillance.Enums.SCIENER_LOCK_STATE">
@@ -701,6 +722,11 @@
             使用者
             </summary>
         </member>
+        <member name="T:Surveillance.Interfaces.ICrawlerService">
+            <summary>
+            爬蟲
+            </summary>
+        </member>
         <member name="T:Surveillance.Interfaces.IDashboardService">
             <summary>
             儀錶板
@@ -764,6 +790,14 @@
             </summary>
             <param name="_Object">物件</param>
             <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Library.Tool.Compare(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            比較清單差異
+            </summary>
+            <param name="_ListX">清單Y</param>
+            <param name="_ListY">清單Y</param>
+            <returns>Tuple</returns>
         </member>
         <member name="M:Surveillance.Library.Tool.GenerateUniqueid">
             <summary>
@@ -1384,27 +1418,27 @@
             目前時間 (毫秒)
             </summary>
         </member>
-        <member name="T:Surveillance.Models.SicenerKeyDetailEntry">
+        <member name="T:Surveillance.Models.ScienerKeyDetailEntry">
             <summary>
             Sciener 鑰匙內容
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerKeyDetailEntry.LockID">
+        <member name="P:Surveillance.Models.ScienerKeyDetailEntry.LockID">
             <summary>
             鑰匙編號
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerKeyDetailEntry.Date">
+        <member name="P:Surveillance.Models.ScienerKeyDetailEntry.Date">
             <summary>
             目前時間 (毫秒)
             </summary>
         </member>
-        <member name="T:Surveillance.Models.SicenerKeyListEntry">
+        <member name="T:Surveillance.Models.ScienerKeyListEntry">
             <summary>
             Sciener 鑰匙清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerKeyListEntry.LockAlias">
+        <member name="P:Surveillance.Models.ScienerKeyListEntry.LockAlias">
             <summary>
             鎖別名
             </summary>
@@ -1412,27 +1446,27 @@
             選填
             </remarks>
         </member>
-        <member name="P:Surveillance.Models.SicenerKeyListEntry.PageNo">
+        <member name="P:Surveillance.Models.ScienerKeyListEntry.PageNo">
             <summary>
             頁碼
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerKeyListEntry.PageSize">
+        <member name="P:Surveillance.Models.ScienerKeyListEntry.PageSize">
             <summary>
             每頁數量
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerKeyListEntry.Date">
+        <member name="P:Surveillance.Models.ScienerKeyListEntry.Date">
             <summary>
             目前時間 (毫秒)
             </summary>
         </member>
-        <member name="T:Surveillance.Models.SicenerLockListEntry">
+        <member name="T:Surveillance.Models.ScienerLockListEntry">
             <summary>
             Sciener 鎖清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockListEntry.LockAlias">
+        <member name="P:Surveillance.Models.ScienerLockListEntry.LockAlias">
             <summary>
             鎖別名
             </summary>
@@ -1440,42 +1474,40 @@
             選填
             </remarks>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockListEntry.Type">
+        <member name="P:Surveillance.Models.ScienerLockListEntry.Type">
             <summary>
             設備類型
             </summary>
             <remarks>
             選填
-            1=鎖
-            2=梯控
             </remarks>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockListEntry.PageNo">
+        <member name="P:Surveillance.Models.ScienerLockListEntry.PageNo">
             <summary>
             頁碼
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockListEntry.PageSize">
+        <member name="P:Surveillance.Models.ScienerLockListEntry.PageSize">
             <summary>
             每頁數量
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockListEntry.Date">
+        <member name="P:Surveillance.Models.ScienerLockListEntry.Date">
             <summary>
             目前時間 (毫秒)
             </summary>
         </member>
-        <member name="T:Surveillance.Models.SicenerLockRecordListEntry">
+        <member name="T:Surveillance.Models.ScienerLockRecordListEntry">
             <summary>
             Sciener 開鎖紀錄清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.LockID">
+        <member name="P:Surveillance.Models.ScienerLockRecordListEntry.LockID">
             <summary>
             鎖編號
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.StartDate">
+        <member name="P:Surveillance.Models.ScienerLockRecordListEntry.StartDate">
             <summary>
             開始時間
             </summary>
@@ -1483,7 +1515,7 @@
             選填，0=無限制
             </remarks>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.EndDate">
+        <member name="P:Surveillance.Models.ScienerLockRecordListEntry.EndDate">
             <summary>
             結束時間
             </summary>
@@ -1491,47 +1523,47 @@
             選填，0=無限制
             </remarks>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.PageNo">
+        <member name="P:Surveillance.Models.ScienerLockRecordListEntry.PageNo">
             <summary>
             頁碼
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.PageSize">
+        <member name="P:Surveillance.Models.ScienerLockRecordListEntry.PageSize">
             <summary>
             每頁數量
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerLockRecordListEntry.Date">
+        <member name="P:Surveillance.Models.ScienerLockRecordListEntry.Date">
             <summary>
             目前時間 (毫秒)
             </summary>
         </member>
-        <member name="T:Surveillance.Models.SicenerUserRegisterEntry">
+        <member name="T:Surveillance.Models.ScienerUserRegisterEntry">
             <summary>
             Sciener 用戶註冊
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.UserName">
+        <member name="P:Surveillance.Models.ScienerUserRegisterEntry.UserName">
             <summary>
             用戶名
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.Password">
+        <member name="P:Surveillance.Models.ScienerUserRegisterEntry.Password">
             <summary>
             密碼
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserRegisterEntry.Date">
+        <member name="P:Surveillance.Models.ScienerUserRegisterEntry.Date">
             <summary>
             目前時間 (毫秒)
             </summary>
         </member>
-        <member name="T:Surveillance.Models.SicenerUserListEntry">
+        <member name="T:Surveillance.Models.ScienerUserListEntry">
             <summary>
             Sciener 用戶清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.StartDate">
+        <member name="P:Surveillance.Models.ScienerUserListEntry.StartDate">
             <summary>
             開始時間
             </summary>
@@ -1539,7 +1571,7 @@
             0=無限制
             </remarks>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.EndDate">
+        <member name="P:Surveillance.Models.ScienerUserListEntry.EndDate">
             <summary>
             結束時間
             </summary>
@@ -1547,17 +1579,17 @@
             0=無限制
             </remarks>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.PageNo">
+        <member name="P:Surveillance.Models.ScienerUserListEntry.PageNo">
             <summary>
             頁碼
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.PageSize">
+        <member name="P:Surveillance.Models.ScienerUserListEntry.PageSize">
             <summary>
             每頁數量
             </summary>
         </member>
-        <member name="P:Surveillance.Models.SicenerUserListEntry.Date">
+        <member name="P:Surveillance.Models.ScienerUserListEntry.Date">
             <summary>
             目前時間 (毫秒)
             </summary>
@@ -2620,6 +2652,13 @@
             <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Set(System.Collections.Generic.List{Surveillance.Models.DoorModel})">
+            <summary>
+            新增門鎖
+            </summary>
+            <param name="_List">清單</param>
+            <returns>Task</returns>
+        </member>
         <member name="M:Surveillance.Repositories.DoorRepository.Update(Surveillance.Models.DoorModel)">
             <summary>
             修改門鎖
@@ -2632,6 +2671,13 @@
             刪除門鎖
             </summary>
             <param name="_ID">門鎖編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Delete(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            刪除門鎖
+            </summary>
+            <param name="_List">門鎖編號清單</param>
             <returns>Task</returns>
         </member>
         <member name="M:Surveillance.Repositories.DoorRepository.CheckID(System.Int32)">
@@ -2891,6 +2937,36 @@
             集合服務
             </summary>
         </member>
+        <member name="T:Surveillance.Services.CrawlerService">
+            <summary>
+            爬蟲
+            </summary>
+        </member>
+        <member name="M:Surveillance.Services.CrawlerService.#ctor(System.IServiceProvider)">
+            <summary>
+            建構
+            </summary>
+            <param name="_ServiceProvider">依賴性注入</param>
+        </member>
+        <member name="M:Surveillance.Services.CrawlerService.ExecuteLockList">
+            <summary>
+            執行門鎖清單爬蟲
+            </summary>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Services.CrawlerService.ExecuteLockState">
+            <summary>
+            執行門鎖狀態爬蟲
+            </summary>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Services.CrawlerService.ConvertRemoteToLocal(Surveillance.Models.ScienerLockModel)">
+            <summary>
+            
+            </summary>
+            <param name="_SLM"></param>
+            <returns>DoorModel</returns>
+        </member>
         <member name="T:Surveillance.Services.DashboardService">
             <summary>
             儀錶板
@@ -2940,6 +3016,7 @@
             <summary>
             建構
             </summary>
+            <param name="_HttpClientFactory">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Services.ScienerService.GenerateRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
@@ -2956,19 +3033,13 @@
             <param name="_JSON">JSON</param>
             <returns>bool</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.CrawlerLock">
-            <summary>
-            鎖爬蟲
-            </summary>
-            <returns>Task</returns>
-        </member>
         <member name="M:Surveillance.Services.ScienerService.GetToken">
             <summary>
             取得令牌
             </summary>
             <returns>ScienerTokenModel</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.RegisterUser(Surveillance.Models.SicenerUserRegisterEntry)">
+        <member name="M:Surveillance.Services.ScienerService.RegisterUser(Surveillance.Models.ScienerUserRegisterEntry)">
             <summary>
             用戶註冊
             </summary>
@@ -2978,7 +3049,7 @@
             <param name="_Entry">模型</param>
             <returns>ScienerUserRegisterModel</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.GetUserList(Surveillance.Models.SicenerUserListEntry)">
+        <member name="M:Surveillance.Services.ScienerService.GetUserList(Surveillance.Models.ScienerUserListEntry)">
             <summary>
             取得用戶清單
             </summary>
@@ -3030,7 +3101,7 @@
             <param name="_LockID">鎖編號</param>
             <returns>ScienerLockDetailModel</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.GetLockList(Surveillance.Models.SicenerLockListEntry)">
+        <member name="M:Surveillance.Services.ScienerService.GetLockList(Surveillance.Models.ScienerLockListEntry)">
             <summary>
             取得鎖清單
             </summary>
@@ -3040,7 +3111,7 @@
             <param name="_Entry">模型</param>
             <returns>ScienerLockListModel</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.GetLockRecordList(Surveillance.Models.SicenerLockRecordListEntry)">
+        <member name="M:Surveillance.Services.ScienerService.GetLockRecordList(Surveillance.Models.ScienerLockRecordListEntry)">
             <summary>
             取得鎖紀錄
             </summary>
@@ -3050,7 +3121,7 @@
             <param name="_Entry">模型</param>
             <returns>ScienerLockRecordModel</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.GetKeyDetail(Surveillance.Models.SicenerKeyDetailEntry)">
+        <member name="M:Surveillance.Services.ScienerService.GetKeyDetail(Surveillance.Models.ScienerKeyDetailEntry)">
             <summary>
             取得鑰匙內容
             </summary>
@@ -3060,7 +3131,7 @@
             <param name="_Entry">模型</param>
             <returns>ScienerKeyDetailModel</returns>
         </member>
-        <member name="M:Surveillance.Services.ScienerService.GetKeyList(Surveillance.Models.SicenerKeyListEntry)">
+        <member name="M:Surveillance.Services.ScienerService.GetKeyList(Surveillance.Models.ScienerKeyListEntry)">
             <summary>
             取得鑰匙清單
             </summary>

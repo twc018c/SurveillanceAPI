@@ -27,7 +27,7 @@ namespace Surveillance.Controllers {
         /// <summary>
         /// 建構
         /// </summary>
-        /// <param name="_CardRepository">倉儲</param>
+        /// <param name="_CardRepository">依賴性注入</param>
         public CardController(ICardRepository _CardRepository) {
             CardRepository = _CardRepository;
         }

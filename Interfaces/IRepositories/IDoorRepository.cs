@@ -26,6 +26,7 @@ namespace Surveillance.Interfaces {
         #region "新增"
 
         Task Set(DoorModel _Model);
+        Task Set(List<DoorModel> _List);
 
         #endregion
 
@@ -44,6 +45,7 @@ namespace Surveillance.Interfaces {
         #region "刪除"
 
         Task Delete(int _ID);
+        Task Delete(List<int> _List);
 
         #endregion
 

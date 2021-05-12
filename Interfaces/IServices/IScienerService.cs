@@ -8,16 +8,7 @@ namespace Surveillance.Interfaces {
     /// Sciener
     /// </summary>
     public interface IScienerService {
-
-        #region "爬蟲"
-
-        Task CrawlerLock();
-
-        #endregion
-
-
-
-
+        
         #region "令牌"
 
         Task<ScienerTokenModel> GetToken();
@@ -29,8 +20,8 @@ namespace Surveillance.Interfaces {
 
         #region "用戶"
 
-        Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry);
-        Task<ScienerUserListModel> GetUserList(SicenerUserListEntry _Entry);
+        Task<ScienerUserRegisterModel> RegisterUser(ScienerUserRegisterEntry _Entry);
+        Task<ScienerUserListModel> GetUserList(ScienerUserListEntry _Entry);
 
         #endregion
 
@@ -45,7 +36,7 @@ namespace Surveillance.Interfaces {
         Task<ScienerLockOpenModel> LockOpen(int _LockID);
         Task<ScienerLockCloseModel> LockClose(int _LockID);
         Task<ScienerLockDetailModel> GetLockDetail(int _LockID);
-        Task<ScienerLockListModel> GetLockList(SicenerLockListEntry _Entry);
+        Task<ScienerLockListModel> GetLockList(ScienerLockListEntry _Entry);
 
         #endregion
 
@@ -54,7 +45,7 @@ namespace Surveillance.Interfaces {
 
         #region "鎖紀錄"
 
-        Task<ScienerLockRecordModel> GetLockRecordList(SicenerLockRecordListEntry _Entry);
+        Task<ScienerLockRecordModel> GetLockRecordList(ScienerLockRecordListEntry _Entry);
 
         #endregion
 
@@ -63,8 +54,8 @@ namespace Surveillance.Interfaces {
 
         #region "鑰匙"
 
-        Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyDetailEntry _Entry);
-        Task<ScienerKeyListModel> GetKeyList(SicenerKeyListEntry _Entry);
+        Task<ScienerKeyDetailModel> GetKeyDetail(ScienerKeyDetailEntry _Entry);
+        Task<ScienerKeyListModel> GetKeyList(ScienerKeyListEntry _Entry);
 
         #endregion
 

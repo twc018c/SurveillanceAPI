@@ -30,6 +30,7 @@ namespace Surveillance.Services {
         /// <summary>
         /// 建構
         /// </summary>
+        /// <param name="_HttpClientFactory">依賴性注入</param>
         public ScienerService(IHttpClientFactory _HttpClientFactory) {
             HttpClientFactory = _HttpClientFactory;
         }
@@ -113,21 +114,6 @@ namespace Surveillance.Services {
 
 
 
-        #region "爬蟲"
-
-        /// <summary>
-        /// 鎖爬蟲
-        /// </summary>
-        /// <returns>Task</returns>
-        public async Task CrawlerLock() {
-
-        }
-
-        #endregion
-
-
-
-
         #region "令牌"
 
         /// <summary>
@@ -176,7 +162,7 @@ namespace Surveillance.Services {
         /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerUserRegisterModel</returns>
-        public async Task<ScienerUserRegisterModel> RegisterUser(SicenerUserRegisterEntry _Entry) {
+        public async Task<ScienerUserRegisterModel> RegisterUser(ScienerUserRegisterEntry _Entry) {
             var Model = new ScienerUserRegisterModel();
 
             if (_Entry.Date <= 0) {
@@ -214,7 +200,7 @@ namespace Surveillance.Services {
         /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerUserListModel</returns>
-        public async Task<ScienerUserListModel> GetUserList(SicenerUserListEntry _Entry) {
+        public async Task<ScienerUserListModel> GetUserList(ScienerUserListEntry _Entry) {
             var Model = new ScienerUserListModel();
 
             if (_Entry.Date <= 0) {
@@ -440,7 +426,7 @@ namespace Surveillance.Services {
         /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerLockListModel</returns>
-        public async Task<ScienerLockListModel> GetLockList(SicenerLockListEntry _Entry) {
+        public async Task<ScienerLockListModel> GetLockList(ScienerLockListEntry _Entry) {
             var Model = new ScienerLockListModel();
 
             if (_Entry.Date <= 0) {
@@ -453,7 +439,7 @@ namespace Surveillance.Services {
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("accessToken", Global.ScienerAccessToken);
             Dictionary.Add("lockAlias", $"{_Entry.LockAlias}");
-            Dictionary.Add("type", $"{_Entry.Type}");
+            Dictionary.Add("type", $"{(int)_Entry.Type}");
             Dictionary.Add("pageNo", $"{_Entry.PageNo}");
             Dictionary.Add("pageSize", $"{_Entry.PageSize}");
             Dictionary.Add("date", $"{_Entry.Date}");
@@ -486,7 +472,7 @@ namespace Surveillance.Services {
         /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerLockRecordModel</returns>
-        public async Task<ScienerLockRecordModel> GetLockRecordList(SicenerLockRecordListEntry _Entry) {
+        public async Task<ScienerLockRecordModel> GetLockRecordList(ScienerLockRecordListEntry _Entry) {
             var Model = new ScienerLockRecordModel();
 
             if (_Entry.Date <= 0) {
@@ -533,7 +519,7 @@ namespace Surveillance.Services {
         /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerKeyDetailModel</returns>
-        public async Task<ScienerKeyDetailModel> GetKeyDetail(SicenerKeyDetailEntry _Entry) {
+        public async Task<ScienerKeyDetailModel> GetKeyDetail(ScienerKeyDetailEntry _Entry) {
             var Model = new ScienerKeyDetailModel();
 
             if (_Entry.Date <= 0) {
@@ -570,7 +556,7 @@ namespace Surveillance.Services {
         /// </remarks>
         /// <param name="_Entry">模型</param>
         /// <returns>ScienerKeyListModel</returns>
-        public async Task<ScienerKeyListModel> GetKeyList(SicenerKeyListEntry _Entry) {
+        public async Task<ScienerKeyListModel> GetKeyList(ScienerKeyListEntry _Entry) {
             var Model = new ScienerKeyListModel();
 
             if (_Entry.Date <= 0) {

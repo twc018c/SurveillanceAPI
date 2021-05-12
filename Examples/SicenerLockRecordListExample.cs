@@ -8,14 +8,14 @@ namespace Surveillance.Examples {
     /// <summary>
     /// 模型範例
     /// </summary>
-    public class SicenerLockRecordListExample : IExamplesProvider<SicenerLockRecordListEntry> {
+    public class SicenerLockRecordListExample : IExamplesProvider<ScienerLockRecordListEntry> {
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <returns>SicenerLockRecordListEntry</returns>
-        public SicenerLockRecordListEntry GetExamples() {
-            return new SicenerLockRecordListEntry() {
+        public ScienerLockRecordListEntry GetExamples() {
+            return new ScienerLockRecordListEntry() {
                 LockID = 2746218,
                 StartDate = 0,
                 EndDate = 0,

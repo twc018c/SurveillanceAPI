@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -67,6 +68,26 @@ namespace Surveillance.Library {
             //JSON = JSON.Replace("\"", "\"");
 
             return JSON;
+        }
+
+
+        /// <summary>
+        /// 比較清單差異
+        /// </summary>
+        /// <param name="_ListX">清單Y</param>
+        /// <param name="_ListY">清單Y</param>
+        /// <returns>Tuple</returns>
+        public static (List<int> XnotY, List<int> YnotX, List<int> Intersect) Compare(List<int> _ListX, List<int> _ListY) {
+            // 左交集 (X為主)
+            var XnotY = _ListX.Except(_ListY).ToList();
+
+            // 右交集 (Y為主)
+            var YnotX = _ListY.Except(_ListX).ToList();
+
+            // 重疊
+            var Intersect = _ListX.Intersect(_ListY).ToList();
+
+            return (XnotY, YnotX, Intersect);
         }
 
 

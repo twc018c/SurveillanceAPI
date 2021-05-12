@@ -1,3 +1,4 @@
+using Surveillance.Enums;
 using Surveillance.Library;
 
 
@@ -6,7 +7,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 鎖清單
     /// </summary>
-    public class SicenerLockListEntry {
+    public class ScienerLockListEntry {
 
         /// <summary>
         /// 鎖別名
@@ -21,10 +22,8 @@ namespace Surveillance.Models {
         /// </summary>
         /// <remarks>
         /// 選填
-        /// 1=鎖
-        /// 2=梯控
         /// </remarks>
-        public int Type { get; set; } = 1;
+        public SCIENER_DEVICE_TYPE Type { get; set; } = SCIENER_DEVICE_TYPE.LOCK;
 
         /// <summary>
         /// 頁碼
@@ -34,7 +33,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 每頁數量
         /// </summary>
-        public int PageSize { get; set; } = 50;
+        public int PageSize { get; set; } = 100;
 
         /// <summary>
         /// 目前時間 (毫秒)
@@ -46,7 +45,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 開鎖紀錄清單
     /// </summary>
-    public class SicenerLockRecordListEntry {
+    public class ScienerLockRecordListEntry {
 
         /// <summary>
         /// 鎖編號
@@ -72,12 +71,12 @@ namespace Surveillance.Models {
         /// <summary>
         /// 頁碼
         /// </summary>
-        public int PageNo { get; set; } = 0;
+        public int PageNo { get; set; } = 1;
 
         /// <summary>
         /// 每頁數量
         /// </summary>
-        public int PageSize { get; set; } = 0;
+        public int PageSize { get; set; } = 100;
 
         /// <summary>
         /// 目前時間 (毫秒)

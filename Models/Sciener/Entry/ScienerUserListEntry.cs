@@ -6,7 +6,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 用戶註冊
     /// </summary>
-    public class SicenerUserRegisterEntry {
+    public class ScienerUserRegisterEntry {
 
         /// <summary>
         /// 用戶名
@@ -28,7 +28,7 @@ namespace Surveillance.Models {
     /// <summary>
     /// Sciener 用戶清單
     /// </summary>
-    public class SicenerUserListEntry {
+    public class ScienerUserListEntry {
 
         /// <summary>
         /// 開始時間
@@ -54,7 +54,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 每頁數量
         /// </summary>
-        public int PageSize { get; set; } = 50;
+        public int PageSize { get; set; } = 100;
 
         /// <summary>
         /// 目前時間 (毫秒)

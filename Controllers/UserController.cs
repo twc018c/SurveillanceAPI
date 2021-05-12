@@ -29,9 +29,9 @@ namespace Surveillance.Controllers {
         /// <summary>
         /// 建構
         /// </summary>
-        /// <param name="_JWTService">JWT</param>
-        /// <param name="_UserRepository">倉儲</param>
-        /// <param name="_UserLogRepository">倉儲</param>
+        /// <param name="_JWTService">依賴性注入</param>
+        /// <param name="_UserRepository">依賴性注入</param>
+        /// <param name="_UserLogRepository">依賴性注入</param>
         public UserController(IJWTService _JWTService, IUserRepository _UserRepository, IUserLogRepository _UserLogRepository) {
             JWTService = _JWTService;
             UserRepository = _UserRepository;

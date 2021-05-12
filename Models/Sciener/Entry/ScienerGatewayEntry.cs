@@ -4,14 +4,9 @@ using Surveillance.Library;
 namespace Surveillance.Models {
 
     /// <summary>
-    /// Sciener IC卡清單
+    /// Sciener 網關清單
     /// </summary>
-    public class SicenerICListEntry {
-
-        /// <summary>
-        /// 鎖編號
-        /// </summary>
-        public int LockID { get; set; } = 0;
+    public class SicenerGatewayListEntry {
 
         /// <summary>
         /// 頁碼
@@ -21,7 +16,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 每頁數量
         /// </summary>
-        public int PageSize { get; set; } = 50;
+        public int PageSize { get; set; } = 100;
 
         /// <summary>
         /// 目前時間 (毫秒)
