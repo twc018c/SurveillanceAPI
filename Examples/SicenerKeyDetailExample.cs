@@ -17,7 +17,7 @@ namespace Surveillance.Examples {
         public ScienerKeyDetailEntry GetExamples() {
             return new ScienerKeyDetailEntry() {
                 LockID = 2746218,
-                Date = Tool.GetDateLong()
+                Date = Tool.GenerateDateLong()
             };
         }
     }

@@ -74,7 +74,7 @@ namespace Surveillance.Library {
         /// <summary>
         /// 比較清單差異
         /// </summary>
-        /// <param name="_ListX">清單Y</param>
+        /// <param name="_ListX">清單X</param>
         /// <param name="_ListY">清單Y</param>
         /// <returns>Tuple</returns>
         public static (List<int> XnotY, List<int> YnotX, List<int> Intersect) Compare(List<int> _ListX, List<int> _ListY) {
@@ -108,9 +108,25 @@ namespace Surveillance.Library {
         /// 毫秒精度
         /// </remarks>
         /// <returns>string</returns>
-        public static long GetDateLong() {
+        public static long GenerateDateLong() {
             double UnixTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
             return (long)UnixTimestamp;
+        }
+
+
+        /// <summary>
+        /// Unix時間轉換至當地時間
+        /// </summary>
+        /// <remarks>
+        /// 秒精度
+        /// </remarks>
+        /// <param name="_UnixTimestamp">時間戳記</param>
+        /// <returns>DateTime</returns>
+        public static DateTime UnixTimeStampToDateTime(long _UnixTimestamp = 0) {
+            DateTime DT = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            DT = DT.AddSeconds((double)_UnixTimestamp).ToLocalTime();
+
+            return DT;
         }
 
 

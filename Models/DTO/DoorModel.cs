@@ -1,3 +1,4 @@
+using Surveillance.Enums;
 using System;
 
 
@@ -36,12 +37,17 @@ namespace Surveillance.Models {
         /// <summary>
         /// 狀態
         /// </summary>
-        public int Status { get; set; } = 0;
+        public SCIENER_LOCK_STATE Status { get; set; } = SCIENER_LOCK_STATE.UNKNOW;
 
         /// <summary>
-        /// 電池電量
+        /// 電量
         /// </summary>
         public int Battery { get; set; } = 0;
+
+        /// <summary>
+        /// 電量更新時間
+        /// </summary>
+        public DateTime BatteryTime { get; set; } = DateTime.MinValue;
 
         /// <summary>
         /// 遠端開鎖旗標

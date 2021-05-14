@@ -7,7 +7,7 @@ namespace Surveillance.Interfaces {
     /// 爬蟲
     /// </summary>
     public interface ICrawlerService {
-        Task ExecuteLockList();
+        Task<(int CountAdd, int CountDelete, int CountUpdate)> ExecuteLockList();
         Task ExecuteLockState();
     }
 }

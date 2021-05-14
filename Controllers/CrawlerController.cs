@@ -13,7 +13,7 @@ namespace Surveillance.Controllers {
     /// 爬蟲
     /// </summary>
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("[controller]")]
     public class CrawlerController : ControllerBase {
@@ -36,10 +36,12 @@ namespace Surveillance.Controllers {
         [HttpPost("ExecuteLockList")]
         public async Task<Dictionary<string, object>> ExecuteLockList() {
             // 執行門鎖清單爬蟲
-            var List = CrawlerService.ExecuteLockList();
+            var Temp = await CrawlerService.ExecuteLockList();
 
             var Dictionary = new Dictionary<string, object>();
-            Dictionary.Add("result", List);
+            Dictionary.Add("resultCountAdd", Temp.CountAdd);
+            Dictionary.Add("resultCountDelete", Temp.CountDelete);
+            Dictionary.Add("resultCountUpdate", Temp.CountUpdate);
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
             Dictionary.Add("resultMessage", "執行門鎖清單爬蟲成功");
 

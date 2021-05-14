@@ -163,6 +163,22 @@ namespace Surveillance.Repositories {
 
 
         /// <summary>
+        /// 刪除事件紀錄 (依門鎖)
+        /// </summary>
+        /// <param name="_ListDoor">門鎖編號清單</param>
+        /// <returns>Task</returns>
+        public async Task DeleteByDoorList(List<int> _ListDoor) {
+            var Query = DatabaseContext.EventLog
+                                       .AsQueryable()
+                                       .Where(x => _ListDoor.Contains(x.DoorID));
+
+            DatabaseContext.EventLog.RemoveRange(Query);
+
+            await DatabaseContext.SaveChangesAsync();
+        }
+
+
+        /// <summary>
         /// 刪除事件紀錄 (依使用者)
         /// </summary>
         /// <param name="_UserSeq">使用者流水編號</param>

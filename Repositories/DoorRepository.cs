@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Surveillance.Enums;
 using Surveillance.Interfaces;
 using Surveillance.Models;
 using Surveillance.ViewModels;
@@ -160,6 +161,7 @@ namespace Surveillance.Repositories {
 
             await DatabaseContext.SaveChangesAsync();
         }
+
         #endregion
 
 
@@ -170,6 +172,9 @@ namespace Surveillance.Repositories {
         /// <summary>
         /// 修改門鎖
         /// </summary>
+        /// <remarks>
+        /// 電量必須另外處理
+        /// </remarks>
         /// <param name="_Model">模型</param>
         /// <returns>Task</returns>
         public async Task Update(DoorModel _Model) {
@@ -179,10 +184,35 @@ namespace Surveillance.Repositories {
                 Temp.Name = _Model.Name;
                 Temp.Floor = _Model.Floor;
                 Temp.Note = _Model.Note;
+
+                // 狀態
+                if (_Model.Status != SCIENER_LOCK_STATE.UNKNOW) {
+                    Temp.Status = _Model.Status;
+                }
+
                 Temp.IsRemote = _Model.IsRemote;
 
                 await DatabaseContext.SaveChangesAsync();
             }
+        }
+
+
+        /// <summary>
+        /// 修改門鎖
+        /// </summary>
+        /// <param name="_List">清單</param>
+        /// <returns>Task</returns>
+        public async Task Update(List<DoorUpdateEntry> _List) {
+            await _List.ForEachAsync(async Model => {
+                var Temp = await DatabaseContext.Door.SingleAsync(x => x.ID == Model.ID);
+
+                if (Temp != null) {
+                    Temp.Battery = Model.Battery;
+                    Temp.BatteryTime = Model.BatteryTime;
+
+                    await DatabaseContext.SaveChangesAsync();
+                }
+            });
         }
 
         #endregion

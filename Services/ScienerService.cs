@@ -166,7 +166,7 @@ namespace Surveillance.Services {
             var Model = new ScienerUserRegisterModel();
 
             if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
+                _Entry.Date = Tool.GenerateDateLong();
             }
 
             const string URL = "https://api.sciener.com/v3/user/register";
@@ -204,7 +204,7 @@ namespace Surveillance.Services {
             var Model = new ScienerUserListModel();
 
             if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
+                _Entry.Date = Tool.GenerateDateLong();
             }
 
             const string URL = "https://api.sciener.com/v3/user/list";
@@ -252,7 +252,7 @@ namespace Surveillance.Services {
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("accessToken", Global.ScienerAccessToken);
             Dictionary.Add("lockId", $"{_LockID}");
-            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+            Dictionary.Add("date", $"{Tool.GenerateDateLong()}");
 
             // 產生請求
             string JSON = await GenerateRequest(URL, Dictionary);
@@ -282,7 +282,7 @@ namespace Surveillance.Services {
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("accessToken", Global.ScienerAccessToken);
             Dictionary.Add("lockId", $"{_LockID}");
-            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+            Dictionary.Add("date", $"{Tool.GenerateDateLong()}");
 
             // 產生請求
             string JSON = await GenerateRequest(URL, Dictionary);
@@ -312,7 +312,7 @@ namespace Surveillance.Services {
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("accessToken", Global.ScienerAccessToken);
             Dictionary.Add("lockId", $"{_LockID}");
-            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+            Dictionary.Add("date", $"{Tool.GenerateDateLong()}");
 
             // 產生請求
             string JSON = await GenerateRequest(URL, Dictionary);
@@ -342,7 +342,7 @@ namespace Surveillance.Services {
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("accessToken", Global.ScienerAccessToken);
             Dictionary.Add("lockId", $"{_LockID}");
-            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+            Dictionary.Add("date", $"{Tool.GenerateDateLong()}");
 
             // 產生請求
             string JSON = await GenerateRequest(URL, Dictionary);
@@ -372,7 +372,7 @@ namespace Surveillance.Services {
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("accessToken", Global.ScienerAccessToken);
             Dictionary.Add("lockId", $"{_LockID}");
-            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+            Dictionary.Add("date", $"{Tool.GenerateDateLong()}");
 
             // 產生請求
             string JSON = await GenerateRequest(URL, Dictionary);
@@ -402,7 +402,7 @@ namespace Surveillance.Services {
             Dictionary.Add("clientId", Global.ScienerID);
             Dictionary.Add("accessToken", Global.ScienerAccessToken);
             Dictionary.Add("lockId", $"{_LockID}");
-            Dictionary.Add("date", $"{Tool.GetDateLong()}");
+            Dictionary.Add("date", $"{Tool.GenerateDateLong()}");
 
             // 產生請求
             string JSON = await GenerateRequest(URL, Dictionary);
@@ -430,7 +430,7 @@ namespace Surveillance.Services {
             var Model = new ScienerLockListModel();
 
             if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
+                _Entry.Date = Tool.GenerateDateLong();
             }
 
             const string URL = "https://api.sciener.com/v3/lock/list";
@@ -476,7 +476,7 @@ namespace Surveillance.Services {
             var Model = new ScienerLockRecordModel();
 
             if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
+                _Entry.Date = Tool.GenerateDateLong();
             }
 
             const string URL = "https://api.sciener.com/v3/lockRecord/list";
@@ -523,7 +523,7 @@ namespace Surveillance.Services {
             var Model = new ScienerKeyDetailModel();
 
             if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
+                _Entry.Date = Tool.GenerateDateLong();
             }
 
             const string URL = "https://api.sciener.com/v3/key/get";
@@ -560,7 +560,7 @@ namespace Surveillance.Services {
             var Model = new ScienerKeyListModel();
 
             if (_Entry.Date <= 0) {
-                _Entry.Date = Tool.GetDateLong();
+                _Entry.Date = Tool.GenerateDateLong();
             }
 
             const string URL = "https://api.sciener.com/v3/key/list";

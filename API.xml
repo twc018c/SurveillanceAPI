@@ -795,7 +795,7 @@
             <summary>
             比較清單差異
             </summary>
-            <param name="_ListX">清單Y</param>
+            <param name="_ListX">清單X</param>
             <param name="_ListY">清單Y</param>
             <returns>Tuple</returns>
         </member>
@@ -805,7 +805,7 @@
             </summary>
             <returns>string</returns>
         </member>
-        <member name="M:Surveillance.Library.Tool.GetDateLong">
+        <member name="M:Surveillance.Library.Tool.GenerateDateLong">
             <summary>
             取得日期長整數
             </summary>
@@ -813,6 +813,16 @@
             毫秒精度
             </remarks>
             <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Library.Tool.UnixTimeStampToDateTime(System.Int64)">
+            <summary>
+            Unix時間轉換至當地時間
+            </summary>
+            <remarks>
+            秒精度
+            </remarks>
+            <param name="_UnixTimestamp">時間戳記</param>
+            <returns>DateTime</returns>
         </member>
         <member name="M:Surveillance.Library.Tool.ToEnumDescription(System.Enum)">
             <summary>
@@ -967,7 +977,12 @@
         </member>
         <member name="P:Surveillance.Models.DoorModel.Battery">
             <summary>
-            電池電量
+            電量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorModel.BatteryTime">
+            <summary>
+            電量更新時間
             </summary>
         </member>
         <member name="P:Surveillance.Models.DoorModel.IsRemote">
@@ -1216,6 +1231,36 @@
             方向
             </summary>
             <remarks>true=往下、false=往上</remarks>
+        </member>
+        <member name="T:Surveillance.Models.DoorUpdateEntry">
+            <summary>
+            門鎖更新
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorUpdateEntry.ID">
+            <summary>
+            門鎖編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorUpdateEntry.Name">
+            <summary>
+            門鎖名稱
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorUpdateEntry.Note">
+            <summary>
+            備註
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorUpdateEntry.Battery">
+            <summary>
+            電量
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorUpdateEntry.BatteryTime">
+            <summary>
+            電量更新時間
+            </summary>
         </member>
         <member name="T:Surveillance.Models.EventLogEntry">
             <summary>
@@ -2663,7 +2708,17 @@
             <summary>
             修改門鎖
             </summary>
+            <remarks>
+            電量必須另外處理
+            </remarks>
             <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Update(System.Collections.Generic.List{Surveillance.Models.DoorUpdateEntry})">
+            <summary>
+            修改門鎖
+            </summary>
+            <param name="_List">清單</param>
             <returns>Task</returns>
         </member>
         <member name="M:Surveillance.Repositories.DoorRepository.Delete(System.Int32)">
@@ -2726,6 +2781,13 @@
             <param name="_DoorID">門鎖編號</param>
             <returns>Task</returns>
         </member>
+        <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByDoorList(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            刪除事件紀錄 (依門鎖)
+            </summary>
+            <param name="_ListDoor">門鎖編號清單</param>
+            <returns>Task</returns>
+        </member>
         <member name="M:Surveillance.Repositories.EventLogRepository.DeleteByUser(System.Int32)">
             <summary>
             刪除事件紀錄 (依使用者)
@@ -2763,6 +2825,13 @@
             刪除使用者紀錄
             </summary>
             <param name="_UserSeq">使用者流水編號</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.UserLogRepository.Delete(System.String)">
+            <summary>
+            刪除使用者紀錄
+            </summary>
+            <param name="_Account">使用者帳號</param>
             <returns>Task</returns>
         </member>
         <member name="T:Surveillance.Repositories.UserRepository">
@@ -2927,6 +2996,99 @@
             Sciener密碼
             </summary>
         </member>
+        <member name="T:Surveillance.Schafold.LinqExtension">
+            <summary>
+            LINQ擴充
+            </summary>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.ForEachAsync``1(System.Collections.Generic.List{``0},System.Func{``0,System.Threading.Tasks.Task})">
+            <summary>
+            非同步疊代
+            </summary>
+            <param name="_List">清單</param>
+            <param name="_Func">代理</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.ForEachWithIndexAsync``1(System.Collections.Generic.List{``0},System.Func{``0,System.Int32,System.Threading.Tasks.Task})">
+            <summary>
+            非同步疊代索引
+            </summary>
+            <param name="_List">清單</param>
+            <param name="_Func">代理</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.ToListIndex``1(System.Collections.Generic.List{``0})">
+            <summary>
+            索引清單
+            </summary>
+            <param name="_List">清單</param>
+            <returns>List</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.FirstSafety``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            取得容器清單首個物件
+            </summary>
+            <param name="_Source">容器</param>
+            <returns>T</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            過濾
+            </summary>
+            <param name="_Source">容器</param>
+            <param name="_KeySelector">選取器</param>
+            <returns>IEnumerable</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.IsOrdered``1(System.Linq.IQueryable{``0})">
+            <summary>
+            排序
+            </summary>
+            <param name="_Queryable">容器</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.OrderBySubStatus``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            子狀態昇冪排序
+            </summary>
+            <param name="_Queryable">容器</param>
+            <param name="_KeySelector">選取器</param>
+            <returns>IQueryable</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.OrderBySubStatusDescending``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            子狀態降冪排序
+            </summary>
+            <param name="_Queryable">容器</param>
+            <param name="_KeySelector">選取器</param>
+            <returns></returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.SelectAsync``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task{``1}})">
+            <summary>
+            欄位挑選
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="_Source">容器</param>
+            <param name="_Method">函式</param>
+            <returns>IEnumerable</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.SelectInSequenceAsync``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task{``1}})">
+            <summary>
+            欄位挑選
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="_Source">容器</param>
+            <param name="_Selector">選取器</param>
+            <returns>IEnumerable</returns>
+        </member>
+        <member name="M:Surveillance.Schafold.LinqExtension.WithIndex``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            索引位置
+            </summary>
+            <param name="_Source">容器</param>
+            <returns>IEnumerable</returns>
+        </member>
         <member name="T:Surveillance.Schafold.ProviderService">
             <summary>
             服務供應者類別
@@ -2952,7 +3114,7 @@
             <summary>
             執行門鎖清單爬蟲
             </summary>
-            <returns>Task</returns>
+            <returns>Tuple</returns>
         </member>
         <member name="M:Surveillance.Services.CrawlerService.ExecuteLockState">
             <summary>
@@ -2960,12 +3122,19 @@
             </summary>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Services.CrawlerService.ConvertRemoteToLocal(Surveillance.Models.ScienerLockModel)">
+        <member name="M:Surveillance.Services.CrawlerService.ConvertModel(Surveillance.Models.ScienerLockModel)">
             <summary>
-            
+            模型轉換
             </summary>
-            <param name="_SLM"></param>
+            <param name="_SLM">模型</param>
             <returns>DoorModel</returns>
+        </member>
+        <member name="M:Surveillance.Services.CrawlerService.ConvertEntry(Surveillance.Models.ScienerLockModel)">
+            <summary>
+            模型轉換
+            </summary>
+            <param name="_SLM">模型</param>
+            <returns>DoorUpdateEntry</returns>
         </member>
         <member name="T:Surveillance.Services.DashboardService">
             <summary>

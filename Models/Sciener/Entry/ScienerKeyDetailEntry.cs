@@ -16,7 +16,7 @@ namespace Surveillance.Models {
         /// <summary>
         /// 目前時間 (毫秒)
         /// </summary>
-        public long Date { get; set; } = Tool.GetDateLong();
+        public long Date { get; set; } = Tool.GenerateDateLong();
     }
 
 
@@ -46,6 +46,6 @@ namespace Surveillance.Models {
         /// <summary>
         /// 目前時間 (毫秒)
         /// </summary>
-        public long Date { get; set; } = Tool.GetDateLong();
+        public long Date { get; set; } = Tool.GenerateDateLong();
     }
 }

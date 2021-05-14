@@ -21,7 +21,7 @@ namespace Surveillance.Examples {
                 Type = SCIENER_DEVICE_TYPE.LOCK,
                 PageNo = 1,
                 PageSize = 20,
-                Date = Tool.GetDateLong()
+                Date = Tool.GenerateDateLong()
             };
         }
     }

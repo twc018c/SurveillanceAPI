@@ -33,6 +33,8 @@ namespace Surveillance.Interfaces {
 
         Task Delete(int _UserSeq);
 
+        Task Delete(string _Account);
+
         #endregion
 
     }

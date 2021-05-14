@@ -139,6 +139,23 @@ namespace Surveillance.Repositories {
             await DatabaseContext.SaveChangesAsync();
         }
 
+
+        /// <summary>
+        /// 刪除使用者紀錄
+        /// </summary>
+        /// <param name="_Account">使用者帳號</param>
+        /// <returns>Task</returns>
+        public async Task Delete(string _Account = "") {
+            // 使用者流水編號
+            int UserSeq = await DatabaseContext.User.AsQueryable()
+                                                    .Where(x => x.Account == _Account)
+                                                    .Select(x => x.Seq)
+                                                    .FirstOrDefaultAsync();
+
+            // 刪除使用者紀錄
+            await Delete(UserSeq);
+        }
+
         #endregion
 
     }

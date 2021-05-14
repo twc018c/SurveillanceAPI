@@ -235,6 +235,9 @@ namespace Surveillance.Controllers {
             // 刪除使用者
             await UserRepository.Delete(_Account);
 
+            // 刪除使用者紀錄
+            await UserLogRepository.Delete(_Account);
+
             var Dictionary = new Dictionary<string, object>();
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
             Dictionary.Add("resultMessage", "刪除使用者成功");

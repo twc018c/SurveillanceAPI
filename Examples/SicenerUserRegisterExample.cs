@@ -18,7 +18,7 @@ namespace Surveillance.Examples {
             return new ScienerUserRegisterEntry() {
                 UserName = "",
                 Password = "",
-                Date = Tool.GetDateLong()
+                Date = Tool.GenerateDateLong()
             };
         }
     }

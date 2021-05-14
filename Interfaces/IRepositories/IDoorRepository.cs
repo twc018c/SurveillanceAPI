@@ -36,6 +36,7 @@ namespace Surveillance.Interfaces {
         #region "修改"
 
         Task Update(DoorModel _Model);
+        Task Update(List<DoorUpdateEntry> _List);
 
         #endregion
 

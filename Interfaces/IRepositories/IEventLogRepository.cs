@@ -33,6 +33,7 @@ namespace Surveillance.Interfaces {
 
         Task DeleteByCard(int _CardID);
         Task DeleteByDoor(int _DoorID);
+        Task DeleteByDoorList(List<int> _ListDoor);
         Task DeleteByUser(int _UserSeq);
 
         #endregion
