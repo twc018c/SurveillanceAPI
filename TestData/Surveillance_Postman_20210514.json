@@ -394,7 +394,7 @@
 			"response": []
 		},
 		{
-			"name": "Lock Date",
+			"name": "Lock Date (時間)",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -748,7 +748,7 @@
 			"response": []
 		},
 		{
-			"name": "Lock Electric Quantity",
+			"name": "Lock Electric Quantity (電量)",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -838,7 +838,7 @@
 						},
 						{
 							"key": "lockId",
-							"value": "2028181",
+							"value": "2746218",
 							"type": "text"
 						},
 						{
@@ -858,7 +858,7 @@
 						},
 						{
 							"key": "pageSize",
-							"value": "100",
+							"value": "1000",
 							"type": "text"
 						},
 						{
@@ -917,7 +917,7 @@
 						},
 						{
 							"key": "lockId",
-							"value": "2028181",
+							"value": "2746218",
 							"type": "text"
 						},
 						{
