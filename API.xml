@@ -1889,12 +1889,12 @@
             Sciener 開鎖
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerLockOpenModel.Errcode">
+        <member name="P:Surveillance.Models.ScienerLockOpenModel.ErrCode">
             <summary>
             代碼
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerLockOpenModel.Errmsg">
+        <member name="P:Surveillance.Models.ScienerLockOpenModel.ErrMsg">
             <summary>
             訊息
             </summary>
@@ -1909,12 +1909,12 @@
             Sciener 閉鎖
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerLockCloseModel.Errcode">
+        <member name="P:Surveillance.Models.ScienerLockCloseModel.ErrCode">
             <summary>
             代碼
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerLockCloseModel.Errmsg">
+        <member name="P:Surveillance.Models.ScienerLockCloseModel.ErrMsg">
             <summary>
             訊息
             </summary>
@@ -1959,12 +1959,12 @@
             
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerLockDetailModel.deletePwd">
+        <member name="P:Surveillance.Models.ScienerLockDetailModel.DeletePwd">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Surveillance.Models.ScienerLockDetailModel.adminPwd">
+        <member name="P:Surveillance.Models.ScienerLockDetailModel.AdminPwd">
             <summary>
             
             </summary>
@@ -3207,7 +3207,7 @@
             檢查API代碼
             </summary>
             <param name="_JSON">JSON</param>
-            <returns>bool</returns>
+            <returns>Tuple</returns>
         </member>
         <member name="M:Surveillance.Services.ScienerService.GetToken">
             <summary>

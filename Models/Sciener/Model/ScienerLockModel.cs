@@ -73,13 +73,13 @@ namespace Surveillance.Models {
         /// 代碼
         /// </summary>
         [JsonPropertyName("errcode")]
-        public SCIENER_CODE Errcode { get; set; } = SCIENER_CODE.SUCCESS;
+        public SCIENER_CODE ErrCode { get; set; } = SCIENER_CODE.SUCCESS;
 
         /// <summary>
         /// 訊息
         /// </summary>
         [JsonPropertyName("errmsg")]
-        public string Errmsg { get; set; } = "";
+        public string ErrMsg { get; set; } = "";
 
         /// <summary>
         /// 描述
@@ -98,13 +98,13 @@ namespace Surveillance.Models {
         /// 代碼
         /// </summary>
         [JsonPropertyName("errcode")]
-        public SCIENER_CODE Errcode { get; set; } = SCIENER_CODE.SUCCESS;
+        public SCIENER_CODE ErrCode { get; set; } = SCIENER_CODE.SUCCESS;
 
         /// <summary>
         /// 訊息
         /// </summary>
         [JsonPropertyName("errmsg")]
-        public string Errmsg { get; set; } = "";
+        public string ErrMsg { get; set; } = "";
 
         /// <summary>
         /// 描述
@@ -165,13 +165,13 @@ namespace Surveillance.Models {
         /// 
         /// </summary>
         [JsonPropertyName("deletePwd")]
-        public string deletePwd { get; set; } = "";
+        public string DeletePwd { get; set; } = "";
 
         /// <summary>
         /// 
         /// </summary>
         [JsonPropertyName("adminPwd")]
-        public string adminPwd { get; set; } = "";
+        public string AdminPwd { get; set; } = "";
 
         /// <summary>
         /// 

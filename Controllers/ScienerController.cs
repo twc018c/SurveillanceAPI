@@ -191,9 +191,9 @@ namespace Surveillance.Controllers {
             // 開鎖
             var Temp = await ScienerService.LockOpen(_LockID);
 
-            if (Temp.Errcode != SCIENER_CODE.SUCCESS) {
+            if (Temp.ErrCode != SCIENER_CODE.SUCCESS) {
                 ResultCode = API_RESULT_CODE.UNKNOW;
-                ResultMessage = $"{Temp.Errcode} {Temp.Errmsg} {Temp.Description}";
+                ResultMessage = $"{(int)Temp.ErrCode} {Temp.ErrMsg} {Temp.Description}";
             }
 
             var Dictionary = new Dictionary<string, object>();
@@ -216,9 +216,9 @@ namespace Surveillance.Controllers {
             // 閉鎖
             var Temp = await ScienerService.LockClose(_LockID);
 
-            if (Temp.Errcode != SCIENER_CODE.SUCCESS) {
+            if (Temp.ErrCode != SCIENER_CODE.SUCCESS) {
                 ResultCode = API_RESULT_CODE.UNKNOW;
-                ResultMessage = $"{Temp.Errcode} {Temp.Errmsg} {Temp.Description}";
+                ResultMessage = $"{(int)Temp.ErrCode} {Temp.ErrMsg} {Temp.Description}";
             }
 
             var Dictionary = new Dictionary<string, object>();

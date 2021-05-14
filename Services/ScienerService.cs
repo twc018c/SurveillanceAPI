@@ -75,9 +75,12 @@ namespace Surveillance.Services {
         /// 檢查API代碼
         /// </summary>
         /// <param name="_JSON">JSON</param>
-        /// <returns>bool</returns>
-        public bool CheckAPICode(string _JSON = "") {
+        /// <returns>Tuple</returns>
+        public (bool Flag, SCIENER_CODE ErrCode, string ErrMsg, string Description) CheckAPICode(string _JSON = "") {
             bool Flag = true;
+            int ErrCode = (int)SCIENER_CODE.SUCCESS;
+            string ErrMsg = "";
+            string Description = "";
 
             try {
                 var Temp = JsonSerializer.Deserialize<Dictionary<string, object>>(_JSON);
@@ -85,7 +88,7 @@ namespace Surveillance.Services {
 
                 // 判斷錯誤代碼
                 if (ObjErrCode != null) {
-                    int.TryParse(ObjErrCode.ToString(), out int ErrCode);
+                    int.TryParse(ObjErrCode.ToString(), out ErrCode);
 
                     // 成功類型也包含在錯誤代碼的範圍
                     if (ErrCode != (int)SCIENER_CODE.SUCCESS) {
@@ -96,9 +99,16 @@ namespace Surveillance.Services {
 
                         // 判斷錯誤訊息
                         var ObjErrMsg = Temp.Where(x => x.Key == "errmsg").FirstOrDefault().Value;
+                        var ObjDescription = Temp.Where(x => x.Key == "description").FirstOrDefault().Value;
 
                         if (ObjErrMsg != null) {
-                            Str = $"{Str} {ObjErrMsg.ToString()}";
+                            ErrMsg = ObjErrMsg.ToString();
+                            Str += $" {ErrMsg}";
+                        }
+
+                        if (ObjDescription != null) {
+                            Description = ObjDescription.ToString();
+                            Str += $" {Description}";
                         }
 
                         Console.WriteLine(Str);
@@ -108,7 +118,7 @@ namespace Surveillance.Services {
                 Console.WriteLine($"Sciener API Response Crash. {Exception.Message}");
             }
 
-            return Flag;
+            return (Flag, (SCIENER_CODE)ErrCode, ErrMsg, Description);
         }
 
 
@@ -135,9 +145,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerTokenModel>(JSON);
 
                 // 更新令牌
@@ -182,9 +192,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerUserRegisterModel>(JSON);
             }
 
@@ -222,9 +232,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerUserListModel>(JSON);
             }
 
@@ -258,9 +268,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockDateModel>(JSON);
             }
 
@@ -288,9 +298,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockElectricQuantityModel>(JSON);
             }
 
@@ -318,9 +328,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockStateModel>(JSON);
             }
 
@@ -348,10 +358,14 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockOpenModel>(JSON);
+            } else {
+                Model.ErrCode = Tuple.ErrCode;
+                Model.ErrMsg = Tuple.ErrMsg;
+                Model.Description = Tuple.Description;
             }
 
             return Model;
@@ -378,10 +392,14 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockCloseModel>(JSON);
+            } else {
+                Model.ErrCode = Tuple.ErrCode;
+                Model.ErrMsg = Tuple.ErrMsg;
+                Model.Description = Tuple.Description;
             }
 
             return Model;
@@ -408,9 +426,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockDetailModel>(JSON);
             }
 
@@ -448,9 +466,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockListModel>(JSON);
             }
             
@@ -495,9 +513,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerLockRecordModel>(JSON);
             }
 
@@ -538,9 +556,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerKeyDetailModel>(JSON);
             }
 
@@ -577,9 +595,9 @@ namespace Surveillance.Services {
             string JSON = await GenerateRequest(URL, Dictionary);
 
             // 檢查API代碼
-            bool Flag = CheckAPICode(JSON);
+            var Tuple = CheckAPICode(JSON);
 
-            if (Flag == true) {
+            if (Tuple.Flag == true) {
                 Model = JsonSerializer.Deserialize<ScienerKeyListModel>(JSON);
             }
 
