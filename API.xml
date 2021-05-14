@@ -2714,6 +2714,13 @@
             <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
+        <member name="M:Surveillance.Repositories.DoorRepository.Update(Surveillance.Models.DoorUpdateEntry)">
+            <summary>
+            修改門鎖
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
         <member name="M:Surveillance.Repositories.DoorRepository.Update(System.Collections.Generic.List{Surveillance.Models.DoorUpdateEntry})">
             <summary>
             修改門鎖
@@ -3421,6 +3428,11 @@
         <member name="T:Surveillance.ViewModels.DoorViewModel">
             <summary>
             門鎖
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.DoorViewModel.BatteryTimeStr">
+            <summary>
+            電量更新時間
             </summary>
         </member>
         <member name="P:Surveillance.ViewModels.DoorViewModel.ActionTimeStr">

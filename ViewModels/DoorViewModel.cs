@@ -9,6 +9,11 @@ namespace Surveillance.ViewModels {
     public class DoorViewModel : DoorModel {
 
         /// <summary>
+        /// 電量更新時間
+        /// </summary>
+        public string BatteryTimeStr { get; set; } = "";
+
+        /// <summary>
         /// 最後動作時間
         /// </summary>
         public string ActionTimeStr { get; set; } = "";

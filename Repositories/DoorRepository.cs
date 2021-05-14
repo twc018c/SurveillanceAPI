@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Surveillance.Enums;
 using Surveillance.Interfaces;
+using Surveillance.Library;
 using Surveillance.Models;
 using Surveillance.ViewModels;
 using Surveillance.Schafold;
@@ -87,8 +88,9 @@ namespace Surveillance.Repositories {
             var ListVM = Mapper.Map<List<DoorModel>, List<DoorViewModel>>(List);
 
             ListVM.ForEach(x => {
-                x.StatusStr = x.StatusStr.ToString();   // TODO - 門鎖，狀態
+                x.BatteryTimeStr = x.BatteryTime.ToString("yyyy-MM-dd HH:mm:ss");
                 x.ActionTimeStr = x.ActionTime.ToString("yyyy-MM-dd HH:mm:ss");
+                x.StatusStr = x.Status.ToEnumDescription();
             });
 
             return (ListVM, Count);
@@ -200,18 +202,31 @@ namespace Surveillance.Repositories {
         /// <summary>
         /// 修改門鎖
         /// </summary>
+        /// <param name="_Model">模型</param>
+        /// <returns>Task</returns>
+        public async Task Update(DoorUpdateEntry _Model) {
+            var Temp = await DatabaseContext.Door.SingleAsync(x => x.ID == _Model.ID);
+
+            if (Temp != null) {
+                Temp.Name = _Model.Name;
+                Temp.Note = _Model.Note;
+                Temp.Battery = _Model.Battery;
+                Temp.BatteryTime = _Model.BatteryTime;
+
+                await DatabaseContext.SaveChangesAsync();
+            }
+        }
+
+
+        /// <summary>
+        /// 修改門鎖
+        /// </summary>
         /// <param name="_List">清單</param>
         /// <returns>Task</returns>
         public async Task Update(List<DoorUpdateEntry> _List) {
             await _List.ForEachAsync(async Model => {
-                var Temp = await DatabaseContext.Door.SingleAsync(x => x.ID == Model.ID);
-
-                if (Temp != null) {
-                    Temp.Battery = Model.Battery;
-                    Temp.BatteryTime = Model.BatteryTime;
-
-                    await DatabaseContext.SaveChangesAsync();
-                }
+                // 修改門鎖
+                await Update(Model);
             });
         }
 
