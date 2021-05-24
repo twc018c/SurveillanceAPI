@@ -1,9 +1,15 @@
-﻿namespace Surveillance.Interfaces {
+﻿using System.IdentityModel.Tokens.Jwt;
+
+
+namespace Surveillance.Interfaces {
 
     /// <summary>
     /// JWT
     /// </summary>
     public interface IJWTService {
-        string GenerateToken(string _Account);
+        string GenerateToken(int _Seq, string _Account);
+        JwtSecurityToken GetToken();
+        int ParseUserSeq();
+        string ParseAccount();
     }
 }

@@ -6,6 +6,7 @@ using Surveillance.Examples;
 using Surveillance.Interfaces;
 using Surveillance.Models;
 using Swashbuckle.AspNetCore.Filters;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,14 +23,20 @@ namespace Surveillance.Controllers {
     public class ScienerController : ControllerBase {
 
         private readonly IScienerService ScienerService;
+        private readonly IEventLogRepository EventLogRepository;
+        private readonly IJWTService JWTService;
 
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <param name="_ScienerService">依賴性注入</param>
-        public ScienerController(IScienerService _ScienerService) {
+        /// <param name="_EventLogRepository">依賴性注入</param>
+        /// <param name="_JWTService">依賴性注入</param>
+        public ScienerController(IScienerService _ScienerService, IEventLogRepository _EventLogRepository, IJWTService _JWTService) {
             ScienerService = _ScienerService;
+            EventLogRepository = _EventLogRepository;
+            JWTService = _JWTService;
         }
 
 
@@ -196,6 +203,19 @@ namespace Surveillance.Controllers {
                 ResultMessage = $"{(int)Temp.ErrCode} {Temp.ErrMsg} {Temp.Description}";
             }
 
+            // 以權杖解析使用者流水編號
+            int UserSeq = JWTService.ParseUserSeq();
+
+            // 新增事件紀錄
+            await EventLogRepository.Set(new EventLogModel() {
+                Time = DateTime.Now,
+                DoorID = _LockID,
+                CardID = 0,
+                Status = EVENT_LOG_STATUS.OPEN,
+                ErrCode = Temp.ErrCode,
+                UserSeq = UserSeq
+            });
+
             var Dictionary = new Dictionary<string, object>();
             Dictionary.Add("resultCode", ResultCode);
             Dictionary.Add("resultMessage", ResultMessage);
@@ -220,6 +240,19 @@ namespace Surveillance.Controllers {
                 ResultCode = API_RESULT_CODE.UNKNOW;
                 ResultMessage = $"{(int)Temp.ErrCode} {Temp.ErrMsg} {Temp.Description}";
             }
+
+            // 以權杖解析使用者流水編號
+            int UserSeq = JWTService.ParseUserSeq();
+
+            // 新增事件紀錄
+            await EventLogRepository.Set(new EventLogModel() {
+                Time = DateTime.Now,
+                DoorID = _LockID,
+                CardID = 0,
+                Status = EVENT_LOG_STATUS.CLOSE,
+                ErrCode = Temp.ErrCode,
+                UserSeq = UserSeq
+            });
 
             var Dictionary = new Dictionary<string, object>();
             Dictionary.Add("resultCode", ResultCode);

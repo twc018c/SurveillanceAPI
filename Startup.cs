@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,8 +18,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 
 namespace Surveillance {
@@ -81,8 +80,12 @@ namespace Surveillance {
             _Services.AddControllers();
             _Services.AddMvc();
 
-            // HTTP
+            // HTTPClient
             _Services.AddHttpClient();
+
+            // HttpContextAccessor
+            _Services.AddHttpContextAccessor();
+            _Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Repository
             _Services.AddTransient<ICardAuthorityRepository, CardAuthorityRepository>();
@@ -187,6 +190,7 @@ namespace Surveillance {
                 Item.MapControllers();
             });
 
+            _App.UseStaticHttpContext();
             _App.UseSwagger();
             _App.UseSwaggerUI(Option => {
                 Option.DocExpansion(DocExpansion.None);

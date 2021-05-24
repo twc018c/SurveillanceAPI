@@ -35,6 +35,11 @@ namespace Surveillance.Models {
         public EVENT_LOG_STATUS Status { get; set; } = EVENT_LOG_STATUS.UNKNOW;
 
         /// <summary>
+        /// 代碼
+        /// </summary>
+        public SCIENER_CODE ErrCode { get; set; } = SCIENER_CODE.SUCCESS;
+
+        /// <summary>
         /// 使用者流水編號
         /// </summary>
         public int UserSeq { get; set; } = 0;

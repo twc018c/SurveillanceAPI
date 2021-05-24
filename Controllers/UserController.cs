@@ -131,7 +131,7 @@ namespace Surveillance.Controllers {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "新增使用者失敗";
 
-            // TODO - 權限認證
+            // TODO - 權限認證，新增使用者
 
             // 檢查使用者帳號
             bool IsExist = await UserRepository.CheckAccount(_Model.Account);
@@ -169,7 +169,7 @@ namespace Surveillance.Controllers {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改使用者失敗";
 
-            // TODO - 權限認證
+            // TODO - 權限認證，修改使用者
 
             // 檢查使用者帳號
             bool IsExist = await UserRepository.CheckAccount(_Model.Account);
@@ -230,7 +230,7 @@ namespace Surveillance.Controllers {
         /// <param name="_Account">帳號</param>
         [HttpDelete("{_Account}")]
         public async Task<Dictionary<string, object>> Delete(string _Account = "") {
-            // TODO - 權限認證
+            // TODO - 權限認證，刪除使用者
 
             // 刪除使用者
             await UserRepository.Delete(_Account);
@@ -279,7 +279,7 @@ namespace Surveillance.Controllers {
                 Model = Tuple.Model;
 
                 // 產生權杖
-                Token = JWTService.GenerateToken(_Entry.Account);
+                Token = JWTService.GenerateToken(Model.Seq, _Entry.Account);
 
                 // 新增使用者紀錄
                 await UserLogRepository.Set(new UserLogModel() {

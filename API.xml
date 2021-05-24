@@ -223,11 +223,12 @@
             事件紀錄
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.EventLogController.#ctor(Surveillance.Interfaces.IEventLogRepository)">
+        <member name="M:Surveillance.Controllers.EventLogController.#ctor(Surveillance.Interfaces.IEventLogRepository,Surveillance.Interfaces.IJWTService)">
             <summary>
             建構
             </summary>
             <param name="_EventLogRepository">依賴性注入</param>
+            <param name="_JWTService">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.EventLogController.GetList(Surveillance.Models.EventLogEntry)">
             <summary>
@@ -240,11 +241,13 @@
             Sciener
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.ScienerController.#ctor(Surveillance.Interfaces.IScienerService)">
+        <member name="M:Surveillance.Controllers.ScienerController.#ctor(Surveillance.Interfaces.IScienerService,Surveillance.Interfaces.IEventLogRepository,Surveillance.Interfaces.IJWTService)">
             <summary>
             建構
             </summary>
             <param name="_ScienerService">依賴性注入</param>
+            <param name="_EventLogRepository">依賴性注入</param>
+            <param name="_JWTService">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.ScienerController.GetToken">
             <summary>
@@ -3003,6 +3006,39 @@
             Sciener密碼
             </summary>
         </member>
+        <member name="T:Surveillance.Schafold.HttpContext">
+            <summary>
+            上下文
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.HttpContext.HttpContextAccessor">
+            <summary>
+            訪問上下文
+            </summary>
+        </member>
+        <member name="P:Surveillance.Schafold.HttpContext.Current">
+            <summary>
+            目前連線階段
+            </summary>
+        </member>
+        <member name="M:Surveillance.Schafold.HttpContext.Configure(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            設定
+            </summary>
+            <param name="_HttpContextAccessor">依賴性注入</param>
+        </member>
+        <member name="T:Surveillance.Schafold.StaticHttpContextExtensions">
+            <summary>
+            靜態頁面擴充
+            </summary>
+        </member>
+        <member name="M:Surveillance.Schafold.StaticHttpContextExtensions.UseStaticHttpContext(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用靜態上下文
+            </summary>
+            <param name="_App">應用程式</param>
+            <returns>IApplicationBuilder</returns>
+        </member>
         <member name="T:Surveillance.Schafold.LinqExtension">
             <summary>
             LINQ擴充
@@ -3172,12 +3208,25 @@
             建構
             </summary>
         </member>
-        <member name="M:Surveillance.Services.JWTService.GenerateToken(System.String)">
+        <member name="M:Surveillance.Services.JWTService.GenerateToken(System.Int32,System.String)">
             <summary>
             產生權杖
             </summary>
+            <param name="_Seq">流水編號</param>
             <param name="_Account">帳號</param>
             <returns>string</returns>
+        </member>
+        <member name="M:Surveillance.Services.JWTService.GetToken">
+            <summary>
+            取得權杖
+            </summary>
+            <returns>JwtSecurityToken</returns>
+        </member>
+        <member name="M:Surveillance.Services.JWTService.ParseUserSeq">
+            <summary>
+            解析使用者流水編號
+            </summary>
+            <returns>int</returns>
         </member>
         <member name="T:Surveillance.Services.ScienerService">
             <summary>
