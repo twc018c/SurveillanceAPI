@@ -1,3 +1,8 @@
+using Hangfire;
+using Hangfire.Dashboard;
+using Hangfire.Dashboard.BasicAuthorization;
+using Hangfire.MySql;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +23,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Transactions;
 
 
 namespace Surveillance {
@@ -46,6 +52,8 @@ namespace Surveillance {
                 Global.ScienerSecret = Configuration.GetSection("Sciener:Secret").Value;
                 Global.ScienerUsername = Configuration.GetSection("Sciener:Username").Value;
                 Global.ScienerPassword = Configuration.GetSection("Sciener:Password").Value;
+                Global.HangfireUsername = Configuration.GetSection("Hangfire:Username").Value;
+                Global.HangfirePassword = Configuration.GetSection("Hangfire:Password").Value;
             } catch (Exception Exception) {
                 // NOTHING
             }
@@ -141,6 +149,16 @@ namespace Surveillance {
             });
             _Services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
 
+            // Hangfire
+            _Services.AddHangfire(Config => {
+                Config.UseColouredConsoleLogProvider();
+                // 如果有搭配使用MySQL，就不用啟用MemoryStorage
+                //Config.UseMemoryStorage();
+            });
+            _Services.AddSingleton(s => {
+                return new RecurringJobManager();
+            });
+
             // JWT
             _Services.AddAuthentication(Option => {
                 Option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -197,6 +215,45 @@ namespace Surveillance {
                 Option.DocumentTitle = "Surveillance";
                 Option.SwaggerEndpoint("/swagger/v1/swagger.json", "Surveillance v1");
             });
+
+            GlobalConfiguration.Configuration.UseStorage(new MySqlStorage(Global.ConnectionString, new MySqlStorageOptions {
+                TransactionIsolationLevel = IsolationLevel.ReadCommitted,
+                QueuePollInterval = TimeSpan.FromSeconds(15),
+                JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                PrepareSchemaIfNecessary = true,
+                DashboardJobListLimit = 50000,
+                TransactionTimeout = TimeSpan.FromMinutes(1),
+                TablesPrefix = "Hangfire"
+            }));
+
+            // Hangfire
+            _App.UseHangfireServer();
+            _App.UseHangfireDashboard(
+                pathMatch: "/hangfire",
+                options: new DashboardOptions() {
+                    DashboardTitle = "Surveillance Hangfire",
+                    Authorization = new[] {
+                        new BasicAuthAuthorizationFilter(new BasicAuthAuthorizationFilterOptions {
+                            RequireSsl = false,
+                            SslRedirect = false,
+                            // 區分大小寫
+                            LoginCaseSensitive = true,
+                            // 使用者
+                            Users = new [] {
+                                new BasicAuthAuthorizationUser {
+                                    Login = Global.HangfireUsername,
+                                    PasswordClear =  Global.HangfirePassword
+                                }
+                            }
+                        })
+                    },
+                    IsReadOnlyFunc = (DashboardContext DC) => true
+                }
+            );
+
+            // 載入排程工作
+            HangfireJob.LoadCron();
 
             try {
                 // 取得服務

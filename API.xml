@@ -223,12 +223,11 @@
             事件紀錄
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.EventLogController.#ctor(Surveillance.Interfaces.IEventLogRepository,Surveillance.Interfaces.IJWTService)">
+        <member name="M:Surveillance.Controllers.EventLogController.#ctor(Surveillance.Interfaces.IEventLogRepository)">
             <summary>
             建構
             </summary>
             <param name="_EventLogRepository">依賴性注入</param>
-            <param name="_JWTService">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.EventLogController.GetList(Surveillance.Models.EventLogEntry)">
             <summary>
@@ -1026,6 +1025,11 @@
         <member name="P:Surveillance.Models.EventLogModel.Status">
             <summary>
             狀態
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.EventLogModel.ErrCode">
+            <summary>
+            代碼
             </summary>
         </member>
         <member name="P:Surveillance.Models.EventLogModel.UserSeq">
@@ -3006,6 +3010,51 @@
             Sciener密碼
             </summary>
         </member>
+        <member name="F:Surveillance.Schafold.Global.HangfireUsername">
+            <summary>
+            Hangfire帳號
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.HangfirePassword">
+            <summary>
+            Hangfire密碼
+            </summary>
+        </member>
+        <member name="T:Surveillance.Schafold.HangfireJob">
+            <summary>
+            Hangfire 工作
+            </summary>
+            <remarks>
+            此類別所有方法必須為public，才能在背景觸發
+            </remarks>
+        </member>
+        <member name="M:Surveillance.Schafold.HangfireJob.LoadCron">
+            <summary>
+            載入排程工作
+            </summary>
+            <remarks>
+            排程表示式，參考 https://crontab.guru/
+            minute   hour   day   month   day
+                          (month)       (week)
+              * any value
+              , value list separator
+              - range of values
+              / step values
+            </remarks>
+        </member>
+        <member name="M:Surveillance.Schafold.HangfireJob.DataAlign(Hangfire.Server.PerformContext)">
+            <summary>
+            資料同步
+            </summary>
+            <param name="_PC">PerformContext</param>
+        </member>
+        <member name="M:Surveillance.Schafold.HangfireJob.DoorStatus(Hangfire.Server.PerformContext)">
+            <summary>
+            門鎖狀態
+            </summary>
+            <param name="_PC">PerformContext</param>
+            <returns>Task</returns>
+        </member>
         <member name="T:Surveillance.Schafold.HttpContext">
             <summary>
             上下文
@@ -3224,9 +3273,15 @@
         </member>
         <member name="M:Surveillance.Services.JWTService.ParseUserSeq">
             <summary>
-            解析使用者流水編號
+            以權杖解析使用者流水編號
             </summary>
             <returns>int</returns>
+        </member>
+        <member name="M:Surveillance.Services.JWTService.ParseAccount">
+            <summary>
+            以權杖解析使用者帳號
+            </summary>
+            <returns>string</returns>
         </member>
         <member name="T:Surveillance.Services.ScienerService">
             <summary>

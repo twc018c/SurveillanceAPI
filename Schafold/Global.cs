@@ -40,5 +40,15 @@
         /// Sciener密碼
         /// </summary>
         public static string ScienerPassword = "";
+
+        /// <summary>
+        /// Hangfire帳號
+        /// </summary>
+        public static string HangfireUsername = "";
+
+        /// <summary>
+        /// Hangfire密碼
+        /// </summary>
+        public static string HangfirePassword = "";
     }
 }

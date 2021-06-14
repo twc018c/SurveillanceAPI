@@ -38,7 +38,7 @@ namespace Surveillance.Services {
             var TokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(new[] {
                     new Claim(JwtRegisteredClaimNames.Sid, _Seq.ToString()),            // 使用者流水編號
-                    new Claim(JwtRegisteredClaimNames.Sub, _Account),                   // 帳號帳號
+                    new Claim(JwtRegisteredClaimNames.Sub, _Account),                   // 帳號
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())   // GUID
                 }),
                 Expires = DateTime.Now.AddHours(12),
