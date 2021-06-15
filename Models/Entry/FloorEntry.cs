@@ -4,9 +4,9 @@
 namespace Surveillance.Models {
 
     /// <summary>
-    /// 門鎖
+    /// 樓層
     /// </summary>
-    public class DoorEntry : Entry {
+    public class FloorEntry : Entry {
 
         /// <summary>
         /// 關鍵字
@@ -14,16 +14,16 @@ namespace Surveillance.Models {
         public string Keyword { get; set; } = "";
 
         /// <summary>
-        /// 樓層
+        /// 層級
         /// </summary>
-        public int Floor { get; set; } = 0;
+        public int Level { get; set; } = 0;
     }
 
 
     /// <summary>
-    /// 門鎖指標
+    /// 樓層指標
     /// </summary>
-    public class DoorCursorEntry {
+    public class FloorCursorEntry {
 
         /// <summary>
         /// 流水編號
@@ -39,33 +39,23 @@ namespace Surveillance.Models {
 
 
     /// <summary>
-    /// 門鎖更新
+    /// 樓層更新
     /// </summary>
-    public class DoorUpdateEntry {
+    public class FloorUpdateEntry {
 
         /// <summary>
-        /// 門鎖編號
+        /// 流水編號
         /// </summary>
-        public int ID { get; set; } = 0;
+        public int Seq { get; set; } = 0;
 
         /// <summary>
-        /// 門鎖名稱
+        /// 層級
+        /// </summary>
+        public int Level { get; set; } = 0;
+
+        /// <summary>
+        /// 名稱
         /// </summary>
         public string Name { get; set; } = "";
-
-        /// <summary>
-        /// 備註
-        /// </summary>
-        public string Note { get; set; } = "";
-
-        /// <summary>
-        /// 電量
-        /// </summary>
-        public int Battery { get; set; } = 0;
-
-        /// <summary>
-        /// 電量更新時間
-        /// </summary>
-        public DateTime BatteryTime { get; set; } = DateTime.MinValue;
     }
 }

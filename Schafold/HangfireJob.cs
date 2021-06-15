@@ -31,8 +31,8 @@ namespace Surveillance.Schafold {
         /// </remarks>
         public static void LoadCron() {
             // 資料同步
-            // 每天凌晨00點15分觸發
-            RecurringJob.AddOrUpdate("Day-01", () => DataAlign(null), "15 00 */01 * *", TimeZoneInfo.Local);
+            // 每天凌晨00點30分觸發
+            RecurringJob.AddOrUpdate("Day-01", () => DataAlign(null), "30 00 */01 * *", TimeZoneInfo.Local);
 
             // 門鎖狀態
             // 每15分鐘檢查1次
@@ -42,7 +42,7 @@ namespace Surveillance.Schafold {
 
 
 
-        #region "每日固定工作"
+        #region "每天固定工作"
 
         /// <summary>
         /// 資料同步
@@ -51,6 +51,9 @@ namespace Surveillance.Schafold {
         public static async Task DataAlign([FromServices] PerformContext _PC) {
             // 取得服務
             var CrawlerService = ProviderService.Collection.GetService<ICrawlerService>();
+
+            // 執行門鎖清單爬蟲
+            var Temp = await CrawlerService.ExecuteLockList();
         }
 
         #endregion
@@ -68,6 +71,9 @@ namespace Surveillance.Schafold {
         public static async Task DoorStatus([FromServices] PerformContext _PC) {
             // 取得服務
             var CrawlerService = ProviderService.Collection.GetService<ICrawlerService>();
+
+            // 執行門鎖狀態爬蟲
+            await CrawlerService.ExecuteLockState();
         }
 
         #endregion

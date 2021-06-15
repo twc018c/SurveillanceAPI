@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -88,6 +90,22 @@ namespace Surveillance.Library {
             var Intersect = _ListX.Intersect(_ListY).ToList();
 
             return (XnotY, YnotX, Intersect);
+        }
+
+
+        /// <summary>
+        /// 取得圖片尺寸
+        /// </summary>
+        /// <param name="_Buffer">緩衝</param>
+        /// <returns>Tuple</returns>
+        public static (int Width, int Height) GetImageSize(byte[] _Buffer) {
+            if (_Buffer == null || _Buffer.Length == 0) {
+                return (0, 0);
+            }
+
+            var Target = Image.FromStream(new MemoryStream(_Buffer));
+
+            return (Target.Width, Target.Height);
         }
 
 

@@ -101,6 +101,7 @@ namespace Surveillance {
             _Services.AddTransient<ICardRepository, CardRepository>();
             _Services.AddTransient<IDoorRepository, DoorRepository>();
             _Services.AddTransient<IEventLogRepository, EventLogRepository>();
+            _Services.AddTransient<IFloorRepository, FloorRepository>();
             _Services.AddTransient<IUserRepository, UserRepository>();
             _Services.AddTransient<IUserLogRepository, UserLogRepository>();
 

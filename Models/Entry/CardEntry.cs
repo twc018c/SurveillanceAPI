@@ -13,7 +13,7 @@
 
 
     /// <summary>
-    /// 門卡
+    /// 門卡指標
     /// </summary>
     public class CardCursorEntry {
 
