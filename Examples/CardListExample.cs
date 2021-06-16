@@ -7,14 +7,14 @@ namespace Surveillance.Examples {
     /// <summary>
     /// 模型範例
     /// </summary>
-    public class CardExample : IExamplesProvider<CardEntry> {
+    public class CardListExample : IExamplesProvider<CardListEntry> {
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <returns>CardEntry</returns>
-        public CardEntry GetExamples() {
-            return new CardEntry() {
+        public CardListEntry GetExamples() {
+            return new CardListEntry() {
                 Keyword = ""
             };
         }

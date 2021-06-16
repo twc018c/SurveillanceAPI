@@ -46,7 +46,7 @@ namespace Surveillance.Services {
             var ScienerService = ServiceProvider.GetService<IScienerService>();
 
             // 取得門鎖清單
-            var WrapperLocal = await DoorRepository.GetList(new DoorEntry() {
+            var WrapperLocal = await DoorRepository.GetList(new DoorListEntry() {
                 PageNow = PageNow,
                 PageShow = PageShow
             });

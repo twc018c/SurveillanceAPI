@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Surveillance.Enums;
 using Surveillance.Examples;
@@ -23,14 +25,17 @@ namespace Surveillance.Controllers {
     public class FloorController : ControllerBase {
 
         private readonly IFloorRepository FloorRepository;
+        private readonly IMapper Mapper;
 
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <param name="_FloorRepository">依賴性注入</param>
-        public FloorController(IFloorRepository _FloorRepository) {
+        /// <param name="_Mapper">模型映射</param>
+        public FloorController(IFloorRepository _FloorRepository, IMapper _Mapper) {
             FloorRepository = _FloorRepository;
+            Mapper = _Mapper;
         }
 
 
@@ -89,8 +94,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("List")]
-        [SwaggerRequestExample(typeof(FloorEntry), typeof(FloorExample))]
-        public async Task<Dictionary<string, object>> GetList(FloorEntry _Entry) {
+        [SwaggerRequestExample(typeof(FloorListEntry), typeof(FloorListExample))]
+        public async Task<Dictionary<string, object>> GetList(FloorListEntry _Entry) {
             // 取得樓層清單
             var Temp = await FloorRepository.GetList(_Entry);
 
@@ -100,6 +105,23 @@ namespace Surveillance.Controllers {
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
             Dictionary.Add("resultMessage", "取得樓層清單成功");
             
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 取得樓層選單
+        /// </summary>
+        [HttpGet("Menu")]
+        public async Task<Dictionary<string, object>> GetMenu() {
+            // 取得樓層選單
+            var List = await FloorRepository.GetMenu();
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", List);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得樓層選單成功");
+
             return Dictionary;
         }
 
@@ -132,19 +154,30 @@ namespace Surveillance.Controllers {
         /// <summary>
         /// 新增樓層
         /// </summary>
-        /// <param name="_Model">模型</param>
+        /// <param name="_Entry">模型</param>
         [HttpPut]
-        public async Task<Dictionary<string, object>> Set(FloorModel _Model) {
+        public async Task<Dictionary<string, object>> Set([FromForm] FloorModifyEntry _Entry) {
+            int Seq = 0;
             var ResultCount = 0;
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "新增樓層失敗，層級重複";
 
             // 檢查樓層層級
-            bool IsExist = await FloorRepository.CheckLevel(_Model.Level);
+            bool IsExist = await FloorRepository.CheckLevel(_Entry.Level);
 
             if (IsExist == false) {
+                // 模型映射
+                var Model = Mapper.Map<FloorModifyEntry, FloorModel>(_Entry);
+
+                if (_Entry.File != null) {
+                    MemoryStream MS = new MemoryStream();
+                    await _Entry.File.CopyToAsync(MS);
+                    Model.Image = MS.ToArray();
+                    Model.ImageType = _Entry.File.ContentType;
+                }
+
                 // 新增樓層
-                await FloorRepository.Set(_Model);
+                await FloorRepository.Set(Model);
 
                 ResultCount = 1;
                 ResultCode = API_RESULT_CODE.SUCCESS;
@@ -152,6 +185,7 @@ namespace Surveillance.Controllers {
             }
 
             var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Seq);
             Dictionary.Add("resultCount", ResultCount);
             Dictionary.Add("resultCode", ResultCode);
             Dictionary.Add("resultMessage", ResultMessage);
@@ -171,7 +205,7 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPatch]
-        public async Task<Dictionary<string, object>> Update(FloorUpdateEntry _Entry) {
+        public async Task<Dictionary<string, object>> Update([FromForm] FloorModifyEntry _Entry) {
             var ResultCode = API_RESULT_CODE.PARA_ERROR;
             var ResultMessage = "修改樓層失敗，層級不存在";
 
@@ -179,11 +213,59 @@ namespace Surveillance.Controllers {
             bool IsExist = await FloorRepository.CheckLevel(_Entry.Level);
 
             if (IsExist == true) {
+                // 模型映射
+                var Model = Mapper.Map<FloorModifyEntry, FloorModel>(_Entry);
+
+                if (_Entry.File != null) {
+                    MemoryStream MS = new MemoryStream();
+                    await _Entry.File.CopyToAsync(MS);
+                    Model.Image = MS.ToArray();
+                    Model.ImageType = _Entry.File.ContentType;
+                }
+
                 // 修改樓層
-                await FloorRepository.Update(_Entry);
+                await FloorRepository.Update(Model);
 
                 ResultCode = API_RESULT_CODE.SUCCESS;
                 ResultMessage = "修改樓層成功";
+            }
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 修改樓層圖片
+        /// </summary>
+        /// <param name="Seq">流水編號</param>
+        /// <param name="File">檔案</param>
+        [HttpPatch("Image")]
+        public async Task<Dictionary<string, object>> UpdateImage([FromForm] int Seq, IFormFile File) {
+            var ResultCode = API_RESULT_CODE.UNKNOW;
+            var ResultMessage = string.Empty;
+
+            if (Seq <= 0 || File == null) {
+                ResultCode = API_RESULT_CODE.PARA_ERROR;
+                ResultMessage = "修改樓層圖片，缺少參數或檔案";
+            } else {
+                MemoryStream MS = new MemoryStream();
+                await File.CopyToAsync(MS);
+                byte[] Image = MS.ToArray();
+                string ImageType = File.ContentType;
+
+                // 修改樓層
+                await FloorRepository.Update(new FloorModel() {
+                    Seq = Seq,
+                    Image = Image,
+                    ImageType = ImageType
+                });
+
+                ResultCode = API_RESULT_CODE.SUCCESS;
+                ResultMessage = "修改樓層圖片成功";
             }
 
             var Dictionary = new Dictionary<string, object>();

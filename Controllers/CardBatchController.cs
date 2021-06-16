@@ -40,8 +40,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("List")]
-        [SwaggerRequestExample(typeof(CardBatchEntry), typeof(CardBatchExample))]
-        public async Task<Dictionary<string, object>> GetList(CardBatchEntry _Entry) {
+        [SwaggerRequestExample(typeof(CardBatchListEntry), typeof(CardBatchListExample))]
+        public async Task<Dictionary<string, object>> GetList(CardBatchListEntry _Entry) {
             // 取得門卡批次清單
             var Temp = await CardBatchRepository.GetList(_Entry);
 

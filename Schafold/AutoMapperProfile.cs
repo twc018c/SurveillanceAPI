@@ -19,6 +19,10 @@ namespace Surveillance.Schafold {
 
             // 門鎖
             CreateMap<DoorModel, DoorViewModel>();
+
+            // 樓層
+            CreateMap<FloorModel, FloorViewModel>();
+            CreateMap<FloorModifyEntry, FloorModel>();
         }
     }
 }

@@ -5,9 +5,9 @@ using System;
 namespace Surveillance.Models {
 
     /// <summary>
-    /// 事件紀錄
+    /// 事件紀錄清單
     /// </summary>
-    public class EventLogEntry : Entry {
+    public class EventLogListEntry : Entry {
 
         /// <summary>
         /// 開始時間

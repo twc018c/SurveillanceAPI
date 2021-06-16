@@ -59,7 +59,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_Entry">模型</param>
         /// <returns>Tuple</returns>
-        public async Task<(List<DoorViewModel> List, int Count)> GetList(DoorEntry _Entry) {
+        public async Task<(List<DoorViewModel> List, int Count)> GetList(DoorListEntry _Entry) {
             int PageNow = _Entry.PageNow;
             int PageShow = _Entry.PageShow;
             string Keyword = _Entry.Keyword;

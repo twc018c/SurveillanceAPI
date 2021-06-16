@@ -4,9 +4,9 @@
 namespace Surveillance.Models {
 
     /// <summary>
-    /// 門卡批次
+    /// 門卡批次清單
     /// </summary>
-    public class CardBatchEntry : Entry {
+    public class CardBatchListEntry : Entry {
 
         /// <summary>
         /// 關鍵字

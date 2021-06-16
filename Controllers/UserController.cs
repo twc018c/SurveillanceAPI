@@ -64,8 +64,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("List")]
-        [SwaggerRequestExample(typeof(UserEntry), typeof(UserExample))]
-        public async Task<Dictionary<string, object>> GetList(UserEntry _Entry) {
+        [SwaggerRequestExample(typeof(UserListEntry), typeof(UserListExample))]
+        public async Task<Dictionary<string, object>> GetList(UserListEntry _Entry) {
             // 取得使用者清單
             var Temp = await UserRepository.GetList(_Entry);
 

@@ -9,14 +9,14 @@ namespace Surveillance.Examples {
     /// <summary>
     /// 模型範例
     /// </summary>
-    public class EventLogExample : IExamplesProvider<EventLogEntry> {
+    public class EventLogListExample : IExamplesProvider<EventLogListEntry> {
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <returns>EventLogEntry</returns>
-        public EventLogEntry GetExamples() {
-            return new EventLogEntry() {
+        public EventLogListEntry GetExamples() {
+            return new EventLogListEntry() {
                 StartTime = new DateTime(2021, 01, 01),
                 EndTime = new DateTime(2021, 12, 31),
                 UserSeq = 0,

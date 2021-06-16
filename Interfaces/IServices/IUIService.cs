@@ -8,6 +8,6 @@ namespace Surveillance.Interfaces {
     /// UI
     /// </summary>
     public interface IUIService {
-        List<SelectModel> GetFloor();
+        List<SelectModel> GetPower();
     }
 }

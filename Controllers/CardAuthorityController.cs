@@ -40,8 +40,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("List")]
-        [SwaggerRequestExample(typeof(CardAuthorityEntry), typeof(CardAuthorityExample))]
-        public async Task<Dictionary<string, object>> GetList(CardAuthorityEntry _Entry) {
+        [SwaggerRequestExample(typeof(CardAuthorityListEntry), typeof(CardAuthorityListExample))]
+        public async Task<Dictionary<string, object>> GetList(CardAuthorityListEntry _Entry) {
             // 取得門卡權限清單
             var Temp = await CardAuthorityRepository.GetList(_Entry);
 

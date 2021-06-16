@@ -4,9 +4,9 @@
 namespace Surveillance.Models {
 
     /// <summary>
-    /// 門鎖
+    /// 門鎖清單
     /// </summary>
-    public class DoorEntry : Entry {
+    public class DoorListEntry : Entry {
 
         /// <summary>
         /// 關鍵字

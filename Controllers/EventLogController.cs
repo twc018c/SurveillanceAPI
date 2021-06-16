@@ -40,8 +40,8 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_Entry">模型</param>
         [HttpPost("List")]
-        [SwaggerRequestExample(typeof(EventLogEntry), typeof(EventLogExample))]
-        public async Task<Dictionary<string, object>> GetList(EventLogEntry _Entry) {
+        [SwaggerRequestExample(typeof(EventLogListEntry), typeof(EventLogListExample))]
+        public async Task<Dictionary<string, object>> GetList(EventLogListEntry _Entry) {
             // 取得事件紀錄清單
             var Temp = await EventLogRepository.GetList(_Entry);
 

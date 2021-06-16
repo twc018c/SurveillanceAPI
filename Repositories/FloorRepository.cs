@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Surveillance.Enums;
 using Surveillance.Interfaces;
 using Surveillance.Library;
 using Surveillance.Models;
 using Surveillance.ViewModels;
 using Surveillance.Schafold;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -90,11 +88,12 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_Entry">模型</param>
         /// <returns>Tuple</returns>
-        public async Task<(List<FloorViewModel> List, int Count)> GetList(FloorEntry _Entry) {
+        public async Task<(List<FloorViewModel> List, int Count)> GetList(FloorListEntry _Entry) {
             int PageNow = _Entry.PageNow;
             int PageShow = _Entry.PageShow;
             string Keyword = _Entry.Keyword;
             int Level = _Entry.Level;
+            bool FlagImage = _Entry.FlagImage;
 
             var Query = DatabaseContext.Floor.AsQueryable();
 
@@ -115,6 +114,14 @@ namespace Surveillance.Repositories {
                                   .Take(PageShow)
                                   .ToListAsync();
 
+            // 圖片旗標
+            if (FlagImage == false) {
+                foreach (var Item in List) {
+                    Item.Image = null;
+                    Item.ImageType = string.Empty;
+                }
+            }
+
             // 模型映射
             var ListVM = Mapper.Map<List<FloorModel>, List<FloorViewModel>>(List);
 
@@ -123,6 +130,26 @@ namespace Surveillance.Repositories {
             });
 
             return (ListVM, Count);
+        }
+
+
+        /// <summary>
+        /// 取得樓層選單
+        /// </summary>
+        /// <returns>List</returns>
+        public async Task<List<SelectModel>> GetMenu() {
+            List<SelectModel> List = new List<SelectModel>();
+
+            var Query = DatabaseContext.Floor.AsQueryable();
+
+            await Query.OrderBy(x => x.Seq).ForEachAsync(x => {
+                List.Add(new SelectModel() {
+                    Value = (int)x.Seq,
+                    Label = x.Name
+                });
+            });
+
+            return List;
         }
 
 
@@ -203,14 +230,27 @@ namespace Surveillance.Repositories {
         /// <summary>
         /// 修改樓層
         /// </summary>
-        /// <param name="_Entry">模型</param>
+        /// <param name="_Model">模型</param>
         /// <returns>Task</returns>
-        public async Task Update(FloorUpdateEntry _Entry) {
-            var Temp = await DatabaseContext.Floor.SingleAsync(x => x.Seq == _Entry.Seq);
+        public async Task Update(FloorModel _Model) {
+            var Temp = await DatabaseContext.Floor.SingleAsync(x => x.Seq == _Model.Seq);
 
             if (Temp != null) {
-                Temp.Name = _Entry.Name;
-                Temp.Level = _Entry.Level;
+                // 名稱
+                if (!string.IsNullOrEmpty(_Model.Name)) {
+                    Temp.Name = _Model.Name;
+                }
+
+                // 層級
+                if (_Model.Level != 0) {
+                    Temp.Level = _Model.Level;
+                }
+                
+                // 圖片
+                if (_Model.Image != null) {
+                    Temp.Image = _Model.Image;
+                    Temp.ImageType = _Model.ImageType;
+                }
 
                 await DatabaseContext.SaveChangesAsync();
             }

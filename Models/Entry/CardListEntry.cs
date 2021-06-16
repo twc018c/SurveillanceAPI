@@ -1,9 +1,9 @@
 ﻿namespace Surveillance.Models {
 
     /// <summary>
-    /// 門卡
+    /// 門卡清單
     /// </summary>
-    public class CardEntry : Entry {
+    public class CardListEntry : Entry {
 
         /// <summary>
         /// 關鍵字

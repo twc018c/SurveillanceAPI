@@ -20,18 +20,22 @@ namespace Surveillance.Services {
 
 
         /// <summary>
-        /// 取得樓層
+        /// 取得電量
         /// </summary>
         /// <returns>List</returns>
-        public List<SelectModel> GetFloor() {
+        public List<SelectModel> GetPower() {
             var Dictionary = new Dictionary<int, string>();
-            Dictionary.Add(-2, "B2F");
-            Dictionary.Add(-1, "B1F");
-            Dictionary.Add(1, "1F");
-            Dictionary.Add(2, "2F");
-            Dictionary.Add(3, "3F");
-            Dictionary.Add(4, "4F");
-            Dictionary.Add(5, "5F");
+            Dictionary.Add(0, "0");
+            Dictionary.Add(10, "10");
+            Dictionary.Add(20, "20");
+            Dictionary.Add(30, "30");
+            Dictionary.Add(40, "40");
+            Dictionary.Add(50, "50");
+            Dictionary.Add(60, "60");
+            Dictionary.Add(70, "70");
+            Dictionary.Add(80, "80");
+            Dictionary.Add(90, "90");
+            Dictionary.Add(100, "100");
 
             return Dictionary.Select(x => new SelectModel() {
                                         Value = x.Key,

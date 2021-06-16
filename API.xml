@@ -240,11 +240,12 @@
             樓層
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.FloorController.#ctor(Surveillance.Interfaces.IFloorRepository)">
+        <member name="M:Surveillance.Controllers.FloorController.#ctor(Surveillance.Interfaces.IFloorRepository,AutoMapper.IMapper)">
             <summary>
             建構
             </summary>
             <param name="_FloorRepository">依賴性注入</param>
+            <param name="_Mapper">模型映射</param>
         </member>
         <member name="M:Surveillance.Controllers.FloorController.Get(System.Int32)">
             <summary>
@@ -258,11 +259,16 @@
             </summary>
             <param name="_Seq" example="1">流水編號</param>
         </member>
-        <member name="M:Surveillance.Controllers.FloorController.GetList(Surveillance.Models.FloorEntry)">
+        <member name="M:Surveillance.Controllers.FloorController.GetList(Surveillance.Models.FloorListEntry)">
             <summary>
             取得樓層清單
             </summary>
             <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.FloorController.GetMenu">
+            <summary>
+            取得樓層選單
+            </summary>
         </member>
         <member name="M:Surveillance.Controllers.FloorController.GetCursor(Surveillance.Models.FloorCursorEntry)">
             <summary>
@@ -270,17 +276,24 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.FloorController.Set(Surveillance.Models.FloorModel)">
+        <member name="M:Surveillance.Controllers.FloorController.Set(Surveillance.Models.FloorModifyEntry)">
             <summary>
             新增樓層
             </summary>
-            <param name="_Model">模型</param>
+            <param name="_Entry">模型</param>
         </member>
-        <member name="M:Surveillance.Controllers.FloorController.Update(Surveillance.Models.FloorUpdateEntry)">
+        <member name="M:Surveillance.Controllers.FloorController.Update(Surveillance.Models.FloorModifyEntry)">
             <summary>
             修改樓層
             </summary>
             <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.FloorController.UpdateImage(System.Int32,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            修改樓層圖片
+            </summary>
+            <param name="Seq">流水編號</param>
+            <param name="File">檔案</param>
         </member>
         <member name="M:Surveillance.Controllers.FloorController.Delete(System.Int32)">
             <summary>
@@ -389,9 +402,9 @@
             </summary>
             <param name="_UIService">注入服務</param>
         </member>
-        <member name="M:Surveillance.Controllers.UIController.GetFloor">
+        <member name="M:Surveillance.Controllers.UIController.GetPower">
             <summary>
-            取得樓層
+            取得電量
             </summary>
         </member>
         <member name="T:Surveillance.Controllers.UserController">
@@ -632,12 +645,12 @@
             </summary>
             <returns>FloorCursorEntry</returns>
         </member>
-        <member name="T:Surveillance.Examples.FloorExample">
+        <member name="T:Surveillance.Examples.FloorListExample">
             <summary>
             模型範例
             </summary>
         </member>
-        <member name="M:Surveillance.Examples.FloorExample.GetExamples">
+        <member name="M:Surveillance.Examples.FloorListExample.GetExamples">
             <summary>
             建構
             </summary>
@@ -1419,19 +1432,34 @@
             狀態
             </summary>
         </member>
-        <member name="T:Surveillance.Models.FloorEntry">
+        <member name="T:Surveillance.Models.FloorListEntry">
             <summary>
             樓層
             </summary>
         </member>
-        <member name="P:Surveillance.Models.FloorEntry.Keyword">
+        <member name="P:Surveillance.Models.FloorListEntry.Keyword">
             <summary>
             關鍵字
             </summary>
         </member>
-        <member name="P:Surveillance.Models.FloorEntry.Level">
+        <member name="P:Surveillance.Models.FloorListEntry.Level">
             <summary>
             層級
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.FloorListEntry.FlagImage">
+            <summary>
+            圖片旗標
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.FloorModifyEntry">
+            <summary>
+            樓層異動 (新增/修改)
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.FloorModifyEntry.File">
+            <summary>
+            檔案
             </summary>
         </member>
         <member name="T:Surveillance.Models.FloorCursorEntry">
@@ -1449,26 +1477,6 @@
             方向
             </summary>
             <remarks>true=往下、false=往上</remarks>
-        </member>
-        <member name="T:Surveillance.Models.FloorUpdateEntry">
-            <summary>
-            樓層更新
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.FloorUpdateEntry.Seq">
-            <summary>
-            流水編號
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.FloorUpdateEntry.Level">
-            <summary>
-            層級
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.FloorUpdateEntry.Name">
-            <summary>
-            名稱
-            </summary>
         </member>
         <member name="T:Surveillance.Models.UserEntry">
             <summary>
@@ -3031,12 +3039,18 @@
             <param name="_Seq">流水編號</param>
             <returns>ImageModel</returns>
         </member>
-        <member name="M:Surveillance.Repositories.FloorRepository.GetList(Surveillance.Models.FloorEntry)">
+        <member name="M:Surveillance.Repositories.FloorRepository.GetList(Surveillance.Models.FloorListEntry)">
             <summary>
             取得樓層清單
             </summary>
             <param name="_Entry">模型</param>
             <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.FloorRepository.GetMenu">
+            <summary>
+            取得樓層選單
+            </summary>
+            <returns>List</returns>
         </member>
         <member name="M:Surveillance.Repositories.FloorRepository.GetCount">
             <summary>
@@ -3065,11 +3079,11 @@
             <param name="_List">清單</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Surveillance.Repositories.FloorRepository.Update(Surveillance.Models.FloorUpdateEntry)">
+        <member name="M:Surveillance.Repositories.FloorRepository.Update(Surveillance.Models.FloorModel)">
             <summary>
             修改樓層
             </summary>
-            <param name="_Entry">模型</param>
+            <param name="_Model">模型</param>
             <returns>Task</returns>
         </member>
         <member name="M:Surveillance.Repositories.FloorRepository.Delete(System.Int32)">
@@ -3708,9 +3722,9 @@
             建構
             </summary>
         </member>
-        <member name="M:Surveillance.Services.UIService.GetFloor">
+        <member name="M:Surveillance.Services.UIService.GetPower">
             <summary>
-            取得樓層
+            取得電量
             </summary>
             <returns>List</returns>
         </member>

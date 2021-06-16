@@ -13,7 +13,7 @@ namespace Surveillance.Interfaces {
 
         #region "讀取"
 
-        Task<(List<UserLogViewModel> List, int Count)> GetList(UserLogEntry _Entry);
+        Task<(List<UserLogViewModel> List, int Count)> GetList(UserLogListEntry _Entry);
 
         #endregion
 

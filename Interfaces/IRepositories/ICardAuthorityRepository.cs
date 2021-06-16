@@ -13,7 +13,7 @@ namespace Surveillance.Interfaces {
 
         #region "讀取"
 
-        Task<(List<CardAuthorityViewModel> List, int Count)> GetList(CardAuthorityEntry _Entry);
+        Task<(List<CardAuthorityViewModel> List, int Count)> GetList(CardAuthorityListEntry _Entry);
 
         #endregion
 

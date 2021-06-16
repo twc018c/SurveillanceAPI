@@ -34,17 +34,17 @@ namespace Surveillance.Controllers {
 
 
         /// <summary>
-        /// 取得樓層
+        /// 取得電量
         /// </summary>
-        [HttpGet("Floor")]
-        public async Task<Dictionary<string, object>> GetFloor() {
-            // 取得樓層
-            var List = UIService.GetFloor();
+        [HttpGet("Power")]
+        public async Task<Dictionary<string, object>> GetPower() {
+            // 取得電量
+            var List = UIService.GetPower();
 
             var Dictionary = new Dictionary<string, object>();
             Dictionary.Add("result", List);
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
-            Dictionary.Add("resultMessage", "取得樓層成功");
+            Dictionary.Add("resultMessage", "取得電量成功");
 
             return Dictionary;
         }

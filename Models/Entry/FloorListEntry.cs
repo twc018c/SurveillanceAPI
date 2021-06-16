@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
 
 
 namespace Surveillance.Models {
 
     /// <summary>
-    /// 樓層
+    /// 樓層清單
     /// </summary>
-    public class FloorEntry : Entry {
+    public class FloorListEntry : Entry {
 
         /// <summary>
         /// 關鍵字
@@ -17,6 +17,23 @@ namespace Surveillance.Models {
         /// 層級
         /// </summary>
         public int Level { get; set; } = 0;
+
+        /// <summary>
+        /// 圖片旗標
+        /// </summary>
+        public bool FlagImage { get; set; } = false;
+    }
+
+
+    /// <summary>
+    /// 樓層異動 (新增/修改)
+    /// </summary>
+    public class FloorModifyEntry : FloorModel {
+
+        /// <summary>
+        /// 檔案
+        /// </summary>
+        public IFormFile File { get; set; } = null;
     }
 
 
@@ -35,27 +52,5 @@ namespace Surveillance.Models {
         /// </summary>
         /// <remarks>true=往下、false=往上</remarks>
         public bool Direction { get; set; } = true;
-    }
-
-
-    /// <summary>
-    /// 樓層更新
-    /// </summary>
-    public class FloorUpdateEntry {
-
-        /// <summary>
-        /// 流水編號
-        /// </summary>
-        public int Seq { get; set; } = 0;
-
-        /// <summary>
-        /// 層級
-        /// </summary>
-        public int Level { get; set; } = 0;
-
-        /// <summary>
-        /// 名稱
-        /// </summary>
-        public string Name { get; set; } = "";
     }
 }

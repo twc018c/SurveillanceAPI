@@ -7,16 +7,16 @@ namespace Surveillance.Examples {
     /// <summary>
     /// 模型範例
     /// </summary>
-    public class FloorExample : IExamplesProvider<FloorEntry> {
+    public class DoorListExample : IExamplesProvider<DoorListEntry> {
 
         /// <summary>
         /// 建構
         /// </summary>
-        /// <returns>FloorEntry</returns>
-        public FloorEntry GetExamples() {
-            return new FloorEntry() {
+        /// <returns>DoorEntry</returns>
+        public DoorListEntry GetExamples() {
+            return new DoorListEntry() {
                 Keyword = "",
-                Level = 0
+                Floor = 0
             };
         }
     }

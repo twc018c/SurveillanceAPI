@@ -39,7 +39,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_Entry">模型</param>
         /// <returns>Tuple</returns>
-        public async Task<(List<CardBatchViewModel> List, int Count)> GetList(CardBatchEntry _Entry) {
+        public async Task<(List<CardBatchViewModel> List, int Count)> GetList(CardBatchListEntry _Entry) {
             int PageNow = _Entry.PageNow;
             int PageShow = _Entry.PageShow;
             string Keyword = _Entry.Keyword;

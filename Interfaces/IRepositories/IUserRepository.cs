@@ -13,7 +13,7 @@ namespace Surveillance.Interfaces {
         #region "讀取"
 
         Task<UserModel> Get(string _Account);
-        Task<(List<UserModel> List, int Count)> GetList(UserEntry _Entry);
+        Task<(List<UserModel> List, int Count)> GetList(UserListEntry _Entry);
         Task<List<SelectModel>> GetMenu();
         Task<int> GetCount();
         Task<string> GetCursor(UserCursorEntry _Entry);

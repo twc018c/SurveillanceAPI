@@ -1,9 +1,9 @@
 ﻿namespace Surveillance.Models {
 
     /// <summary>
-    /// 使用者
+    /// 使用者清單
     /// </summary>
-    public class UserEntry : Entry {
+    public class UserListEntry : Entry {
 
         /// <summary>
         /// 關鍵字

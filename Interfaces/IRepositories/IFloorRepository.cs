@@ -15,7 +15,8 @@ namespace Surveillance.Interfaces {
 
         Task<FloorModel> Get(int _Seq);
         Task<ImageModel> GetImage(int _Seq);
-        Task<(List<FloorViewModel> List, int Count)> GetList(FloorEntry _Entry);
+        Task<(List<FloorViewModel> List, int Count)> GetList(FloorListEntry _Entry);
+        Task<List<SelectModel>> GetMenu();
         Task<int> GetCount();
         Task<int> GetCursor(FloorCursorEntry _Entry);
 
@@ -36,7 +37,7 @@ namespace Surveillance.Interfaces {
 
         #region "修改"
 
-        Task Update(FloorUpdateEntry _Model);
+        Task Update(FloorModel _Model);
 
         #endregion
 

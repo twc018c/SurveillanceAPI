@@ -37,7 +37,7 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_Entry">模型</param>
         /// <returns>Tuple</returns>
-        public async Task<(List<UserLogViewModel> List, int Count)> GetList(UserLogEntry _Entry) {
+        public async Task<(List<UserLogViewModel> List, int Count)> GetList(UserLogListEntry _Entry) {
             int PageNow = _Entry.PageNow;
             int PageShow = _Entry.PageShow;
             DateTime StartTime = _Entry.StartTime;
