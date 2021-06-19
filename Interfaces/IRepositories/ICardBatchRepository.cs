@@ -2,6 +2,7 @@
 using Surveillance.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 
@@ -14,7 +15,9 @@ namespace Surveillance.Interfaces {
 
         #region "讀取"
 
+        Task<CardBatchModel> Get(int _Seq);
         Task<(List<CardBatchViewModel> List, int Count)> GetList(CardBatchListEntry _Entry);
+        Task<int> GetCursor(CardBatchCursorEntry _Entry);
 
         #endregion
 
@@ -41,6 +44,7 @@ namespace Surveillance.Interfaces {
 
         #region "刪除"
 
+        Task DeleteBySeq(int _Seq);
         Task DeleteByCard(int _CardID);
         Task DeleteByHolder(string _HolderID);
         Task DeleteByTime(DateTime _StartTime, DateTime _EndTime);
@@ -53,6 +57,7 @@ namespace Surveillance.Interfaces {
         #region "其它"
 
         Task<bool> CheckAvailable(CardBatchCheckEntry _Entry);
+        Task<bool> Import(Stream _Stream, string _FileType);
 
         #endregion
     }

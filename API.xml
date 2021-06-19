@@ -15,7 +15,7 @@
             </summary>
             <param name="_CardAuthorityRepository">依賴性注入</param>
         </member>
-        <member name="M:Surveillance.Controllers.CardAuthorityController.GetList(Surveillance.Models.CardAuthorityEntry)">
+        <member name="M:Surveillance.Controllers.CardAuthorityController.GetList(Surveillance.Models.CardAuthorityListEntry)">
             <summary>
             取得門卡權限清單
             </summary>
@@ -56,9 +56,21 @@
             </summary>
             <param name="_CardBatchRepository">依賴性注入</param>
         </member>
-        <member name="M:Surveillance.Controllers.CardBatchController.GetList(Surveillance.Models.CardBatchEntry)">
+        <member name="M:Surveillance.Controllers.CardBatchController.Get(System.Int32)">
+            <summary>
+            取得門卡批次
+            </summary>
+            <param name="_Seq" example="1">流水編號</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.GetList(Surveillance.Models.CardBatchListEntry)">
             <summary>
             取得門卡批次清單
+            </summary>
+            <param name="_Entry">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.GetCursor(Surveillance.Models.CardBatchCursorEntry)">
+            <summary>
+            取得門卡批次指標
             </summary>
             <param name="_Entry">模型</param>
         </member>
@@ -73,6 +85,12 @@
             修改門卡批次
             </summary>
             <param name="_Model">模型</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.DeleteBySeq(System.Int32)">
+            <summary>
+            刪除門卡批次 (依流水編號)
+            </summary>
+            <param name="_Seq">流水編號</param>
         </member>
         <member name="M:Surveillance.Controllers.CardBatchController.DeleteByCard(System.Int32)">
             <summary>
@@ -92,6 +110,12 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="M:Surveillance.Controllers.CardBatchController.Import(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上傳門卡批次
+            </summary>
+            <param name="_File">檔案</param>
+        </member>
         <member name="T:Surveillance.Controllers.CardController">
             <summary>
             門卡
@@ -109,7 +133,7 @@
             </summary>
             <param name="_Seq" example="1">流水編號</param>
         </member>
-        <member name="M:Surveillance.Controllers.CardController.GetList(Surveillance.Models.CardEntry)">
+        <member name="M:Surveillance.Controllers.CardController.GetList(Surveillance.Models.CardListEntry)">
             <summary>
             取得門卡清單
             </summary>
@@ -188,7 +212,7 @@
             </summary>
             <param name="_Seq" example="1">流水編號</param>
         </member>
-        <member name="M:Surveillance.Controllers.DoorController.GetList(Surveillance.Models.DoorEntry)">
+        <member name="M:Surveillance.Controllers.DoorController.GetList(Surveillance.Models.DoorListEntry)">
             <summary>
             取得門鎖清單
             </summary>
@@ -229,7 +253,7 @@
             </summary>
             <param name="_EventLogRepository">依賴性注入</param>
         </member>
-        <member name="M:Surveillance.Controllers.EventLogController.GetList(Surveillance.Models.EventLogEntry)">
+        <member name="M:Surveillance.Controllers.EventLogController.GetList(Surveillance.Models.EventLogListEntry)">
             <summary>
             取得事件紀錄清單
             </summary>
@@ -426,7 +450,7 @@
             </summary>
             <param name="_Account" example="fish">帳號</param>
         </member>
-        <member name="M:Surveillance.Controllers.UserController.GetList(Surveillance.Models.UserEntry)">
+        <member name="M:Surveillance.Controllers.UserController.GetList(Surveillance.Models.UserListEntry)">
             <summary>
             取得使用者清單
             </summary>
@@ -484,7 +508,7 @@
             </summary>
             <param name="_UserLogRepository">依賴性注入</param>
         </member>
-        <member name="M:Surveillance.Controllers.UserLogController.GetList(Surveillance.Models.UserLogEntry)">
+        <member name="M:Surveillance.Controllers.UserLogController.GetList(Surveillance.Models.UserLogListEntry)">
             <summary>
             取得使用者紀錄清單
             </summary>
@@ -546,12 +570,12 @@
             </summary>
             <returns>CardAuthorityCheckEntry</returns>
         </member>
-        <member name="T:Surveillance.Examples.CardAuthorityExample">
+        <member name="T:Surveillance.Examples.CardAuthorityListExample">
             <summary>
             模型範例
             </summary>
         </member>
-        <member name="M:Surveillance.Examples.CardAuthorityExample.GetExamples">
+        <member name="M:Surveillance.Examples.CardAuthorityListExample.GetExamples">
             <summary>
             建構
             </summary>
@@ -568,12 +592,23 @@
             </summary>
             <returns>CardBatchCheckEntry</returns>
         </member>
-        <member name="T:Surveillance.Examples.CardBatchExample">
+        <member name="T:Surveillance.Examples.CardBatchCursorExample">
             <summary>
             模型範例
             </summary>
         </member>
-        <member name="M:Surveillance.Examples.CardBatchExample.GetExamples">
+        <member name="M:Surveillance.Examples.CardBatchCursorExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardBatchCursorEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.CardBatchListExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardBatchListExample.GetExamples">
             <summary>
             建構
             </summary>
@@ -590,12 +625,12 @@
             </summary>
             <returns>CardCursorEntry</returns>
         </member>
-        <member name="T:Surveillance.Examples.CardExample">
+        <member name="T:Surveillance.Examples.CardListExample">
             <summary>
             模型範例
             </summary>
         </member>
-        <member name="M:Surveillance.Examples.CardExample.GetExamples">
+        <member name="M:Surveillance.Examples.CardListExample.GetExamples">
             <summary>
             建構
             </summary>
@@ -612,23 +647,23 @@
             </summary>
             <returns>DoorCursorEntry</returns>
         </member>
-        <member name="T:Surveillance.Examples.DoorExample">
+        <member name="T:Surveillance.Examples.DoorListExample">
             <summary>
             模型範例
             </summary>
         </member>
-        <member name="M:Surveillance.Examples.DoorExample.GetExamples">
+        <member name="M:Surveillance.Examples.DoorListExample.GetExamples">
             <summary>
             建構
             </summary>
             <returns>DoorEntry</returns>
         </member>
-        <member name="T:Surveillance.Examples.EventLogExample">
+        <member name="T:Surveillance.Examples.EventLogListExample">
             <summary>
             模型範例
             </summary>
         </member>
-        <member name="M:Surveillance.Examples.EventLogExample.GetExamples">
+        <member name="M:Surveillance.Examples.EventLogListExample.GetExamples">
             <summary>
             建構
             </summary>
@@ -733,27 +768,16 @@
             </summary>
             <returns>UserCursorEntry</returns>
         </member>
-        <member name="T:Surveillance.Examples.UserExample">
+        <member name="T:Surveillance.Examples.UserListExample">
             <summary>
             模型範例
             </summary>
         </member>
-        <member name="M:Surveillance.Examples.UserExample.GetExamples">
+        <member name="M:Surveillance.Examples.UserListExample.GetExamples">
             <summary>
             建構
             </summary>
             <returns>UserEntry</returns>
-        </member>
-        <member name="T:Surveillance.Examples.UserLogExample">
-            <summary>
-            模型範例
-            </summary>
-        </member>
-        <member name="M:Surveillance.Examples.UserLogExample.GetExamples">
-            <summary>
-            建構
-            </summary>
-            <returns>UserLogEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.UserLoginExample">
             <summary>
@@ -765,6 +789,17 @@
             建構
             </summary>
             <returns>UserLoginEntry</returns>
+        </member>
+        <member name="T:Surveillance.Examples.UserLogListExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.UserLogListExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>UserLogEntry</returns>
         </member>
         <member name="T:Surveillance.Examples.Example">
             <summary>
@@ -1265,12 +1300,12 @@
             門卡編號
             </summary>
         </member>
-        <member name="T:Surveillance.Models.CardAuthorityEntry">
+        <member name="T:Surveillance.Models.CardAuthorityListEntry">
             <summary>
-            門卡權限
+            門卡權限清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.CardAuthorityEntry.Keyword">
+        <member name="P:Surveillance.Models.CardAuthorityListEntry.Keyword">
             <summary>
             關鍵字
             </summary>
@@ -1295,34 +1330,40 @@
             時間
             </summary>
         </member>
-        <member name="T:Surveillance.Models.CardBatchEntry">
+        <member name="T:Surveillance.Models.CardBatchCursorEntry">
             <summary>
-            門卡批次
+            門卡批次指標
             </summary>
         </member>
-        <member name="P:Surveillance.Models.CardBatchEntry.Keyword">
+        <member name="P:Surveillance.Models.CardBatchCursorEntry.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchCursorEntry.Direction">
+            <summary>
+            方向
+            </summary>
+            <remarks>true=往下、false=往上</remarks>
+        </member>
+        <member name="T:Surveillance.Models.CardBatchListEntry">
+            <summary>
+            門卡批次清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchListEntry.Keyword">
             <summary>
             關鍵字
             </summary>
         </member>
-        <member name="P:Surveillance.Models.CardBatchEntry.StartTime">
+        <member name="P:Surveillance.Models.CardBatchListEntry.StartTime">
             <summary>
             開始時間
             </summary>
         </member>
-        <member name="P:Surveillance.Models.CardBatchEntry.EndTime">
+        <member name="P:Surveillance.Models.CardBatchListEntry.EndTime">
             <summary>
             時間時間
-            </summary>
-        </member>
-        <member name="T:Surveillance.Models.CardEntry">
-            <summary>
-            門卡
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.CardEntry.Keyword">
-            <summary>
-            關鍵字
             </summary>
         </member>
         <member name="T:Surveillance.Models.CardCursorEntry">
@@ -1341,19 +1382,14 @@
             </summary>
             <remarks>true=往下、false=往上</remarks>
         </member>
-        <member name="T:Surveillance.Models.DoorEntry">
+        <member name="T:Surveillance.Models.CardListEntry">
             <summary>
-            門鎖
+            門卡清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.DoorEntry.Keyword">
+        <member name="P:Surveillance.Models.CardListEntry.Keyword">
             <summary>
             關鍵字
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.DoorEntry.Floor">
-            <summary>
-            樓層
             </summary>
         </member>
         <member name="T:Surveillance.Models.DoorCursorEntry">
@@ -1371,6 +1407,21 @@
             方向
             </summary>
             <remarks>true=往下、false=往上</remarks>
+        </member>
+        <member name="T:Surveillance.Models.DoorListEntry">
+            <summary>
+            門鎖清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorListEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.DoorListEntry.Floor">
+            <summary>
+            樓層
+            </summary>
         </member>
         <member name="T:Surveillance.Models.DoorUpdateEntry">
             <summary>
@@ -1402,39 +1453,55 @@
             電量更新時間
             </summary>
         </member>
-        <member name="T:Surveillance.Models.EventLogEntry">
+        <member name="T:Surveillance.Models.EventLogListEntry">
             <summary>
-            事件紀錄
+            事件紀錄清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.EventLogEntry.StartTime">
+        <member name="P:Surveillance.Models.EventLogListEntry.StartTime">
             <summary>
             開始時間
             </summary>
         </member>
-        <member name="P:Surveillance.Models.EventLogEntry.EndTime">
+        <member name="P:Surveillance.Models.EventLogListEntry.EndTime">
             <summary>
             結束時間
             </summary>
         </member>
-        <member name="P:Surveillance.Models.EventLogEntry.Keyword">
+        <member name="P:Surveillance.Models.EventLogListEntry.Keyword">
             <summary>
             關鍵字
             </summary>
         </member>
-        <member name="P:Surveillance.Models.EventLogEntry.UserSeq">
+        <member name="P:Surveillance.Models.EventLogListEntry.UserSeq">
             <summary>
             使用者流水編號
             </summary>
         </member>
-        <member name="P:Surveillance.Models.EventLogEntry.Status">
+        <member name="P:Surveillance.Models.EventLogListEntry.Status">
             <summary>
             狀態
             </summary>
         </member>
+        <member name="T:Surveillance.Models.FloorCursorEntry">
+            <summary>
+            樓層指標
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.FloorCursorEntry.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.FloorCursorEntry.Direction">
+            <summary>
+            方向
+            </summary>
+            <remarks>true=往下、false=往上</remarks>
+        </member>
         <member name="T:Surveillance.Models.FloorListEntry">
             <summary>
-            樓層
+            樓層清單
             </summary>
         </member>
         <member name="P:Surveillance.Models.FloorListEntry.Keyword">
@@ -1462,47 +1529,6 @@
             檔案
             </summary>
         </member>
-        <member name="T:Surveillance.Models.FloorCursorEntry">
-            <summary>
-            樓層指標
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.FloorCursorEntry.Seq">
-            <summary>
-            流水編號
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.FloorCursorEntry.Direction">
-            <summary>
-            方向
-            </summary>
-            <remarks>true=往下、false=往上</remarks>
-        </member>
-        <member name="T:Surveillance.Models.UserEntry">
-            <summary>
-            使用者
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.UserEntry.Keyword">
-            <summary>
-            關鍵字
-            </summary>
-        </member>
-        <member name="T:Surveillance.Models.UserPasswordEntry">
-            <summary>
-            使用者密碼
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.UserPasswordEntry.Account">
-            <summary>
-            帳號
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.UserPasswordEntry.Password">
-            <summary>
-            密碼
-            </summary>
-        </member>
         <member name="T:Surveillance.Models.UserCursorEntry">
             <summary>
             使用者指標
@@ -1519,29 +1545,14 @@
             </summary>
             <remarks>true=往下、false=往上</remarks>
         </member>
-        <member name="T:Surveillance.Models.UserLogEntry">
+        <member name="T:Surveillance.Models.UserListEntry">
             <summary>
-            使用者紀錄
+            使用者清單
             </summary>
         </member>
-        <member name="P:Surveillance.Models.UserLogEntry.StartTime">
+        <member name="P:Surveillance.Models.UserListEntry.Keyword">
             <summary>
-            開始時間
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.UserLogEntry.EndTime">
-            <summary>
-            結束時間
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.UserLogEntry.UserSeq">
-            <summary>
-            使用者流水編號
-            </summary>
-        </member>
-        <member name="P:Surveillance.Models.UserLogEntry.Status">
-            <summary>
-            狀態
+            關鍵字
             </summary>
         </member>
         <member name="T:Surveillance.Models.UserLoginEntry">
@@ -1562,6 +1573,46 @@
         <member name="P:Surveillance.Models.UserLoginEntry.IP">
             <summary>
             IP
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.UserLogListEntry">
+            <summary>
+            使用者紀錄清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogListEntry.StartTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogListEntry.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogListEntry.UserSeq">
+            <summary>
+            使用者流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserLogListEntry.Status">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.UserPasswordEntry">
+            <summary>
+            使用者密碼
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserPasswordEntry.Account">
+            <summary>
+            帳號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.UserPasswordEntry.Password">
+            <summary>
+            密碼
             </summary>
         </member>
         <member name="T:Surveillance.Models.Entry">
@@ -2698,7 +2749,7 @@
             <param name="_DatabaseContext">資料庫上下文</param>
             <param name="_Mapper">模型映射</param>
         </member>
-        <member name="M:Surveillance.Repositories.CardAuthorityRepository.GetList(Surveillance.Models.CardAuthorityEntry)">
+        <member name="M:Surveillance.Repositories.CardAuthorityRepository.GetList(Surveillance.Models.CardAuthorityListEntry)">
             <summary>
             取得門卡權限清單
             </summary>
@@ -2745,12 +2796,26 @@
             <param name="_DatabaseContext">資料庫上下文</param>
             <param name="_Mapper">模型映射</param>
         </member>
-        <member name="M:Surveillance.Repositories.CardBatchRepository.GetList(Surveillance.Models.CardBatchEntry)">
+        <member name="M:Surveillance.Repositories.CardBatchRepository.Get(System.Int32)">
+            <summary>
+            取得門卡批次
+            </summary>
+            <param name="_Seq">流水編號</param>
+            <returns>CardBatchModel</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.GetList(Surveillance.Models.CardBatchListEntry)">
             <summary>
             取得門卡批次清單
             </summary>
             <param name="_Entry">模型</param>
             <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.GetCursor(Surveillance.Models.CardBatchCursorEntry)">
+            <summary>
+            取得門卡批次指標
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>int</returns>
         </member>
         <member name="M:Surveillance.Repositories.CardBatchRepository.Set(System.Collections.Generic.List{Surveillance.Models.CardBatchModel})">
             <summary>
@@ -2764,6 +2829,13 @@
             修改門卡批次
             </summary>
             <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.DeleteBySeq(System.Int32)">
+            <summary>
+            刪除門卡批次 (依流水編號)
+            </summary>
+            <param name="_Seq">流水編號</param>
             <returns>Task</returns>
         </member>
         <member name="M:Surveillance.Repositories.CardBatchRepository.DeleteByCard(System.Int32)">
@@ -2795,6 +2867,14 @@
             <param name="_Entry">模型</param>
             <returns>bool</returns>
         </member>
+        <member name="M:Surveillance.Repositories.CardBatchRepository.Import(System.IO.Stream,System.String)">
+            <summary>
+            匯入門卡批次
+            </summary>
+            <param name="_Stream">串流</param>
+            <param name="_FileType">檔案類型</param>
+            <returns>bool</returns>
+        </member>
         <member name="T:Surveillance.Repositories.CardRepository">
             <summary>
             門卡
@@ -2814,7 +2894,7 @@
             <param name="_Seq">流水編號</param>
             <returns>CardModel</returns>
         </member>
-        <member name="M:Surveillance.Repositories.CardRepository.GetList(Surveillance.Models.CardEntry)">
+        <member name="M:Surveillance.Repositories.CardRepository.GetList(Surveillance.Models.CardListEntry)">
             <summary>
             取得門卡清單
             </summary>
@@ -2881,7 +2961,7 @@
             <param name="_Seq">流水編號</param>
             <returns>DoorModel</returns>
         </member>
-        <member name="M:Surveillance.Repositories.DoorRepository.GetList(Surveillance.Models.DoorEntry)">
+        <member name="M:Surveillance.Repositories.DoorRepository.GetList(Surveillance.Models.DoorListEntry)">
             <summary>
             取得門鎖清單
             </summary>
@@ -2971,7 +3051,7 @@
             </summary>
             <param name="_DatabaseContext">資料庫上下文</param>
         </member>
-        <member name="M:Surveillance.Repositories.EventLogRepository.GetList(Surveillance.Models.EventLogEntry)">
+        <member name="M:Surveillance.Repositories.EventLogRepository.GetList(Surveillance.Models.EventLogListEntry)">
             <summary>
             取得事件紀錄清單
             </summary>
@@ -3111,7 +3191,7 @@
             </summary>
             <param name="_DatabaseContext">資料庫上下文</param>
         </member>
-        <member name="M:Surveillance.Repositories.UserLogRepository.GetList(Surveillance.Models.UserLogEntry)">
+        <member name="M:Surveillance.Repositories.UserLogRepository.GetList(Surveillance.Models.UserLogListEntry)">
             <summary>
             取得使用者紀錄清單
             </summary>
@@ -3157,7 +3237,7 @@
             <param name="_Account">帳號</param>
             <returns>UserModel</returns>
         </member>
-        <member name="M:Surveillance.Repositories.UserRepository.GetList(Surveillance.Models.UserEntry)">
+        <member name="M:Surveillance.Repositories.UserRepository.GetList(Surveillance.Models.UserListEntry)">
             <summary>
             取得使用者清單
             </summary>

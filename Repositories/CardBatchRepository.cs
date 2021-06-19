@@ -7,6 +7,7 @@ using Surveillance.Schafold;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 
 
@@ -33,6 +34,25 @@ namespace Surveillance.Repositories {
 
 
         #region "讀取"
+
+        /// <summary>
+        /// 取得門卡批次
+        /// </summary>
+        /// <param name="_Seq">流水編號</param>
+        /// <returns>CardBatchModel</returns>
+        public async Task<CardBatchModel> Get(int _Seq = 0) {
+            var Model = await DatabaseContext.CardBatch
+                                             .AsQueryable()
+                                             .Where(x => x.Seq == _Seq)
+                                             .FirstOrDefaultAsync();
+
+            if (Model == null) {
+                Model = new CardBatchModel();
+            }
+
+            return Model;
+        }
+
 
         /// <summary>
         /// 取得門卡批次清單
@@ -91,6 +111,35 @@ namespace Surveillance.Repositories {
             return (List, Count);
         }
 
+
+        /// <summary>
+        /// 取得門卡批次指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>int</returns>
+        public async Task<int> GetCursor(CardBatchCursorEntry _Entry) {
+            int Seq = 0;
+            CardBatchModel Model = new CardBatchModel();
+
+            var Query = DatabaseContext.CardBatch.AsQueryable();
+
+            if (_Entry.Direction) {
+                Model = await Query.Where(x => x.Seq > _Entry.Seq)
+                                   .OrderBy(x => x.Seq)
+                                   .FirstOrDefaultAsync();
+            } else {
+                Model = await Query.Where(x => x.Seq < _Entry.Seq)
+                                   .OrderByDescending(x => x.Seq)
+                                   .FirstOrDefaultAsync();
+            }
+
+            if (Model != null) {
+                Seq = Model.Seq;
+            }
+
+            return Seq;
+        }
+
         #endregion
 
 
@@ -141,6 +190,22 @@ namespace Surveillance.Repositories {
 
 
         #region "刪除"
+
+        /// <summary>
+        /// 刪除門卡批次 (依流水編號)
+        /// </summary>
+        /// <param name="_Seq">流水編號</param>
+        /// <returns>Task</returns>
+        public async Task DeleteBySeq(int _Seq = 0) {
+            var Query = DatabaseContext.CardBatch
+                                       .AsQueryable()
+                                       .Where(x => x.Seq == _Seq);
+
+            DatabaseContext.CardBatch.RemoveRange(Query);
+
+            await DatabaseContext.SaveChangesAsync();
+        }
+
 
         /// <summary>
         /// 刪除門卡批次 (依門卡編號)
@@ -218,6 +283,48 @@ namespace Surveillance.Repositories {
             if (Model != null) {
                 Flag = true;
             }
+
+            return Flag;
+        }
+
+
+        /// <summary>
+        /// 匯入門卡批次
+        /// </summary>
+        /// <param name="_Stream">串流</param>
+        /// <param name="_FileType">檔案類型</param>
+        /// <returns>bool</returns>
+        public async Task<bool> Import(Stream _Stream, string _FileType) {
+            bool Flag = false;
+
+            var List = new List<CardBatchModel>();
+
+            using (var SR = new StreamReader(_Stream)) {
+                //string[] Header = SR.ReadLine().Split(',');
+
+                while (!SR.EndOfStream) {
+                    string[] Rows = SR.ReadLine().Split(',');
+
+                    int.TryParse(Rows[0].ToString(), out int CardID);
+                    string HolderID = Rows[1].ToString();
+                    string HolderName = Rows[2].ToString();
+                    DateTime.TryParse(Rows[3].ToString(), out DateTime StartTime);
+                    DateTime.TryParse(Rows[4].ToString(), out DateTime EndTime);
+                    
+                    List.Add(new CardBatchModel() {
+                        CardID = CardID,
+                        HolderID = HolderID,
+                        HolderName = HolderName,
+                        StartTime = StartTime,
+                        EndTime = EndTime
+                    });
+                }
+
+                Flag = true;
+            }
+            
+            // 新增門卡批次
+            await Set(List);
 
             return Flag;
         }

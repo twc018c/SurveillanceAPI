@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Surveillance.Enums;
 using Surveillance.Examples;
@@ -7,6 +8,7 @@ using Surveillance.Interfaces;
 using Surveillance.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 
@@ -36,6 +38,24 @@ namespace Surveillance.Controllers {
         #region "讀取"
 
         /// <summary>
+        /// 取得門卡批次
+        /// </summary>
+        /// <param name="_Seq" example="1">流水編號</param>
+        [HttpGet("{_Seq}")]
+        public async Task<Dictionary<string, object>> Get(int _Seq = 0) {
+            // 取得門卡批次
+            var Model = await CardBatchRepository.Get(_Seq);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Model);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得門卡批次成功");
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
         /// 取得門卡批次清單
         /// </summary>
         /// <param name="_Entry">模型</param>
@@ -51,6 +71,25 @@ namespace Surveillance.Controllers {
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
             Dictionary.Add("resultMessage", "取得門卡批次清單成功");
             
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 取得門卡批次指標
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPost("Cursor")]
+        [SwaggerRequestExample(typeof(CardBatchCursorEntry), typeof(CardBatchCursorExample))]
+        public async Task<Dictionary<string, object>> GetCursor(CardBatchCursorEntry _Entry) {
+            // 取得門卡批次指標
+            int Result = await CardBatchRepository.GetCursor(_Entry);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Result);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得門卡批次指標成功");
+
             return Dictionary;
         }
 
@@ -116,6 +155,23 @@ namespace Surveillance.Controllers {
         #region "刪除"
 
         /// <summary>
+        /// 刪除門卡批次 (依流水編號)
+        /// </summary>
+        /// <param name="_Seq">流水編號</param>
+        [HttpDelete("Card/{_Seq}")]
+        public async Task<Dictionary<string, object>> DeleteBySeq(int _Seq = 0) {
+            // 刪除門卡批次 (依流水編號)
+            await CardBatchRepository.DeleteByCard(_Seq);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "刪除門卡批次(依流水編號)成功");
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
         /// 刪除門卡批次 (依門卡編號)
         /// </summary>
         /// <param name="_CardID">門卡編號</param>
@@ -169,6 +225,36 @@ namespace Surveillance.Controllers {
             Dictionary.Add("result", Flag);
             Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
             Dictionary.Add("resultMessage", "檢查門卡批次成功");
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 上傳門卡批次
+        /// </summary>
+        /// <param name="_File">檔案</param>
+        [HttpPatch("Import")]
+        public async Task<Dictionary<string, object>> Import([FromForm] IFormFile _File) {
+            var ResultCode = API_RESULT_CODE.UNKNOW;
+            var ResultMessage = string.Empty;
+
+            if (_File == null || _File.FileName.EndsWith(".csv") == false) {
+                ResultCode = API_RESULT_CODE.PARA_ERROR;
+                ResultMessage = "上傳門卡批次失敗，缺少檔案或檔案格式不符合";
+            } else {
+                Stream Stream = _File.OpenReadStream();
+
+                // 匯入門卡批次
+                await CardBatchRepository.Import(Stream, _File.ContentType);
+
+                ResultCode = API_RESULT_CODE.SUCCESS;
+                ResultMessage = "上傳門卡批次成功";
+            }
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
 
             return Dictionary;
         }

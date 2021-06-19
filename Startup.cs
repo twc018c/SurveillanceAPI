@@ -213,8 +213,8 @@ namespace Surveillance {
             _App.UseSwagger();
             _App.UseSwaggerUI(Option => {
                 Option.DocExpansion(DocExpansion.None);
-                Option.DocumentTitle = "Surveillance";
-                Option.SwaggerEndpoint("/swagger/v1/swagger.json", "Surveillance v1");
+                Option.DocumentTitle = "SwaggerUI - Surveillance";
+                Option.SwaggerEndpoint("v1/swagger.json", "v1");
             });
 
             GlobalConfiguration.Configuration.UseStorage(new MySqlStorage(Global.ConnectionString, new MySqlStorageOptions {

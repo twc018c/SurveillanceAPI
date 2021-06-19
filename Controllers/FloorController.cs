@@ -250,7 +250,7 @@ namespace Surveillance.Controllers {
 
             if (Seq <= 0 || File == null) {
                 ResultCode = API_RESULT_CODE.PARA_ERROR;
-                ResultMessage = "修改樓層圖片，缺少參數或檔案";
+                ResultMessage = "修改樓層圖片失敗，缺少參數或檔案";
             } else {
                 MemoryStream MS = new MemoryStream();
                 await File.CopyToAsync(MS);
