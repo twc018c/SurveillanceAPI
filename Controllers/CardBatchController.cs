@@ -7,6 +7,7 @@ using Surveillance.Examples;
 using Surveillance.Interfaces;
 using Surveillance.Models;
 using Swashbuckle.AspNetCore.Filters;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -24,14 +25,20 @@ namespace Surveillance.Controllers {
     public class CardBatchController : ControllerBase {
 
         private readonly ICardBatchRepository CardBatchRepository;
+        private readonly ICardBatchLogRepository CardBatchLogRepository;
+        private readonly IJWTService JWTService;
 
 
         /// <summary>
         /// 建構
         /// </summary>
         /// <param name="_CardBatchRepository">依賴性注入</param>
-        public CardBatchController(ICardBatchRepository _CardBatchRepository) {
+        /// <param name="_CardBatchLogRepository">依賴性注入</param>
+        /// <param name="_JWTService">依賴性注入</param>
+        public CardBatchController(ICardBatchRepository _CardBatchRepository, ICardBatchLogRepository _CardBatchLogRepository, IJWTService _JWTService) {
             CardBatchRepository = _CardBatchRepository;
+            CardBatchLogRepository = _CardBatchLogRepository;
+            JWTService = _JWTService;
         }
 
 
@@ -204,6 +211,8 @@ namespace Surveillance.Controllers {
             return Dictionary;
         }
 
+        // TODO - DeleteByTime
+
         #endregion
 
 
@@ -235,9 +244,12 @@ namespace Surveillance.Controllers {
         /// </summary>
         /// <param name="_File">檔案</param>
         [HttpPatch("Import")]
-        public async Task<Dictionary<string, object>> Import([FromForm] IFormFile _File) {
+        public async Task<Dictionary<string, object>> Import([FromForm] [Bind(Prefix = "File")] IFormFile _File) {
             var ResultCode = API_RESULT_CODE.UNKNOW;
             var ResultMessage = string.Empty;
+
+            // 以權杖解析使用者流水編號
+            int UserSeq = JWTService.ParseUserSeq();
 
             if (_File == null || _File.FileName.EndsWith(".csv") == false) {
                 ResultCode = API_RESULT_CODE.PARA_ERROR;
@@ -246,7 +258,14 @@ namespace Surveillance.Controllers {
                 Stream Stream = _File.OpenReadStream();
 
                 // 匯入門卡批次
-                await CardBatchRepository.Import(Stream, _File.ContentType);
+                var Tuple = await CardBatchRepository.Import(Stream, _File.ContentType);
+
+                // 新增門鎖批次紀錄
+                await CardBatchLogRepository.Set(new CardBatchLogModel() {
+                    Time = DateTime.Now,
+                    UserSeq = UserSeq,
+                    Note = $"檔名 [{_File.FileName}]，容量 [{_File.Length}]，新增{Tuple.CountSuccess}筆"
+                });
 
                 ResultCode = API_RESULT_CODE.SUCCESS;
                 ResultMessage = "上傳門卡批次成功";

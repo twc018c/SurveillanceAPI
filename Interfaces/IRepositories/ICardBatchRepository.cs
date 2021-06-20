@@ -57,7 +57,7 @@ namespace Surveillance.Interfaces {
         #region "其它"
 
         Task<bool> CheckAvailable(CardBatchCheckEntry _Entry);
-        Task<bool> Import(Stream _Stream, string _FileType);
+        Task<(int Total, int CountSuccess)> Import(Stream _Stream, string _FileType);
 
         #endregion
     }

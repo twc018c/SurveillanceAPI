@@ -50,11 +50,13 @@
             門卡批次
             </summary>
         </member>
-        <member name="M:Surveillance.Controllers.CardBatchController.#ctor(Surveillance.Interfaces.ICardBatchRepository)">
+        <member name="M:Surveillance.Controllers.CardBatchController.#ctor(Surveillance.Interfaces.ICardBatchRepository,Surveillance.Interfaces.ICardBatchLogRepository,Surveillance.Interfaces.IJWTService)">
             <summary>
             建構
             </summary>
             <param name="_CardBatchRepository">依賴性注入</param>
+            <param name="_CardBatchLogRepository">依賴性注入</param>
+            <param name="_JWTService">依賴性注入</param>
         </member>
         <member name="M:Surveillance.Controllers.CardBatchController.Get(System.Int32)">
             <summary>
@@ -115,6 +117,23 @@
             上傳門卡批次
             </summary>
             <param name="_File">檔案</param>
+        </member>
+        <member name="T:Surveillance.Controllers.CardBatchLogController">
+            <summary>
+            門鎖批次紀錄
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchLogController.#ctor(Surveillance.Interfaces.ICardBatchLogRepository)">
+            <summary>
+            建構
+            </summary>
+            <param name="_CardBatchLogRepository">依賴性注入</param>
+        </member>
+        <member name="M:Surveillance.Controllers.CardBatchLogController.GetList(Surveillance.Models.CardBatchLogListEntry)">
+            <summary>
+            取得門鎖批次紀錄清單
+            </summary>
+            <param name="_Entry">模型</param>
         </member>
         <member name="T:Surveillance.Controllers.CardController">
             <summary>
@@ -317,7 +336,7 @@
             修改樓層圖片
             </summary>
             <param name="Seq">流水編號</param>
-            <param name="File">檔案</param>
+            <param name="_File">檔案</param>
         </member>
         <member name="M:Surveillance.Controllers.FloorController.Delete(System.Int32)">
             <summary>
@@ -614,6 +633,17 @@
             </summary>
             <returns>CardBatchEntry</returns>
         </member>
+        <member name="T:Surveillance.Examples.CardBatchLogListExample">
+            <summary>
+            模型範例
+            </summary>
+        </member>
+        <member name="M:Surveillance.Examples.CardBatchLogListExample.GetExamples">
+            <summary>
+            建構
+            </summary>
+            <returns>CardBatchLogListEntry</returns>
+        </member>
         <member name="T:Surveillance.Examples.CardCursorExample">
             <summary>
             模型範例
@@ -817,6 +847,11 @@
             門卡權限
             </summary>
         </member>
+        <member name="T:Surveillance.Interfaces.ICardBatchLogRepository">
+            <summary>
+            事件紀錄
+            </summary>
+        </member>
         <member name="T:Surveillance.Interfaces.ICardBatchRepository">
             <summary>
             門卡批次
@@ -1008,6 +1043,31 @@
         <member name="P:Surveillance.Models.CardAuthorityModel.CardID">
             <summary>
             門卡編號
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.CardBatchLogModel">
+            <summary>
+            門卡批次紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogModel.Seq">
+            <summary>
+            流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogModel.Time">
+            <summary>
+            時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogModel.UserSeq">
+            <summary>
+            使用者流水編號
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogModel.Note">
+            <summary>
+            備註
             </summary>
         </member>
         <member name="T:Surveillance.Models.CardBatchModel">
@@ -1364,6 +1424,31 @@
         <member name="P:Surveillance.Models.CardBatchListEntry.EndTime">
             <summary>
             時間時間
+            </summary>
+        </member>
+        <member name="T:Surveillance.Models.CardBatchLogListEntry">
+            <summary>
+            門卡批次紀錄清單
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogListEntry.StartTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogListEntry.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogListEntry.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="P:Surveillance.Models.CardBatchLogListEntry.UserSeq">
+            <summary>
+            使用者流水編號
             </summary>
         </member>
         <member name="T:Surveillance.Models.CardCursorEntry">
@@ -2784,6 +2869,31 @@
             <param name="_Entry">模型</param>
             <returns>bool</returns>
         </member>
+        <member name="T:Surveillance.Repositories.CardBatchLogRepository">
+            <summary>
+            門鎖批次紀錄
+            </summary>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchLogRepository.#ctor(Surveillance.Schafold.DatabaseContext)">
+            <summary>
+            建構
+            </summary>
+            <param name="_DatabaseContext">資料庫上下文</param>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchLogRepository.GetList(Surveillance.Models.CardBatchLogListEntry)">
+            <summary>
+            取得門鎖批次紀錄清單
+            </summary>
+            <param name="_Entry">模型</param>
+            <returns>Tuple</returns>
+        </member>
+        <member name="M:Surveillance.Repositories.CardBatchLogRepository.Set(Surveillance.Models.CardBatchLogModel)">
+            <summary>
+            新增門鎖批次紀錄
+            </summary>
+            <param name="_Model">模型</param>
+            <returns>Task</returns>
+        </member>
         <member name="T:Surveillance.Repositories.CardBatchRepository">
             <summary>
             門卡批次
@@ -2873,7 +2983,7 @@
             </summary>
             <param name="_Stream">串流</param>
             <param name="_FileType">檔案類型</param>
-            <returns>bool</returns>
+            <returns>Tuple</returns>
         </member>
         <member name="T:Surveillance.Repositories.CardRepository">
             <summary>
@@ -3848,6 +3958,21 @@
         <member name="P:Surveillance.ViewModels.CardAuthorityViewModel.DoorName">
             <summary>
             門鎖名稱
+            </summary>
+        </member>
+        <member name="T:Surveillance.ViewModels.CardBatchLogViewModel">
+            <summary>
+            門鎖批次紀錄
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardBatchLogViewModel.TimeStr">
+            <summary>
+            時間
+            </summary>
+        </member>
+        <member name="P:Surveillance.ViewModels.CardBatchLogViewModel.UserName">
+            <summary>
+            使用者名稱
             </summary>
         </member>
         <member name="T:Surveillance.ViewModels.CardBatchViewModel">

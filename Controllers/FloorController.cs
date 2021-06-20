@@ -242,20 +242,20 @@ namespace Surveillance.Controllers {
         /// 修改樓層圖片
         /// </summary>
         /// <param name="Seq">流水編號</param>
-        /// <param name="File">檔案</param>
+        /// <param name="_File">檔案</param>
         [HttpPatch("Image")]
-        public async Task<Dictionary<string, object>> UpdateImage([FromForm] int Seq, IFormFile File) {
+        public async Task<Dictionary<string, object>> UpdateImage([FromForm] int Seq, [Bind(Prefix = "File")] IFormFile _File) {
             var ResultCode = API_RESULT_CODE.UNKNOW;
             var ResultMessage = string.Empty;
 
-            if (Seq <= 0 || File == null) {
+            if (Seq <= 0 || _File == null) {
                 ResultCode = API_RESULT_CODE.PARA_ERROR;
                 ResultMessage = "修改樓層圖片失敗，缺少參數或檔案";
             } else {
                 MemoryStream MS = new MemoryStream();
-                await File.CopyToAsync(MS);
+                await _File.CopyToAsync(MS);
                 byte[] Image = MS.ToArray();
-                string ImageType = File.ContentType;
+                string ImageType = _File.ContentType;
 
                 // 修改樓層
                 await FloorRepository.Update(new FloorModel() {

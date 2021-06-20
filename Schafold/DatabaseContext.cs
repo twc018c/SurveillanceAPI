@@ -29,6 +29,7 @@ namespace Surveillance.Schafold {
             _MB.Entity<CardModel>().ToTable("Card");
             _MB.Entity<CardAuthorityModel>().ToTable("CardAuthority");
             _MB.Entity<CardBatchModel>().ToTable("CardBatch");
+            _MB.Entity<CardBatchLogModel>().ToTable("CardBatchLog");
             _MB.Entity<DoorModel>().ToTable("Door");
             _MB.Entity<EventLogModel>().ToTable("EventLog");
             _MB.Entity<FloorModel>().ToTable("Floor");
@@ -39,6 +40,7 @@ namespace Surveillance.Schafold {
             _MB.Entity<CardModel>().HasKey(x => x.Seq).HasName("PK_Card");
             _MB.Entity<CardAuthorityModel>().HasKey(x => x.Seq).HasName("PK_CardAuthority");
             _MB.Entity<CardBatchModel>().HasKey(x => x.Seq).HasName("PK_CardBatch");
+            _MB.Entity<CardBatchLogModel>().HasKey(x => x.Seq).HasName("PK_CardBatchLog");
             _MB.Entity<DoorModel>().HasKey(x => x.Seq).HasName("PK_Door");
             _MB.Entity<EventLogModel>().HasKey(x => x.Seq).HasName("PK_EventLog");
             _MB.Entity<FloorModel>().HasKey(x => x.Seq).HasName("PK_Floor");
@@ -49,6 +51,7 @@ namespace Surveillance.Schafold {
             _MB.Entity<CardModel>().HasIndex(x => x.ID).IsUnique().HasDatabaseName("Idx_Card");
             _MB.Entity<CardAuthorityModel>().HasIndex(x => new { x.DoorID, x.CardID }).HasDatabaseName("Idx_CardAuthority");
             _MB.Entity<CardBatchModel>().HasIndex(x => new { x.CardID, x.StartTime, x.EndTime }).HasDatabaseName("Idx_CardBatch");
+            _MB.Entity<CardBatchLogModel>().HasIndex(x => new { x.Time, x.UserSeq }).HasDatabaseName("Idx_CardBatchLog");
             _MB.Entity<DoorModel>().HasIndex(x => x.ID).HasDatabaseName("Idx_Door");
             _MB.Entity<FloorModel>().HasIndex(x => x.Level).HasDatabaseName("Idx_Floor");
             _MB.Entity<UserModel>().HasIndex(x => new { x.Account, x.Name }).HasDatabaseName("Idx_User");
@@ -67,6 +70,7 @@ namespace Surveillance.Schafold {
 
         public DbSet<CardAuthorityModel> CardAuthority { get; set; }
         public DbSet<CardBatchModel> CardBatch { get; set; }
+        public DbSet<CardBatchLogModel> CardBatchLog { get; set; }
         public DbSet<CardModel> Card { get; set; }
         public DbSet<DoorModel> Door { get; set; }
         public DbSet<EventLogModel> EventLog { get; set; }

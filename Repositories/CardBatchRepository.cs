@@ -63,8 +63,8 @@ namespace Surveillance.Repositories {
             int PageNow = _Entry.PageNow;
             int PageShow = _Entry.PageShow;
             string Keyword = _Entry.Keyword;
-            DateTime StartTime = _Entry.StartTime;
-            DateTime EndTime = _Entry.EndTime;
+            DateTime StartTime = _Entry.StartTime.ToLocalTime();
+            DateTime EndTime = _Entry.EndTime.ToLocalTime();
 
             var Query = DatabaseContext.CardBatch
                                        .AsQueryable()
@@ -177,8 +177,8 @@ namespace Surveillance.Repositories {
                 Temp.CardID = _Model.CardID;
                 Temp.HolderID = _Model.HolderID;
                 Temp.HolderName = _Model.HolderName;
-                Temp.StartTime = _Model.StartTime;
-                Temp.EndTime = _Model.EndTime;
+                Temp.StartTime = _Model.StartTime.ToLocalTime();
+                Temp.EndTime = _Model.EndTime.ToLocalTime();
 
                 await DatabaseContext.SaveChangesAsync();
             }
@@ -293,9 +293,10 @@ namespace Surveillance.Repositories {
         /// </summary>
         /// <param name="_Stream">串流</param>
         /// <param name="_FileType">檔案類型</param>
-        /// <returns>bool</returns>
-        public async Task<bool> Import(Stream _Stream, string _FileType) {
-            bool Flag = false;
+        /// <returns>Tuple</returns>
+        public async Task<(int Total, int CountSuccess)> Import(Stream _Stream, string _FileType) {
+            int Total = 0;
+            int CountSuccess = 0;
 
             var List = new List<CardBatchModel>();
 
@@ -303,30 +304,37 @@ namespace Surveillance.Repositories {
                 //string[] Header = SR.ReadLine().Split(',');
 
                 while (!SR.EndOfStream) {
+                    Total++;
+                    
+                    // 欄位
                     string[] Rows = SR.ReadLine().Split(',');
 
-                    int.TryParse(Rows[0].ToString(), out int CardID);
-                    string HolderID = Rows[1].ToString();
-                    string HolderName = Rows[2].ToString();
-                    DateTime.TryParse(Rows[3].ToString(), out DateTime StartTime);
-                    DateTime.TryParse(Rows[4].ToString(), out DateTime EndTime);
-                    
-                    List.Add(new CardBatchModel() {
-                        CardID = CardID,
-                        HolderID = HolderID,
-                        HolderName = HolderName,
-                        StartTime = StartTime,
-                        EndTime = EndTime
-                    });
-                }
+                    if (Rows.Length == 5) {
+                        CountSuccess++;
 
-                Flag = true;
+                        int.TryParse(Rows[0].ToString(), out int CardID);
+                        string HolderID = Rows[1].ToString();
+                        string HolderName = Rows[2].ToString();
+                        DateTime.TryParse(Rows[3].ToString(), out DateTime StartTime);
+                        DateTime.TryParse(Rows[4].ToString(), out DateTime EndTime);
+
+                        // TODO - 匯入檢查機制
+
+                        List.Add(new CardBatchModel() {
+                            CardID = CardID,
+                            HolderID = HolderID,
+                            HolderName = HolderName,
+                            StartTime = StartTime,
+                            EndTime = EndTime
+                        });
+                    }
+                }
             }
             
             // 新增門卡批次
             await Set(List);
 
-            return Flag;
+            return (Total, CountSuccess);
         }
 
         #endregion
