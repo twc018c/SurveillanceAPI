@@ -63,7 +63,7 @@ namespace Surveillance.Repositories {
             int PageNow = _Entry.PageNow;
             int PageShow = _Entry.PageShow;
             string Keyword = _Entry.Keyword;
-            int Floor = _Entry.Floor;
+            int FloorLevel = _Entry.FloorLevel;
 
             var Query = DatabaseContext.Door.AsQueryable();
 
@@ -72,9 +72,9 @@ namespace Surveillance.Repositories {
                 Query = Query.Where(x => x.Name.Contains(Keyword));
             }
 
-            // 樓層
-            if (Floor != 0) {
-                Query = Query.Where(x => x.Floor == Floor);
+            // 樓層層級
+            if (FloorLevel != 0) {
+                Query = Query.Where(x => x.FloorLevel == FloorLevel);
             }
 
             int Count = await Query.CountAsync();
@@ -184,7 +184,7 @@ namespace Surveillance.Repositories {
 
             if (Temp != null) {
                 Temp.Name = _Model.Name;
-                Temp.Floor = _Model.Floor;
+                Temp.FloorLevel = _Model.FloorLevel;
                 Temp.Note = _Model.Note;
 
                 // 狀態

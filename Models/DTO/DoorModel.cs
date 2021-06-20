@@ -25,9 +25,9 @@ namespace Surveillance.Models {
         public string Name { get; set; } = "";
 
         /// <summary>
-        /// ¼Ó¼h
+        /// ¼Ó¼h¼h¯Å
         /// </summary>
-        public int Floor { get; set; } = 0;
+        public int FloorLevel { get; set; } = 0;
 
         /// <summary>
         /// ³Æµù

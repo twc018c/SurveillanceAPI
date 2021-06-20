@@ -145,7 +145,8 @@ namespace Surveillance.Repositories {
             await Query.OrderBy(x => x.Seq).ForEachAsync(x => {
                 List.Add(new SelectModel() {
                     Value = (int)x.Seq,
-                    Label = x.Name
+                    Label = x.Name,
+                    LabelSub = x.Level.ToString()
                 });
             });
 

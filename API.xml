@@ -1157,9 +1157,9 @@
             門鎖名稱
             </summary>
         </member>
-        <member name="P:Surveillance.Models.DoorModel.Floor">
+        <member name="P:Surveillance.Models.DoorModel.FloorLevel">
             <summary>
-            樓層
+            樓層層級
             </summary>
         </member>
         <member name="P:Surveillance.Models.DoorModel.Note">
@@ -1503,9 +1503,9 @@
             關鍵字
             </summary>
         </member>
-        <member name="P:Surveillance.Models.DoorListEntry.Floor">
+        <member name="P:Surveillance.Models.DoorListEntry.FloorLevel">
             <summary>
-            樓層
+            樓層層級
             </summary>
         </member>
         <member name="T:Surveillance.Models.DoorUpdateEntry">

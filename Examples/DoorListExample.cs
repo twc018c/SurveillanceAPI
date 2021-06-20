@@ -16,7 +16,7 @@ namespace Surveillance.Examples {
         public DoorListEntry GetExamples() {
             return new DoorListEntry() {
                 Keyword = "",
-                Floor = 0
+                FloorLevel = 0
             };
         }
     }

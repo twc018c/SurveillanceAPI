@@ -11,8 +11,8 @@
         public string Keyword { get; set; } = "";
 
         /// <summary>
-        /// 樓層
+        /// 樓層層級
         /// </summary>
-        public int Floor { get; set; } = 0;
+        public int FloorLevel { get; set; } = 0;
     }
 }
