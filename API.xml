@@ -434,6 +434,21 @@
             </summary>
             <param name="_Entry">模型</param>
         </member>
+        <member name="T:Surveillance.Controllers.TestController">
+            <summary>
+            測試
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.TestController.#ctor">
+            <summary>
+            建構
+            </summary>
+        </member>
+        <member name="M:Surveillance.Controllers.TestController.Get">
+            <summary>
+            測試
+            </summary>
+        </member>
         <member name="T:Surveillance.Controllers.UIController">
             <summary>
             UI
@@ -2811,13 +2826,13 @@
         </member>
         <member name="M:Surveillance.Program.Main(System.String[])">
             <summary>
-            
+            主要程序
             </summary>
             <param name="_Args">參數</param>
         </member>
-        <member name="M:Surveillance.Program.CreateHostBuilder(System.String[])">
+        <member name="M:Surveillance.Program.CreateWebHostBuilder(System.String[])">
             <summary>
-            CreateHostBuilder
+            建立營運
             </summary>
             <param name="_Args">參數</param>
             <returns>IWebHostBuilder</returns>
@@ -3458,6 +3473,11 @@
         <member name="F:Surveillance.Schafold.Global.ConnectionString">
             <summary>
             連線字串
+            </summary>
+        </member>
+        <member name="F:Surveillance.Schafold.Global.PathBase">
+            <summary>
+            站台基底路徑
             </summary>
         </member>
         <member name="F:Surveillance.Schafold.Global.JWTSecret">

@@ -11,6 +11,11 @@
         public static string ConnectionString = "";
 
         /// <summary>
+        /// 站台基底路徑
+        /// </summary>
+        public static string PathBase = "";
+
+        /// <summary>
         /// JWT金鑰
         /// </summary>
         public static string JWTSecret = "";

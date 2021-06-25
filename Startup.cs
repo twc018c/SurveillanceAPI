@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Transactions;
 
@@ -47,6 +49,7 @@ namespace Surveillance {
             try {
                 // 設定檔
                 Global.ConnectionString = this.Configuration.GetConnectionString("DefaultConnection");
+                Global.PathBase = Configuration.GetSection("PathBase").Value;
                 Global.JWTSecret = Configuration.GetSection("JWT:Secret").Value;
                 Global.ScienerID = Configuration.GetSection("Sciener:ID").Value;
                 Global.ScienerSecret = Configuration.GetSection("Sciener:Secret").Value;
@@ -88,6 +91,11 @@ namespace Surveillance {
             _Services.AddControllers();
             _Services.AddMvc();
 
+            // ForwardedHeaders
+            _Services.Configure<ForwardedHeadersOptions>(Options => {
+                Options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
             // HTTPClient
             _Services.AddHttpClient();
 
@@ -117,7 +125,7 @@ namespace Surveillance {
             _Services.AddSwaggerGen(Option => {
                 Option.ExampleFilters();
                 Option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "API.xml"));
-                Option.SwaggerDoc("v1", new OpenApiInfo { Title = "Surveillance", Version = "v1" });
+                Option.SwaggerDoc("v1", new OpenApiInfo { Title = "Surveillance - SwaggerUI", Version = "v1" });
                 
                 // 排序
                 Option.OrderActionsBy(x => x.RelativePath);
@@ -197,10 +205,18 @@ namespace Surveillance {
         /// <param name="_App">應用程式</param>
         /// <param name="_Env">環境</param>
         public void Configure(IApplicationBuilder _App, IWebHostEnvironment _Env) {
-            if (_Env.IsDevelopment()) {
-                _App.UseDeveloperExceptionPage();
+            // 判斷作業系統 (正式環境為Linux Centos)
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+                // 路徑
+                _App.UsePathBase(new PathString(Global.PathBase));
+
+                // 轉送標頭 (Reverse Proxy)
+                _App.UseForwardedHeaders(new ForwardedHeadersOptions {
+                    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+                });
             }
 
+            _App.UseDeveloperExceptionPage();
             _App.UseCors("CorsPolicy");
             _App.UseRouting();
             _App.UseAuthorization();
@@ -210,11 +226,12 @@ namespace Surveillance {
                 Item.MapControllers();
             });
 
+            _App.UseStaticFiles();
             _App.UseStaticHttpContext();
             _App.UseSwagger();
             _App.UseSwaggerUI(Option => {
                 Option.DocExpansion(DocExpansion.None);
-                Option.DocumentTitle = "SwaggerUI - Surveillance";
+                Option.DocumentTitle = "Surveillance - SwaggerUI";
                 Option.SwaggerEndpoint("v1/swagger.json", "v1");
             });
 
@@ -234,7 +251,7 @@ namespace Surveillance {
             _App.UseHangfireDashboard(
                 pathMatch: "/hangfire",
                 options: new DashboardOptions() {
-                    DashboardTitle = "Surveillance Hangfire",
+                    DashboardTitle = "Surveillance - Hangfire",
                     Authorization = new[] {
                         new BasicAuthAuthorizationFilter(new BasicAuthAuthorizationFilterOptions {
                             RequireSsl = false,
