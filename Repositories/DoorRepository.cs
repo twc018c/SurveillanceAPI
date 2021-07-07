@@ -54,6 +54,7 @@ namespace Surveillance.Repositories {
             return Model;
         }
 
+
         /// <summary>
         /// 取得門鎖清單
         /// </summary>
@@ -94,6 +95,25 @@ namespace Surveillance.Repositories {
             });
 
             return (ListVM, Count);
+        }
+
+
+        /// <summary>
+        /// 取得門鎖拖曳清單
+        /// </summary>
+        /// <param name="_FloorLevel">樓層層級</param>
+        /// <returns>List</returns>
+        public async Task<List<DoorDragViewModel>> GetDragList(int _FloorLevel = 0) {
+            var List = await DatabaseContext.Door.AsQueryable()
+                                                 .Where(x => x.FloorLevel == _FloorLevel)
+                                                 .Select(x => new DoorDragViewModel() {
+                                                     ID = x.ID,
+                                                     PositionX = x.PositionX,
+                                                     PositionY = x.PositionY
+                                                 })
+                                                 .ToListAsync();
+
+            return List;
         }
 
 
@@ -228,6 +248,23 @@ namespace Surveillance.Repositories {
                 // 修改門鎖
                 await Update(Model);
             });
+        }
+
+
+        /// <summary>
+        /// 拖曳門鎖
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        /// <returns>Task</returns>
+        public async Task Drag(DoorDragEntry _Entry) {
+            var Temp = await DatabaseContext.Door.SingleAsync(x => x.ID == _Entry.ID);
+
+            if (Temp != null) {
+                Temp.PositionX = _Entry.PositionX;
+                Temp.PositionY = _Entry.PositionY;
+
+                await DatabaseContext.SaveChangesAsync();
+            }
         }
 
         #endregion

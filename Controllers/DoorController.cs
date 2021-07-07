@@ -74,6 +74,25 @@ namespace Surveillance.Controllers {
 
 
         /// <summary>
+        /// 取得門鎖拖曳清單
+        /// </summary>
+        /// <param name="_FloorLevel">樓層層級</param>
+        [HttpGet("List/Drag/{_FloorLevel}")]
+        public async Task<Dictionary<string, object>> GetDragList(int _FloorLevel = 0) {
+            // 取得門鎖拖曳清單
+            var Temp = await DoorRepository.GetDragList(_FloorLevel);
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("result", Temp);
+            Dictionary.Add("resultCount", Temp.Count);
+            Dictionary.Add("resultCode", API_RESULT_CODE.SUCCESS);
+            Dictionary.Add("resultMessage", "取得門鎖拖曳清單成功");
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
         /// 取得門鎖指標
         /// </summary>
         /// <param name="_Entry">模型</param>
@@ -153,6 +172,35 @@ namespace Surveillance.Controllers {
 
                 ResultCode = API_RESULT_CODE.SUCCESS;
                 ResultMessage = "修改門鎖成功";
+            }
+
+            var Dictionary = new Dictionary<string, object>();
+            Dictionary.Add("resultCode", ResultCode);
+            Dictionary.Add("resultMessage", ResultMessage);
+
+            return Dictionary;
+        }
+
+
+        /// <summary>
+        /// 拖曳門鎖
+        /// </summary>
+        /// <param name="_Entry">模型</param>
+        [HttpPatch("Drag")]
+        [SwaggerRequestExample(typeof(DoorDragEntry), typeof(DoorDragExample))]
+        public async Task<Dictionary<string, object>> Drag(DoorDragEntry _Entry) {
+            var ResultCode = API_RESULT_CODE.PARA_ERROR;
+            var ResultMessage = "拖曳門鎖失敗";
+
+            // 檢查門鎖編號
+            bool IsExist = await DoorRepository.CheckID(_Entry.ID);
+
+            if (IsExist == true) {
+                // 拖曳門鎖
+                await DoorRepository.Drag(_Entry);
+
+                ResultCode = API_RESULT_CODE.SUCCESS;
+                ResultMessage = "拖曳門鎖成功";
             }
 
             var Dictionary = new Dictionary<string, object>();

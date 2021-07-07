@@ -15,7 +15,7 @@ namespace Surveillance.Examples {
         /// <returns>DoorCursorEntry</returns>
         public DoorCursorEntry GetExamples() {
             return new DoorCursorEntry() {
-                Seq = 6001,
+                Seq = 1,
                 Direction = true
             };
         }

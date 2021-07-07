@@ -58,5 +58,17 @@ namespace Surveillance.Models {
         /// 最後動作時間
         /// </summary>
         public DateTime ActionTime { get; set; } = DateTime.MinValue;
+
+        /// <summary>
+        /// 圖案X位置
+        /// </summary>
+        /// <remarks>百分比，小數2位</remarks>
+        public decimal PositionX { get; set; } = 0M;
+
+        /// <summary>
+        /// 圖案Y位置
+        /// </summary>
+        /// <remarks>百分比，小數2位</remarks>
+        public decimal PositionY { get; set; } = 0M;
     }
 }
