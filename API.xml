@@ -4121,6 +4121,11 @@
             門鎖拖曳
             </summary>
         </member>
+        <member name="P:Surveillance.ViewModels.DoorDragViewModel.Name">
+            <summary>
+            門鎖名稱
+            </summary>
+        </member>
         <member name="T:Surveillance.ViewModels.DoorViewModel">
             <summary>
             門鎖

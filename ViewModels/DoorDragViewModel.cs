@@ -7,6 +7,10 @@ namespace Surveillance.ViewModels {
     /// ªùÂê©ì¦²
     /// </summary>
     public class DoorDragViewModel : DoorDragEntry {
-        // NOTHING
+
+        /// <summary>
+        /// ªùÂê¦WºÙ
+        /// </summary>
+        public string Name { get; set; } = "";
     }
 }

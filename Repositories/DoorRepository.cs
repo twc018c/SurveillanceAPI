@@ -108,6 +108,7 @@ namespace Surveillance.Repositories {
                                                  .Where(x => x.FloorLevel == _FloorLevel)
                                                  .Select(x => new DoorDragViewModel() {
                                                      ID = x.ID,
+                                                     Name = x.Name,
                                                      PositionX = x.PositionX,
                                                      PositionY = x.PositionY
                                                  })
